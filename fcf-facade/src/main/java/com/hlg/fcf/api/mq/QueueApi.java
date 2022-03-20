@@ -1,0 +1,33 @@
+package com.hlg.fcf.api.mq;
+
+import com.hlg.fcf.api.Constants;
+import com.hlg.fcf.model.PageInfo;
+import com.hlg.fcf.model.mq.IBinding;
+import com.hlg.fcf.model.mq.IQueue;
+import com.hlg.fcf.model.mq.QueueDeleteParam;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.Collection;
+
+@FeignClient(contextId = Constants.ApiContextId.ExchangeApi,name=Constants.APP_APIGATEWAY_MQ,url =Constants.AppFeignUrl.APP_MQ)
+@ConditionalOnExpression("false")
+public interface QueueApi<T extends IQueue> {
+
+    @RequestMapping(value="/api/queues/{virtualHost}?page={page}&page_size={page_size}&use_regex=true&pagination=true&name={name}",method=RequestMethod.GET)
+    public <P extends PageInfo<T>> P findPage(@PathVariable("name") String name, @PathVariable("page") int page, @PathVariable("page_size") int pageSize, @PathVariable("virtualHost") String virtualHost);
+
+    @RequestMapping(value="/api/queues/{virtualHost}/{name}",method=RequestMethod.DELETE)
+    public void del(@PathVariable("name") String name, @PathVariable("virtualHost") String virtualHost, @RequestBody QueueDeleteParam param);
+
+    @RequestMapping(value="/api/queues/{virtualHost}/{name}/bindings/source",method=RequestMethod.GET)
+    public <E extends  IBinding> Collection<E> getQueueBindsTo(@PathVariable("name") String name, @PathVariable("virtualHost") String virtualHost);
+
+    @RequestMapping(value="/api/queues/{virtualHost}/{name}/bindings/destination",method=RequestMethod.GET)
+    public <E extends  IBinding>  Collection<E> getQueueBindsFrom(@PathVariable("name") String name,@PathVariable("virtualHost") String virtualHost);
+
+}

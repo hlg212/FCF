@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>parent</artifactId>
+        <groupId>com.hlg</groupId>
+        <version>0.1.0-SNAPSHOT</version>
+    </parent>
+    <groupId>com.hlg.fcf</groupId>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>fcf-parent</artifactId>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
+    <version>${revision}</version>
+
+    <properties>
+        <revision>0.1.0-SNAPSHOT</revision>
+        <!--<flatten.pomElements.parent>interpolate</flatten.pomElements.parent>
+      -->  <spring-boot-maven-plugin.skip>true</spring-boot-maven-plugin.skip>
+        <flatten.flattenMode>oss</flatten.flattenMode>
+        <flatten.updatePomFile>true</flatten.updatePomFile>
+<!--
+        <flatten.pomElements.properties>resolve</flatten.pomElements.properties>
+-->
+
+    </properties>
+    <modules>
+        <module>fcf-dbom</module>
+        <module>fcf-bom</module>
+        <module>fcf-dependencies</module>
+        <module>fcf</module>
+        <module>fcf-facade</module>
+        <module>fcf-common</module>
+        <module>fcf-core</module>
+        <module>fcf-service</module>
+        <module>fcf-web</module>
+        <module>fcf-starter</module>
+    </modules>
+
+</project>
