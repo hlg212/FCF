@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>fcf-parent</artifactId>
-        <groupId>com.hlg.fcf</groupId>
+        <groupId>io.hlg212.fcf</groupId>
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>

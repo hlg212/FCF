@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>fcf-parent</artifactId>
-        <groupId>com.hlg.fcf</groupId>
+        <groupId>io.hlg212.fcf</groupId>
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
@@ -97,6 +97,11 @@
             <artifactId>apm-toolkit-opentracing</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+
 <!--        <dependency>-->
 <!--            <groupId>com.DmJdbcDriver18</groupId>-->
 <!--            <artifactId>DmJdbcDriver18</artifactId>-->
@@ -107,14 +112,14 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.hlg.fcf</groupId>
+                <groupId>io.hlg212.fcf</groupId>
                 <artifactId>fcf-bom</artifactId>
                 <version>${revision}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>com.hlg.fcf</groupId>
+                <groupId>io.hlg212.fcf</groupId>
                 <artifactId>fcf-dbom</artifactId>
                 <version>${revision}</version>
                 <type>pom</type>
