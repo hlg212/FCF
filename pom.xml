@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>parent</artifactId>
-        <groupId>io.hlg212</groupId>
+        <groupId> io.github.hlg212</groupId>
         <version>0.1.0-SNAPSHOT</version>
     </parent>
-    <groupId>io.hlg212.fcf</groupId>
+    <groupId> io.github.hlg212.fcf</groupId>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>fcf-parent</artifactId>
     <packaging>pom</packaging>
@@ -20,6 +20,8 @@
       -->  <spring-boot-maven-plugin.skip>true</spring-boot-maven-plugin.skip>
         <flatten.flattenMode>oss</flatten.flattenMode>
         <flatten.updatePomFile>true</flatten.updatePomFile>
+        <maven-gpg-plugin.skip>false</maven-gpg-plugin.skip>
+        <maven-javadoc-plugin.skip>false</maven-javadoc-plugin.skip>
 <!--
         <flatten.pomElements.properties>resolve</flatten.pomElements.properties>
 -->
@@ -31,20 +33,6 @@
         <developerConnection>scm:git:https://github.com/hlg212/FCF.git</developerConnection>
         <url>https://github.com/hlg212/FCF.git</url>
     </scm>
-
-    <licenses>
-        <license>
-            <name>The Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-        </license>
-    </licenses>
-
-    <developers>
-        <developer>
-            <name>黄礼桂</name>
-            <email>xiaolaoban212@qq.com</email>
-        </developer>
-    </developers>
 
     <modules>
         <module>fcf-dbom</module>

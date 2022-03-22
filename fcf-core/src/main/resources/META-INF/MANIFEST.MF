@@ -1,1 +1,1 @@
-Liquibase-Package: io.hlg212.fcf.core.conf
+Liquibase-Package:  io.github.hlg212.fcf.core.conf

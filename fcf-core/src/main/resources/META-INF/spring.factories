@@ -1,10 +1,10 @@
 
 org.springframework.boot.env.EnvironmentPostProcessor=\
-  io.hlg212.fcf.core.env.DefaultEnvironmentPostProcessor
+   io.github.hlg212.fcf.core.env.DefaultEnvironmentPostProcessor
 
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  io.hlg212.fcf.core.conf.MapperScannerConfig,\
-  io.hlg212.fcf.core.conf.MybatisPlusAutoConfig,\
-  io.hlg212.fcf.core.conf.ExTransactionAutoConfiguration
+   io.github.hlg212.fcf.core.conf.MapperScannerConfig,\
+   io.github.hlg212.fcf.core.conf.MybatisPlusAutoConfig,\
+   io.github.hlg212.fcf.core.conf.ExTransactionAutoConfiguration
 

@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>fcf-parent</artifactId>
-        <groupId>io.hlg212.fcf</groupId>
+        <groupId> io.github.hlg212.fcf</groupId>
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
@@ -112,14 +112,14 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>io.hlg212.fcf</groupId>
+                <groupId> io.github.hlg212.fcf</groupId>
                 <artifactId>fcf-bom</artifactId>
                 <version>${revision}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>io.hlg212.fcf</groupId>
+                <groupId> io.github.hlg212.fcf</groupId>
                 <artifactId>fcf-dbom</artifactId>
                 <version>${revision}</version>
                 <type>pom</type>

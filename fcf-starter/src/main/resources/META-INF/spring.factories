@@ -1,4 +1,4 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  io.hlg212.fcf.FrameAutoConfiguration
+   io.github.hlg212.fcf.FrameAutoConfiguration
 
