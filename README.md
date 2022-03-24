@@ -12,9 +12,9 @@
  ## Links
 
 - [Documentation]
-- [Code Generator]
-- [Samples]
-- [FCP 基础开发平台]
+- [Code Generator](https://github.com/hlg212/FCP)
+- [Samples](https://github.com/hlg212/fcf-examples)
+- [FCP 基础开发平台](https://github.com/hlg212/FCP)
 
 ## 功能介绍
 -  数据统一与异常
@@ -49,10 +49,19 @@
 	
 	FCF：  public class DemoController implements CurdieController<DemoBo, DemoQco>
 
+## 依赖组件
+|  名称   | 表头  |  表头  |
+|  ----  | ----  | ----  |
+| 单元格  | 单元格 | 单元格 |
+| 单元格  | 单元格 | 单元格 |
+
 ## 功能演示
 
-## 问题反馈
-
+## 交流反馈
+* 交流请进群：
+	* QQ：
+	* 微信：
+* 个人邮箱：xiaolaoban212@qq.com
 
 ## License
 

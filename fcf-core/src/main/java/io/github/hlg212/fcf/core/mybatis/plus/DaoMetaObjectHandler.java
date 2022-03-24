@@ -7,6 +7,7 @@ import  io.github.hlg212.fcf.core.properties.AutoFillProperties;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 
 import java.util.List;
 import java.util.Set;
@@ -15,6 +16,7 @@ import java.util.Set;
 public class DaoMetaObjectHandler implements MetaObjectHandler {
 
     @Autowired
+    @Lazy
     private List<FillHandler> fillHandlerList;
 
     @Autowired

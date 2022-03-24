@@ -53,12 +53,14 @@ public class EventPublisherHelper {
     {
         if( event instanceof  RemoteEvent )
         {
-            if( getInstance().remoteEventPublisher == null )
-            {
-                log.warn("esb被关闭,请检查配置 hlg.esb.enable ");
-            }
+
             if( StringUtils.isEmpty(((RemoteEvent) event).getOriginService()) )
             {
+                if( getInstance().remoteEventPublisher == null )
+                {
+                    log.warn("esb被关闭,请检查配置 hlg.esb.enable ");
+                    return;
+                }
                 ((RemoteEvent) event).setOriginService(getInstance().serviceId);
                 getInstance().remoteEventPublisher.publish(event);
             }

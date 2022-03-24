@@ -10,7 +10,7 @@ spring:
 hlg:
   fcf:
     version: ${project.version}
-    basePackage:  io.github.hlg212.fcf
+    basePackage: io.github.hlg212.fcf
   package:
     #company: com.htcf
     #company: ${htcf.default.package.company}

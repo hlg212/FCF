@@ -49,6 +49,10 @@ public class DaoSqlInjector extends DefaultSqlInjector {
     @Override
     public void inspectInject(MapperBuilderAssistant builderAssistant, Class<?> mapperClass) {
         Class<?> modelClass = this.extractModelClass(mapperClass);
+        if( modelClass == null )
+        {
+            return;
+        }
         TableInfo tableInfo = TableInfoHelper.initTableInfo(builderAssistant, modelClass);
         TableHelper.initTable(modelClass);
         String tableName = getTableName(modelClass);

@@ -61,7 +61,7 @@ public interface ExportController<T extends ISerializable,Q extends Qco> extends
             @ApiImplicitParam(name="pageNum", value="当前页数", required=true, dataType="int",example = "1",paramType="query"),
             @ApiImplicitParam(name="pageSize", value="每页显示数量", required=true, dataType="int",example = "10",paramType="query")
     })
-    @RequestMapping(value="/exportPage", method = {RequestMethod.POST})
+    @RequestMapping(value="/exportPage", method = {RequestMethod.GET})
     default public File exportPage(Q qco, int pageNum, int pageSize) {
         return exportPage(new PageQuery<>(qco,pageNum,pageSize));
     }
@@ -103,7 +103,7 @@ public interface ExportController<T extends ISerializable,Q extends Qco> extends
             @ApiImplicitParam(name="pageNum", value="当前页数", required=true, dataType="int",example = "1",paramType="query"),
             @ApiImplicitParam(name="pageSize", value="每页显示数量", required=true, dataType="int",example = "10",paramType="query")
     })
-    @RequestMapping(value="/exportPage", method = {RequestMethod.GET})
+    @RequestMapping(value="/down/exportPage", method = {RequestMethod.GET})
     default  public byte[] downExportPage(Q qco, int pageNum, int pageSize) {
         return downExportPage(new PageQuery<>(qco,pageNum,pageSize));
     }

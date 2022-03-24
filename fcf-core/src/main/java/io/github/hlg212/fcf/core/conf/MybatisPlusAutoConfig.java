@@ -1,11 +1,3 @@
-/** 
- * Project Name:frame-core 
- * File Name:MybatisConfig.java 
- * Package Name: io.github.hlg212.fcf.core.conf 
- * Date:2018年8月20日 下午1:06:25 
- * Copyright (c) 2018, 航天长峰湖南分公司  All Rights Reserved. 
- * 
- */
 package  io.github.hlg212.fcf.core.conf;
 
 import com.baomidou.mybatisplus.autoconfigure.MybatisPlusAutoConfiguration;
