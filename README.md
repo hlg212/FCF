@@ -12,7 +12,7 @@
  ## Links
 
 - [文档]
-- [代码生成](https://github.com/hlg212/FCP/generator)
+- [代码生成](https://github.com/hlg212/FCP/tree/master/generator)
 - [例子](https://github.com/hlg212/fcf-examples)
 - [配置说明](https://github.com/hlg212/fcf-examples)
 - [工程结构](https://github.com/hlg212/fcf-examples)
@@ -68,6 +68,31 @@
 | liquibase  | 单元格 | 单元格 |
 
 ## 功能演示
+
+##### swagger
+![image](https://raw.githubusercontent.com/hlg212/fcf-examples/master/images/curdie_swagger.jpg)
+
+##### swagger 认证
+![image](https://raw.githubusercontent.com/hlg212/fcf-examples/master/images/curdie_swagger_auth.jpg)
+
+##### Dao,Mapper
+![image](https://raw.githubusercontent.com/hlg212/fcf-examples/master/images/curdie_dao.jpg)
+![image](https://raw.githubusercontent.com/hlg212/fcf-examples/master/images/curdie_mapper.jpg)
+
+
+##### Service
+![image](https://raw.githubusercontent.com/hlg212/fcf-examples/master/images/curdie_service.jpg)
+![image](https://raw.githubusercontent.com/hlg212/fcf-examples/master/images/curdie_serviceImpl.jpg)
+
+##### Controller
+![image](https://raw.githubusercontent.com/hlg212/fcf-examples/master/images/curdie_controller.jpg)
+
+##### 数据模型
+![image](https://raw.githubusercontent.com/hlg212/fcf-examples/master/images/curdie_facade.jpg)
+
+##### 包结构
+![image](https://raw.githubusercontent.com/hlg212/fcf-examples/master/images/curdie_dir.jpg)
+
 
 ## 交流反馈
 * 交流请进群：
