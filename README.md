@@ -52,20 +52,6 @@
 	
 	FCF：  public class DemoController implements CurdieController<DemoBo, DemoQco>
 
-## 技术选型
-|  名称   | 版本  |  说明  |
-|  ----  | ----  | ----  |
-| spring boot  | 单元格 | 单元格 |
-| spring cloud  | 单元格 | 单元格 |
-| mybatis-plus  | 单元格 | 单元格 |
-| druid  | 单元格 | 单元格 |
-| redis  | 单元格 | 单元格 |
-| spring cloud stream  | 单元格 | 单元格 |
-| spring cloud bus  | 单元格 | 单元格 |
-| feign  | 单元格 | 单元格 |
-| eureka  | 单元格 | 单元格 |
-| swagger2  | 单元格 | 单元格 |
-| liquibase  | 单元格 | 单元格 |
 
 ## 功能演示
 
@@ -93,6 +79,21 @@
 ##### 包结构
 ![image](https://raw.githubusercontent.com/hlg212/fcf-examples/master/images/curdie_dir.jpg)
 
+## 技术选型
+|  名称   | 版本  |  说明  |
+|  ----  | ----  | ----  |
+| spring boot  | 单元格 | 单元格 |
+| spring cloud  | 单元格 | 单元格 |
+| mybatis-plus  | 单元格 | 单元格 |
+| druid  | 单元格 | 单元格 |
+| redis  | 单元格 | 单元格 |
+| spring cache  | 单元格 | 单元格 |
+| spring cloud stream  | 单元格 | 单元格 |
+| spring cloud bus  | 单元格 | 单元格 |
+| feign  | 单元格 | 单元格 |
+| eureka  | 单元格 | 单元格 |
+| swagger2  | 单元格 | 单元格 |
+| liquibase  | 单元格 | 单元格 |
 
 ## 交流反馈
 * 交流请进群：

@@ -13,7 +13,7 @@ class PoInfoApiConfig {
      * @date 2019年9月12日
      */
     @FeignClient(contextId = Constants.ApiContextId.PoInfoApi,name=Constants.APP_APIGATEWAY_BASIC, url=Constants.AppFeignUrl.APP_APPLICATION_URL)
-    public interface PobmsApi extends  io.github.hlg212.fcf.api.common.PoInfoApi {
+    public interface PoInfoApi extends  io.github.hlg212.fcf.api.common.PoInfoApi {
 
     }
 }
