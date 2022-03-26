@@ -24,7 +24,7 @@ import org.springframework.messaging.support.MessageBuilder;
  **/
 @Slf4j
 @Configuration
-@ConditionalOnProperty(value = "esb.local",prefix = "hlg")
+@ConditionalOnProperty(value = "esb.local",prefix = "fcf")
 public class LocalEventServiceBusConfig {
 
 
