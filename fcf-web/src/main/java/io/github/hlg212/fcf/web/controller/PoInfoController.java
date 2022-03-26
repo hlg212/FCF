@@ -1,13 +1,13 @@
 package  io.github.hlg212.fcf.web.controller;
 
-import com.alibaba.fastjson.JSON;
-import  io.github.hlg212.fcf.annotation.PobmsAnnotation;
-import  io.github.hlg212.fcf.api.common.PobmsApi;
-import  io.github.hlg212.fcf.dao.BaseDao;
-import  io.github.hlg212.fcf.model.basic.PobmsInfo;
-import  io.github.hlg212.fcf.util.DbHelper;
-import  io.github.hlg212.fcf.util.FieldHelper;
-import  io.github.hlg212.fcf.util.SpringHelper;
+import io.github.hlg212.fcf.annotation.PoInfoAnn;
+import io.github.hlg212.fcf.api.common.PoInfoApi;
+import io.github.hlg212.fcf.dao.BaseDao;
+import io.github.hlg212.fcf.model.basic.PoInfo;
+import io.github.hlg212.fcf.util.DbHelper;
+import io.github.hlg212.fcf.util.FieldHelper;
+import io.github.hlg212.fcf.util.JsonHelper;
+import io.github.hlg212.fcf.util.SpringHelper;
 import io.swagger.annotations.Api;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,39 +20,39 @@ import java.util.*;
  * @author wuwei
  * @date 2019年9月9日
  */
-@RestController("frame.pobmsController")
+@RestController("Frame.PoInfoController")
 @Api(value="框架PO表描述服务控制器",tags={"框架PO表描述服务控制器"})
-public class PobmsController implements PobmsApi {
+public class PoInfoController implements PoInfoApi {
 
 	@Override
-	public List<PobmsInfo> getPobmss() {
-		List<PobmsInfo> pobmsInfos = new ArrayList<>();
+	public List<PoInfo> getPoInfos() {
+		List<PoInfo> poInfos = new ArrayList<>();
 		Collection<BaseDao> list =  SpringHelper.getApplicationContext().getBeansOfType(BaseDao.class).values();
 
 		for(BaseDao base : list){
 			Class po = base.getModelClass();
 
-			PobmsInfo pobmsInfo = new PobmsInfo();
-			PobmsAnnotation[] pobmsAnnotation = (PobmsAnnotation[])base.getModelClass().getAnnotationsByType(PobmsAnnotation.class);
+			PoInfo pobInfo = new PoInfo();
+			PoInfoAnn[] pobmsAnn = (PoInfoAnn[])base.getModelClass().getAnnotationsByType(PoInfoAnn.class);
 
-			if( pobmsAnnotation != null && pobmsAnnotation.length > 0 ) {
-				pobmsInfo.setBm(DbHelper.getTableName(po));
-				pobmsInfo.setBms(pobmsAnnotation[0].bms() + "");
-				pobmsInfo.setZjm(DbHelper.getModelPkId(po));
-				pobmsInfo.setYwbm(pobmsAnnotation[0].ywbm() + "");
-				String sxms = pobmsAnnotation[0].sxms() + "";
+			if( pobmsAnn != null && pobmsAnn.length > 0 ) {
+				pobInfo.setName(DbHelper.getTableName(po));
+				pobInfo.setDesc(pobmsAnn[0].desc() + "");
+				pobInfo.setPrimarykey(DbHelper.getModelPkId(po));
+				pobInfo.setBusinessCode(pobmsAnn[0].businessCode() + "");
+				String sxms = pobmsAnn[0].attributeDetails() + "";
 				if(StringUtils.isBlank(sxms)){
 					Map<String, String> map = getFieldDescMapping(po);
-					pobmsInfo.setSxms(JSON.toJSONString(map));
+					pobInfo.setAttributeDetails(JsonHelper.toJson(map));
 				}else{
-					pobmsInfo.setSxms(sxms);
+					pobInfo.setAttributeDetails(sxms);
 				}
 
-				pobmsInfos.add(pobmsInfo);
+				poInfos.add(pobInfo);
 			}
 		}
 
-		return pobmsInfos;
+		return poInfos;
 	}
 
 	/**
@@ -76,4 +76,5 @@ public class PobmsController implements PobmsApi {
 		}
 		return result;
 	}
+
 }

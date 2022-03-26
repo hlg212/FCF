@@ -36,10 +36,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /** 
- * ClassName: SwaggerConfig
- * Function: TODO ADD FUNCTION. 
- * Reason: TODO ADD REASON(可选).
- * date: 2018年7月27日 下午2:13:58
+ * SwaggerConfig
+ * 只对本服务的路径进行文档生成
+ * 增加swagger验证；
  *
  * @author  huangligui
  */

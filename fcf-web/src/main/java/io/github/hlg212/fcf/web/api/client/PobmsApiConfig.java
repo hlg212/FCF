@@ -6,14 +6,14 @@ import org.springframework.context.annotation.Configuration;
 
 
 @Configuration
-class PobmsApiConfig {
+class PoInfoApiConfig {
 
     /**
      * @author wuwei
      * @date 2019年9月12日
      */
-    @FeignClient(contextId = Constants.ApiContextId.PobmsApi,name=Constants.APP_APIGATEWAY_BASIC, url=Constants.AppFeignUrl.APP_APPLICATION_URL)
-    public interface PobmsApi extends  io.github.hlg212.fcf.api.common.PobmsApi {
+    @FeignClient(contextId = Constants.ApiContextId.PoInfoApi,name=Constants.APP_APIGATEWAY_BASIC, url=Constants.AppFeignUrl.APP_APPLICATION_URL)
+    public interface PobmsApi extends  io.github.hlg212.fcf.api.common.PoInfoApi {
 
     }
 }

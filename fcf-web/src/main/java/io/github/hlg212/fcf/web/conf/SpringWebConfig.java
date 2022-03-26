@@ -58,10 +58,10 @@ public class SpringWebConfig implements WebMvcConfigurer {
 	@Autowired
 	private RequestParamOrBodyArgumentResolver requestParamOrBodyArgumentResolver;
 
-	@Value("${hlg.mvc.cors.enable:false}")
+	@Value("${fcf.mvc.cors.enable:false}")
 	private Boolean corsAllowed;
 
-	@Value("${hlg.mvc.isnullfield.display:false}")
+	@Value("${fcf.mvc.isnullfield.display:false}")
 	private Boolean isNullFieldDisplay;
 
 	@Bean

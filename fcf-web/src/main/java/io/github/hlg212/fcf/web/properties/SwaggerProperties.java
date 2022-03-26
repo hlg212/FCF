@@ -17,7 +17,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author huangligui
  * @date 2018年10月19日
  */
-@ConfigurationProperties(prefix = "hlg.swagger")
+@ConfigurationProperties(prefix = "fcf.swagger")
 @Data
 public class SwaggerProperties {
 

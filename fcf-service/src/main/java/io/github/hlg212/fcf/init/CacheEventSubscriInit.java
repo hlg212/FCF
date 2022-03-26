@@ -25,7 +25,7 @@ public class CacheEventSubscriInit implements ApplicationListener<ApplicationRea
     @Value("${spring.application.name}")
     private String appName;
 
-    @Value("${hlg.cacheServiceId:${hlg.serviceId}}")
+    @Value("${fcf.cacheServiceId:${fcf.serviceId}}")
     private String serviceId;
 
     //@Autowired

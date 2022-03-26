@@ -40,7 +40,7 @@ public interface ImportController<T extends ISerializable,Q extends Qco> extends
 
     @ApiOperation(value="解析导入文件，返回解析后的数据，传入文件中心文件路径")
     @ApiImplicitParam(name="path", value="文件路径,传入文件中心文件路径", required=true)
-    @RequestMapping(value="/import/show", method = {RequestMethod.GET})
+        @RequestMapping(value="/import/show", method = {RequestMethod.GET})
     default  public Collection<T> importShow(String path) {
         return importShow(getFile(path));
     }
@@ -52,7 +52,7 @@ public interface ImportController<T extends ISerializable,Q extends Qco> extends
 
     @ApiOperation(value="导入文件，直接进行保存，传入文件中心文件路径")
     @ApiImplicitParam(name="path", value="文件路径,传入文件中心文件路径", required=true)
-    @RequestMapping(value="/import/save", method = {RequestMethod.GET})
+    @RequestMapping(value="/import/save", method = {RequestMethod.POST})
     default public void importSave(String path) {
         getImportService().importSave(getFile(path));
     }

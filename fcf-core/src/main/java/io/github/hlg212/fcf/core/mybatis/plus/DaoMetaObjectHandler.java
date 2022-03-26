@@ -2,12 +2,11 @@ package  io.github.hlg212.fcf.core.mybatis.plus;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-import  io.github.hlg212.fcf.dao.FillHandler;
+import io.github.hlg212.fcf.core.handler.FillHandler;
 import  io.github.hlg212.fcf.core.properties.AutoFillProperties;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 
 import java.util.List;
 import java.util.Set;
@@ -16,7 +15,7 @@ import java.util.Set;
 public class DaoMetaObjectHandler implements MetaObjectHandler {
 
     @Autowired
-    @Lazy
+    //@Lazy
     private List<FillHandler> fillHandlerList;
 
     @Autowired

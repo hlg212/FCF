@@ -1,7 +1,7 @@
 package  io.github.hlg212.fcf.core.dao.impl;
 
 import  io.github.hlg212.fcf.core.properties.AutoFillFieldProperties;
-import  io.github.hlg212.fcf.dao.FillHandler;
+import io.github.hlg212.fcf.core.handler.FillHandler;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;

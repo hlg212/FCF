@@ -7,7 +7,7 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 
-@ConfigurationProperties(prefix = "hlg.cache")
+@ConfigurationProperties(prefix = "fcf.cache")
 @Data
 public class CacheProperties {
 	

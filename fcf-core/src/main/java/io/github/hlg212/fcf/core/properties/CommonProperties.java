@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@ConfigurationProperties(prefix = "hlg")
+@ConfigurationProperties(prefix = "fcf")
 public class CommonProperties {
 
 	/**

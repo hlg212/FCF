@@ -18,25 +18,25 @@ import org.springframework.context.annotation.Configuration;
  **/
 @Configuration
 @EnableBinding({EventServiceBusClient.class,EventServiceBusFrameClient.class,EventServiceBusCacheClient.class})
-@RemoteApplicationEventScan({"${hlg.fcf.basePackage}",
-        "${hlg.package.event[0]:${hlg.default.package.basePackage[0]:o000oo000o}}",
-        "${hlg.package.event[1]:${hlg.default.package.basePackage[1]:o000oo000o}}",
-        "${hlg.package.event[2]:${hlg.default.package.basePackage[2]:o000oo000o}}",
-        "${hlg.package.event[3]:${hlg.default.package.basePackage[3]:o000oo000o}}",
-        "${hlg.package.event[4]:${hlg.default.package.basePackage[4]:o000oo000o}}",
-        "${hlg.package.event[5]:${hlg.default.package.basePackage[5]:o000oo000o}}",
-        "${hlg.package.event[6]:${hlg.default.package.basePackage[6]:o000oo000o}}",
-        "${hlg.package.event[7]:${hlg.default.package.basePackage[7]:o000oo000o}}",
-        "${hlg.package.event[8]:${hlg.default.package.basePackage[8]:o000oo000o}}",
-        "${hlg.package.event[9]:${hlg.default.package.basePackage[9]:o000oo000o}}",
-        "${hlg.package.event[10]:${hlg.default.package.basePackage[10]:o000oo000o}}",
-        "${hlg.package.event[11]:${hlg.default.package.basePackage[11]:o000oo000o}}",
-        "${hlg.package.event[12]:${hlg.default.package.basePackage[12]:o000oo000o}}",
-        "${hlg.package.event[13]:${hlg.default.package.basePackage[13]:o000oo000o}}",
-        "${hlg.package.event[14]:${hlg.default.package.basePackage[14]:o000oo000o}}",
-        "${hlg.package.event[15]:${hlg.default.package.basePackage[15]:o000oo000o}}",
-        "${hlg.package.event[16]:${hlg.default.package.basePackage[16]:o000oo000o}}",
-        "${hlg.package.event[17]:${hlg.default.package.basePackage[17]:o000oo000o}}"
+@RemoteApplicationEventScan({"${hlg212.fcf.basePackage}",
+        "${fcf.package.event[0]:${fcf.default.package.basePackage[0]:o000oo000o}}",
+        "${fcf.package.event[1]:${fcf.default.package.basePackage[1]:o000oo000o}}",
+        "${fcf.package.event[2]:${fcf.default.package.basePackage[2]:o000oo000o}}",
+        "${fcf.package.event[3]:${fcf.default.package.basePackage[3]:o000oo000o}}",
+        "${fcf.package.event[4]:${fcf.default.package.basePackage[4]:o000oo000o}}",
+        "${fcf.package.event[5]:${fcf.default.package.basePackage[5]:o000oo000o}}",
+        "${fcf.package.event[6]:${fcf.default.package.basePackage[6]:o000oo000o}}",
+        "${fcf.package.event[7]:${fcf.default.package.basePackage[7]:o000oo000o}}",
+        "${fcf.package.event[8]:${fcf.default.package.basePackage[8]:o000oo000o}}",
+        "${fcf.package.event[9]:${fcf.default.package.basePackage[9]:o000oo000o}}",
+        "${fcf.package.event[10]:${fcf.default.package.basePackage[10]:o000oo000o}}",
+        "${fcf.package.event[11]:${fcf.default.package.basePackage[11]:o000oo000o}}",
+        "${fcf.package.event[12]:${fcf.default.package.basePackage[12]:o000oo000o}}",
+        "${fcf.package.event[13]:${fcf.default.package.basePackage[13]:o000oo000o}}",
+        "${fcf.package.event[14]:${fcf.default.package.basePackage[14]:o000oo000o}}",
+        "${fcf.package.event[15]:${fcf.default.package.basePackage[15]:o000oo000o}}",
+        "${fcf.package.event[16]:${fcf.default.package.basePackage[16]:o000oo000o}}",
+        "${fcf.package.event[17]:${fcf.default.package.basePackage[17]:o000oo000o}}"
 })
 @EsbConditional
 public class EventServiceBusConfig  {

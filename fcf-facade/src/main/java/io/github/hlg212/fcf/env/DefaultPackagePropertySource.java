@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DefaultPackagePropertySource extends PropertySource  {
 
-    private static final String PREFIX = "hlg.default.package";
+    private static final String PREFIX = "fcf.default.package";
     private static List<String> basePackages = new ArrayList();
 
     public static void add(String basePackage)

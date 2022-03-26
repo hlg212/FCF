@@ -10,7 +10,6 @@ package  io.github.hlg212.fcf.core.dao.impl;
 import  io.github.hlg212.fcf.core.util.QueryPropertyParseUtils;
 import  io.github.hlg212.fcf.core.util.TableHelper;
 import  io.github.hlg212.fcf.dao.BaseDao;
-import  io.github.hlg212.fcf.dao.QueryAuthInterface;
 import  io.github.hlg212.fcf.model.*;
 import  io.github.hlg212.fcf.util.DbHelper;
 import  io.github.hlg212.fcf.util.ExceptionHelper;
@@ -39,10 +38,6 @@ import java.util.*;
  */
 @Slf4j
 public abstract class AbsBaseDao<T extends Model> implements BaseDao<T> {
-
-
-    @Autowired(required = false)
-    protected List<QueryAuthInterface<T>> queryAuthInterfaceList;
 
     public final static int MAX_PAGE_SIZE_DEFAULT = 10000;
 
@@ -209,12 +204,6 @@ public abstract class AbsBaseDao<T extends Model> implements BaseDao<T> {
     protected <E extends T> PageInfo<E> findPage(QueryParam queryParam, boolean isCount) {
         if (queryParam == null) {
             ExceptionHelper.throwBusinessException("查询参数不正确");
-        }
-        if (isCount) {
-            // get getById 不做数据过滤
-            Optional.ofNullable(queryAuthInterfaceList).orElse(Collections.emptyList()).forEach(q -> {
-                q.addAuthQueryParam(queryParam);
-            });
         }
         this.checkQueryCondition(queryParam);
         return findPage(queryParam);

@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 
-@ConfigurationProperties("hlg.api.client")
+@ConfigurationProperties("fcf.api.client")
 @Data
 public class ApiClientProperties {
 

@@ -10,12 +10,12 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-public @interface PobmsAnnotation {
-    // 不填就默认为 def
-    public String bms() default  "";
+public @interface PoInfoAnn {
 
-    public String ywbm() default  "";
+    public String desc() default  "";
 
-    public String sxms() default  "";
+    public String businessCode() default  "";
+
+    public String attributeDetails() default  "";
 
 }

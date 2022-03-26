@@ -2,27 +2,27 @@ package  io.github.hlg212.fcf.api;
 
 public class Constants {
 
-    //public final static String APP_BASIC_PATH = "${hlg.feign.system.name:system}";
-    public final static String APP_BASIC_PATH = "${hlg.feign.basic.name:basic}";
-    public final static String APP_TASK_PATH = "${hlg.feign.task.name:task}";
-    public final static String APP_FILES_PATH = "${hlg.feign.files.name:files}";
-    public final static String APP_CAS_PATH = "${hlg.feign.cas.name:cas}";
-    public final static String APP_ADMIN_PATH = "${hlg.feign.admin.name:admin}";
-    public final static String APP_RTP_PATH = "${hlg.feign.rtp.name:rtp}";
-    public final static String APP_MQ_PATH = "${hlg.feign.mq.name:mq}";
-    public final static String APP_DAM_PATH = "${hlg.feign.dam.name:dam}";
+    //public final static String APP_BASIC_PATH = "${fcf.feign.system.name:system}";
+    public final static String APP_BASIC_PATH = "${fcf.feign.basic.name:basic}";
+    public final static String APP_TASK_PATH = "${fcf.feign.task.name:task}";
+    public final static String APP_FILES_PATH = "${fcf.feign.files.name:files}";
+    public final static String APP_CAS_PATH = "${fcf.feign.cas.name:cas}";
+    public final static String APP_ADMIN_PATH = "${fcf.feign.admin.name:admin}";
+    public final static String APP_RTP_PATH = "${fcf.feign.rtp.name:rtp}";
+    public final static String APP_MQ_PATH = "${fcf.feign.mq.name:mq}";
+    public final static String APP_DAM_PATH = "${fcf.feign.dam.name:dam}";
 
 
     public final static String APP_APPLICATION_NAME = "${spring.application.name:}";
 
-    public final static String APP_APIGATEWAY_BASIC = "${hlg.feign."+ APP_BASIC_PATH + ".gateway:apiGateway}";
-    public final static String APP_APIGATEWAY_TASK = "${hlg.feign."+ APP_TASK_PATH + ".gateway:apiGateway}";
-    public final static String APP_APIGATEWAY_CAS = "${hlg.feign."+ APP_CAS_PATH + ".gateway:apiGateway}";
-    public final static String APP_APIGATEWAY_FILES = "${hlg.feign."+ APP_FILES_PATH + ".gateway:apiGateway}";
-    public final static String APP_APIGATEWAY_ADMIN = "${hlg.feign."+ APP_ADMIN_PATH + ".gateway:apiGateway}";
-    public final static String APP_APIGATEWAY_RTP = "${hlg.feign."+ APP_RTP_PATH + ".gateway:apiGateway}";
-    public final static String APP_APIGATEWAY_MQ = "${hlg.feign."+ APP_MQ_PATH + ".gateway:apiGateway}";
-    public final static String APP_APIGATEWAY_DAM = "${hlg.feign."+ APP_DAM_PATH + ".gateway:apiGateway}";
+    public final static String APP_APIGATEWAY_BASIC = "${fcf.feign."+ APP_BASIC_PATH + ".gateway:apiGateway}";
+    public final static String APP_APIGATEWAY_TASK = "${fcf.feign."+ APP_TASK_PATH + ".gateway:apiGateway}";
+    public final static String APP_APIGATEWAY_CAS = "${fcf.feign."+ APP_CAS_PATH + ".gateway:apiGateway}";
+    public final static String APP_APIGATEWAY_FILES = "${fcf.feign."+ APP_FILES_PATH + ".gateway:apiGateway}";
+    public final static String APP_APIGATEWAY_ADMIN = "${fcf.feign."+ APP_ADMIN_PATH + ".gateway:apiGateway}";
+    public final static String APP_APIGATEWAY_RTP = "${fcf.feign."+ APP_RTP_PATH + ".gateway:apiGateway}";
+    public final static String APP_APIGATEWAY_MQ = "${fcf.feign."+ APP_MQ_PATH + ".gateway:apiGateway}";
+    public final static String APP_APIGATEWAY_DAM = "${fcf.feign."+ APP_DAM_PATH + ".gateway:apiGateway}";
 
 
 
@@ -30,17 +30,17 @@ public class Constants {
 
     public static class AppFeignUrl
     {
-       // public final static String APP_BASIC =  "${hlg.feign."+ APP_BASIC_PATH + ".url:}";
-        public final static String APP_BASIC =  "${hlg.feign."+ APP_BASIC_PATH + ".url:}";
-        public final static String APP_TASK =  "${hlg.feign."+ APP_TASK_PATH + ".url:}";
-        public final static String APP_CAS =  "${hlg.feign."+ APP_CAS_PATH + ".url:}";
-        public final static String APP_FILES =  "${hlg.feign."+ APP_FILES_PATH + ".url:}";
-        public final static String APP_APPLICATION_URL = "${hlg.feign."+ APP_APPLICATION_NAME + ".url:}";
-        public final static String APP_ADMIN =  "${hlg.feign."+ APP_ADMIN_PATH + ".url:}";
-        public final static String APP_RTP =  "${hlg.feign."+ APP_RTP_PATH + ".url:}";
-        public final static String APP_MQ =  "${hlg.feign."+ APP_MQ_PATH + ".url:}";
+       // public final static String APP_BASIC =  "${fcf.feign."+ APP_BASIC_PATH + ".url:}";
+        public final static String APP_BASIC =  "${fcf.feign."+ APP_BASIC_PATH + ".url:}";
+        public final static String APP_TASK =  "${fcf.feign."+ APP_TASK_PATH + ".url:}";
+        public final static String APP_CAS =  "${fcf.feign."+ APP_CAS_PATH + ".url:}";
+        public final static String APP_FILES =  "${fcf.feign."+ APP_FILES_PATH + ".url:}";
+        public final static String APP_APPLICATION_URL = "${fcf.feign."+ APP_APPLICATION_NAME + ".url:}";
+        public final static String APP_ADMIN =  "${fcf.feign."+ APP_ADMIN_PATH + ".url:}";
+        public final static String APP_RTP =  "${fcf.feign."+ APP_RTP_PATH + ".url:}";
+        public final static String APP_MQ =  "${fcf.feign."+ APP_MQ_PATH + ".url:}";
 
-        public final static String APP_DAM =  "${hlg.feign."+ APP_DAM_PATH + ".url:}";
+        public final static String APP_DAM =  "${fcf.feign."+ APP_DAM_PATH + ".url:}";
 
     }
 
@@ -76,7 +76,7 @@ public class Constants {
 
         public final static String CacheApi = API_PREFIX + "/cache";
 
-        public final static String PobmsApi = API_PREFIX + "/pobms";
+        public final static String PoInfoApi = API_PREFIX + "/poInfo";
 
 
         public final static String UserLockApi = API_PREFIX + "/userLock";
@@ -126,7 +126,7 @@ public class Constants {
 
         public final static String AutomateApi =   "AutomateApi";
 
-        public final static String PobmsApi =   "PobmsApi";
+        public final static String PoInfoApi =   "PoInfoApi";
 
         public final static String AppInfoApi =   "AppInfoApi";
 

@@ -60,7 +60,7 @@ public class FeignConfig {
 	private List<FeignFormatterRegistrar> feignFormatterRegistrars = new ArrayList<>();
 	
 	@Bean
-	@ConditionalOnProperty(prefix = "hlg.api.client",name = "longRunningResEnable")
+	@ConditionalOnProperty(prefix = "fcf.api.client",name = "longRunningResEnable")
 	public Client feignClient(CachingSpringLoadBalancerFactory cachingFactory,
 							  SpringClientFactory clientFactory) {
 		return new LongRunningResExtLoadBalancerFeignClient(new Client.Default(null, null),

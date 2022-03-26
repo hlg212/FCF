@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 @ConditionalOnSingleCandidate(DataSource.class)
 @ConditionalOnMissingBean(MapperScannerRegistrar.class)
 @AutoConfigureBefore({MybatisAutoConfiguration.class})
-@MapperScan(value = "${hlg.package.dao}")
+@MapperScan(value = "${hlg212.package.dao}")
 public  class MapperScannerConfig{
 
 

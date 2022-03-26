@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import java.util.List;
 
 
-@ConfigurationProperties(prefix = "hlg.log.sql")
+@ConfigurationProperties(prefix = "fcf.log.sql")
 @Data
 public class SqlLogProperties {
 	

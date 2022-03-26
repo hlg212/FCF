@@ -4,10 +4,10 @@ spring:
       name: common,common-rc,common-application,common-db,common-mq,common-redis,common-actuator,common-oauth,common-esb,common-log,${spring.application.name},${spring.application.name}-rc,${spring.application.name}-application,${spring.application.name}-db,${spring.application.name}-mq,${spring.application.name}-redis,${spring.application.name}-actuator,${spring.application.name}-oauth,${spring.application.name}-esb,${spring.application.name}-log
       label: trunk
       fail-fast: true
-      uri: ${hlg.config.uri:http://hlg.config.com:8081/config/svn}
+      uri: ${fcf.config.uri:http://fcf.config.com:8081/config/svn}
 
 
-hlg:
+hlg212:
   fcf:
     version: ${project.version}
     basePackage: io.github.hlg212.fcf
@@ -15,8 +15,8 @@ hlg:
     #company: com.htcf
     #company: ${htcf.default.package.company}
     #app: ${htcf.default.package.app}
-   basePackage: ${hlg.default.package.basePackage}
-   dao: ${hlg.default.package.dao}
+   basePackage: ${fcf.default.package.basePackage}
+   dao: ${fcf.default.package.dao}
    #event: ${htcf.default.package.basePackage}
    # - com.htcf.system.event
     #dao: com.htcf.*.dao

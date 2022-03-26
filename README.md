@@ -11,12 +11,15 @@
 
  ## Links
 
-- [Documentation]
-- [Code Generator](https://github.com/hlg212/FCP)
-- [Samples](https://github.com/hlg212/fcf-examples)
+- [文档]
+- [代码生成](https://github.com/hlg212/FCP/generator)
+- [例子](https://github.com/hlg212/fcf-examples)
+- [配置说明](https://github.com/hlg212/fcf-examples)
+- [工程结构](https://github.com/hlg212/fcf-examples)
 - [FCP 基础开发平台](https://github.com/hlg212/FCP)
 
 ## 功能介绍
+-  零代码实现增删改查导入导出
 -  数据统一与异常
 -  接口API框架定义
 	- 提供了统一的接口定义与实现，各层面对的接口基本一致
@@ -37,7 +40,7 @@
     - 基于 spring cloud bus 实现的事件模型  
       为每个业务级别隔离创建消息通道  
       定义了粒度更小模型支持
--  集成skwalking日志收集，将调用链与日志进行结合
+-  集成skyWalking日志收集，将调用链与日志进行结合
 -  API文档基于swagger，自动将字段进行映射
     - 提供swagger认证
 -  基于spring autoConfiguration规范提供自动装配
@@ -49,11 +52,20 @@
 	
 	FCF：  public class DemoController implements CurdieController<DemoBo, DemoQco>
 
-## 依赖组件
-|  名称   | 表头  |  表头  |
+## 技术选型
+|  名称   | 版本  |  说明  |
 |  ----  | ----  | ----  |
-| 单元格  | 单元格 | 单元格 |
-| 单元格  | 单元格 | 单元格 |
+| spring boot  | 单元格 | 单元格 |
+| spring cloud  | 单元格 | 单元格 |
+| mybatis-plus  | 单元格 | 单元格 |
+| druid  | 单元格 | 单元格 |
+| redis  | 单元格 | 单元格 |
+| spring cloud stream  | 单元格 | 单元格 |
+| spring cloud bus  | 单元格 | 单元格 |
+| feign  | 单元格 | 单元格 |
+| eureka  | 单元格 | 单元格 |
+| swagger2  | 单元格 | 单元格 |
+| liquibase  | 单元格 | 单元格 |
 
 ## 功能演示
 

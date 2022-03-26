@@ -8,7 +8,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 
-@ConfigurationProperties(prefix = "hlg.dao.fill.field")
+@ConfigurationProperties(prefix = "fcf.dao.fill.field")
 @Data
 public class AutoFillFieldProperties {
 

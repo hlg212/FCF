@@ -1,4 +1,4 @@
-package  io.github.hlg212.fcf.dao;
+package io.github.hlg212.fcf.core.handler;
 
 public interface FillHandler {
 

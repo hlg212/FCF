@@ -7,7 +7,7 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 
-@ConfigurationProperties(prefix = "hlg.automate")
+@ConfigurationProperties(prefix = "fcf.automate")
 @Data
 public class AutomateProperties {
 	

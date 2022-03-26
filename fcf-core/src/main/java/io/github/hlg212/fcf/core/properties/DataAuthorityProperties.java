@@ -16,7 +16,7 @@ import java.util.Map;
  */
 
 @Data
-@ConfigurationProperties(prefix = "hlg.dao.authority")
+@ConfigurationProperties(prefix = "fcf.dao.authority")
 public class DataAuthorityProperties {
 
     private boolean configEnable = false;

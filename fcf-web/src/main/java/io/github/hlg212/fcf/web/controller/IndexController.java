@@ -20,11 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @MvcConditional
 @Api(value="框架首页控制器",tags={"框架首页控制器"})
-@ConditionalOnProperty(matchIfMissing = true,value = "enable",prefix = "hlg.index")
+@ConditionalOnProperty(matchIfMissing = true,value = "enable",prefix = "fcf.index")
 @RefreshScope
 public class IndexController {
 
-    @Value("${hlg.index.indexPath:redirect:/views/index.html}")
+    @Value("${fcf.index.indexPath:redirect:/views/index.html}")
     private String indexPath;
 
     @RequestMapping(value = "/",method=RequestMethod.GET)

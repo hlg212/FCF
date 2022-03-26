@@ -6,7 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 
-@ConfigurationProperties(prefix = "hlg.dao.fill")
+@ConfigurationProperties(prefix = "fcf.dao.fill")
 public class AutoFillProperties {
 
 	private Set<String> insert = new LinkedHashSet<>(10);

@@ -36,7 +36,7 @@ public class EventPublisherHelper {
     @Autowired(required=false)
     private ServiceMatcher serviceMatcher;
 
-    @Value("${hlg.serviceId:}")
+    @Value("${fcf.serviceId:}")
     private String serviceId;
 
     private static EventPublisherHelper getInstance()
@@ -58,7 +58,7 @@ public class EventPublisherHelper {
             {
                 if( getInstance().remoteEventPublisher == null )
                 {
-                    log.warn("esb被关闭,请检查配置 hlg.esb.enable ");
+                    log.warn("esb被关闭,请检查配置 fcf.esb.enable ");
                     return;
                 }
                 ((RemoteEvent) event).setOriginService(getInstance().serviceId);

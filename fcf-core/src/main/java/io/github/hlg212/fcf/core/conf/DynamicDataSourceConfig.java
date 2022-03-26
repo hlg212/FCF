@@ -1,27 +1,22 @@
 package  io.github.hlg212.fcf.core.conf;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import javax.sql.DataSource;
-
-import  io.github.hlg212.fcf.Constants;
-import  io.github.hlg212.fcf.core.properties.CommonProperties;
-import  io.github.hlg212.fcf.core.properties.ExDataSourceProperties;
+import io.github.hlg212.fcf.Constants;
+import io.github.hlg212.fcf.annotation.DynamicDataSourceConditional;
+import io.github.hlg212.fcf.core.RoutingDataSource;
+import io.github.hlg212.fcf.core.properties.CommonProperties;
+import io.github.hlg212.fcf.core.properties.ExDataSourceProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Conditional;
-
-import  io.github.hlg212.fcf.core.RoutingDataSource;
-import  io.github.hlg212.fcf.core.condition.DataSourceCondition;
-import  io.github.hlg212.fcf.core.properties.ExDataSourceProperties;
-import  io.github.hlg212.fcf.core.properties.CommonProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+
+import javax.sql.DataSource;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * 初始化框架自定义数据源配置
@@ -30,8 +25,8 @@ import org.springframework.context.annotation.Primary;
  */
 @Slf4j
 @Configuration
-@Conditional(DataSourceCondition.class)
-public class DataSourceConfig {
+@DynamicDataSourceConditional
+public class DynamicDataSourceConfig {
 
 	@Primary
 	@Bean(Constants.FRAME_BEAN_PREFIX +"dataSource")

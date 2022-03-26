@@ -1,6 +1,7 @@
 package  io.github.hlg212.fcf.annotation;
 
 
+import io.github.hlg212.fcf.Constants;
 import  io.github.hlg212.fcf.env.DefaultPackagePropertySource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -16,12 +17,10 @@ class CloudApplicationRegistrar implements ImportBeanDefinitionRegistrar {
         String basePackage = null;
         String cname = annotationMetadata.getClassName();
         basePackage = cname.substring(0, cname.lastIndexOf(".") );
-        if( !basePackage.equalsIgnoreCase(" io.github.hlg212.fcf") )
+        if( !basePackage.equalsIgnoreCase(Constants.FRAME_BASE_PACKAGE) )
         {
             DefaultPackagePropertySource.add(basePackage);
         }
-
-        //DefaultPackagePropertySource.add("com.htcf.system");
 
     }
 

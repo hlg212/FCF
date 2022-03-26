@@ -1,7 +1,7 @@
 package  io.github.hlg212.fcf.core.dao.impl;
 
 import  io.github.hlg212.fcf.core.properties.AutoFillFieldProperties;
-import  io.github.hlg212.fcf.dao.FillHandler;
+import io.github.hlg212.fcf.core.handler.FillHandler;
 import  io.github.hlg212.fcf.model.basic.IUser;
 import  io.github.hlg212.fcf.util.FworkHelper;
 import org.apache.commons.beanutils.PropertyUtils;
