@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>parent</artifactId>
-        <groupId> io.github.hlg212</groupId>
+        <groupId>io.github.hlg212</groupId>
         <version>0.1.0-SNAPSHOT</version>
     </parent>
     <groupId> io.github.hlg212.fcf</groupId>
@@ -20,7 +20,6 @@
       -->  <spring-boot-maven-plugin.skip>true</spring-boot-maven-plugin.skip>
         <flatten.flattenMode>oss</flatten.flattenMode>
         <flatten.updatePomFile>true</flatten.updatePomFile>
-        <maven-gpg-plugin.skip>false</maven-gpg-plugin.skip>
         <maven-javadoc-plugin.skip>false</maven-javadoc-plugin.skip>
 <!--
         <flatten.pomElements.properties>resolve</flatten.pomElements.properties>

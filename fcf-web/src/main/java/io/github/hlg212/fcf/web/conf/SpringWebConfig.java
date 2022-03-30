@@ -29,13 +29,15 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.mvc.condition.RequestCondition;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
@@ -55,14 +57,17 @@ import java.util.List;
 @MvcConditional
 public class SpringWebConfig implements WebMvcConfigurer {
 
-	@Autowired
-	private RequestParamOrBodyArgumentResolver requestParamOrBodyArgumentResolver;
-
 	@Value("${fcf.mvc.cors.enable:false}")
 	private Boolean corsAllowed;
 
 	@Value("${fcf.mvc.isnullfield.display:false}")
 	private Boolean isNullFieldDisplay;
+
+	@Autowired
+	private RequestParamOrBodyArgumentResolver requestParamOrBodyArgumentResolver;
+
+	@Autowired
+	private MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter;
 
 	@Bean
 	public MappingJackson2HttpMessageConverter createMappingJackson2HttpMessageConverter(){
@@ -98,7 +103,20 @@ public class SpringWebConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+
 		resolvers.add(requestParamOrBodyArgumentResolver);
+	}
+
+	@Override
+	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+		requestParamOrBodyArgumentResolver.setMappingJackson2HttpMessageConverter(mappingJackson2HttpMessageConverter);
+		requestParamOrBodyArgumentResolver.setRequestResponseBodyMethodProcessor(new RequestResponseBodyMethodProcessor(converters));
+	}
+
+	@Bean
+	public RequestParamOrBodyArgumentResolver requestParamOrBodyArgumentResolver()
+	{
+		return new RequestParamOrBodyArgumentResolver();
 	}
 
 	@Bean
@@ -136,11 +154,6 @@ public class SpringWebConfig implements WebMvcConfigurer {
 		return registration;
 	}
 
-	@Bean
-	public RequestParamOrBodyArgumentResolver requestParamOrBodyArgumentResolver()
-	{
-		return new RequestParamOrBodyArgumentResolver();
-	}
 	@Override
 	public void addCorsMappings(CorsRegistry registry)
 	{

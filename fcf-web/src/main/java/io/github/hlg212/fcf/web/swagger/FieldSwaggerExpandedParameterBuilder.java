@@ -1,10 +1,8 @@
-/**
- * 
- */
 package  io.github.hlg212.fcf.web.swagger;
 
 import static springfox.documentation.swagger.common.SwaggerPluginSupport.SWAGGER_PLUGIN_ORDER;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import  io.github.hlg212.fcf.web.annotation.MvcConditional;
 import  io.github.hlg212.fcf.web.annotation.SwaggerConditional;
 import org.apache.commons.lang.StringUtils;
@@ -29,14 +27,14 @@ import springfox.documentation.swagger.readers.parameter.SwaggerExpandedParamete
 @Component
 @Order(SWAGGER_PLUGIN_ORDER + 1)
 @SwaggerConditional
-public class HtcfSwaggerExpandedParameterBuilder extends SwaggerExpandedParameterBuilder {
+public class FieldSwaggerExpandedParameterBuilder extends SwaggerExpandedParameterBuilder {
 
 	/**
 	 * @param descriptions
 	 * @param enumTypeDeterminer
 	 */
 	@Autowired
-	public HtcfSwaggerExpandedParameterBuilder(DescriptionResolver descriptions,
+	public FieldSwaggerExpandedParameterBuilder(DescriptionResolver descriptions,
 			EnumTypeDeterminer enumTypeDeterminer) {
 		super(descriptions, enumTypeDeterminer);
 	}
@@ -45,11 +43,16 @@ public class HtcfSwaggerExpandedParameterBuilder extends SwaggerExpandedParamete
 	public void apply(ParameterExpansionContext context) {
 		//super.apply(context);
 		Optional<Field> apiModelPropertyOptional = context.findAnnotation(Field.class);
+		Optional<JsonIgnore> jsonIgnoreOptional =  context.findAnnotation(JsonIgnore.class);
 		if (apiModelPropertyOptional.isPresent()) {
 			String desc = apiModelPropertyOptional.get().description();
 			if(StringUtils.isNotBlank(desc)) {
 				context.getParameterBuilder().description(desc);
 			}
+		}
+		if( jsonIgnoreOptional.isPresent() )
+		{
+			context.getParameterBuilder().hidden(true);
 		}
 	}
 

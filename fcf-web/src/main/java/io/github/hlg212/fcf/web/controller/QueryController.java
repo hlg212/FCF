@@ -72,7 +72,8 @@ public interface QueryController<T extends ISerializable,Q extends Qco> extends 
     @ResponseBody
     @ApiOperation("查询实体数据列表，提供分页功能,该接口支持使用json的方式，不会对前端数据请求造成参数不一致问题")
     @Override
-    default public <E extends T> PageInfo<E> pageQuery(@RequestBody PageQuery<Q> pageQuery) {
+    @RequestMapping(value="/pageQuery",method={RequestMethod.POST,RequestMethod.GET})
+    default public <E extends T> PageInfo<E> pageQuery(@RequestParamOrBody PageQuery<Q> pageQuery) {
         return this.findPage(pageQuery.getQco(),pageQuery.getPageNum(),pageQuery.getPageSize());
     }
 

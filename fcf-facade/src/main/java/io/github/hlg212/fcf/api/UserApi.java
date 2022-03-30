@@ -34,6 +34,6 @@ public interface UserApi<T extends IUser> {
      * @param oldPassword
      * @param newPassword
      */
-    @RequestMapping(value="/changePassword",method=RequestMethod.GET)
+    @RequestMapping(value="/changePassword",method=RequestMethod.POST)
     public void changePassword(@RequestParam("yhid") String yhid,@RequestParam("oldPassword") String oldPassword,@RequestParam("newPassword") String newPassword);
 }

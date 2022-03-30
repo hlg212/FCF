@@ -11,8 +11,6 @@ public interface IApp extends ISerializable {
 
 	public String getCode();
 
-	public String getContext();
-
 	public String getLoginPage();
 
 	public String getType();

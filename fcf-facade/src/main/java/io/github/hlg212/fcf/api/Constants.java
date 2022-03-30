@@ -50,7 +50,7 @@ public class Constants {
         public final static String AuthApi = API_PREFIX + "/auth";
         public final static String FileApi = API_PREFIX + "/files";
         public final static String ClientApi = API_PREFIX + "/client";
-        public final static String DicApi = API_PREFIX + "/dic";
+        public final static String DictApi = API_PREFIX + "/dict";
         public final static String UserApi = API_PREFIX + "/user";
         public final static String OAuthApi = "/oauth";
 
@@ -98,7 +98,7 @@ public class Constants {
         public final static String AuthApi =   "AuthApi";
         public final static String FileApi =   "FileApi";
         public final static String ClientApi =   "ClientApi";
-        public final static String DicApi =   "DicApi";
+        public final static String DictApi =   "DictApi";
         public final static String UserApi = "UserApi";
         public final static String OAuthApi = "OAuthApi";
         public final static String CacheApi = "CacheApi";

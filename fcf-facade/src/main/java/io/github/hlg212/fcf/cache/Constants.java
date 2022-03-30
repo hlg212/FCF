@@ -15,7 +15,7 @@ public class Constants {
 
   private static final String PREFIX = "frame_";
 
-  public static final String Dic =  PREFIX + "dic";
+  public static final String Dict =  PREFIX + "dict";
   public static final String Auth = PREFIX + "auth";
   public static final String App = PREFIX + "app";
   public static final String Route = PREFIX + "route";
@@ -30,10 +30,10 @@ public class Constants {
   public static final String LongRunningRes = PREFIX + "longRunningRes";
 
 
-  public static class DicKey
+  public static class DictKey
   {
-    public static final String getAllDics_prefix = "getAllDics:";
-    public static final String getAllDics_spel = "'getAllDics:'+#p0";
+    public static final String getAllDicts_prefix = "getAllDicts:";
+    public static final String getAllDicts_spel = "'getAllDicts:'+#p0";
   }
 
   public static class RouteKey

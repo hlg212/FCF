@@ -21,6 +21,6 @@ public class AutomateProperties {
 
 	private Boolean enableRole = true ;
 
-	private Boolean enableSjrzBms = true ;
+	private Boolean enablePo = true ;
 
 }

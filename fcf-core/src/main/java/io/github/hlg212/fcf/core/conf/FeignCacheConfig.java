@@ -3,7 +3,7 @@ package  io.github.hlg212.fcf.core.conf;
 import  io.github.hlg212.fcf.annotation.CacheConditional;
 import  io.github.hlg212.fcf.constants.FrameCommonConstants;
 import  io.github.hlg212.fcf.core.cachex.ExRedisCacheManager;
-import  io.github.hlg212.fcf.core.conf.CacheConfig.HtcfFastJsonRedisSerializer;
+import  io.github.hlg212.fcf.core.conf.CacheConfig.FastJsonRedisSerializer;
 import  io.github.hlg212.fcf.core.properties.CommonProperties;
 import  io.github.hlg212.fcf.service.FrameService;
 import  io.github.hlg212.fcf.util.ThreadLocalHelper;
@@ -86,7 +86,7 @@ public class FeignCacheConfig implements ApplicationContextAware{
 				connectionFactory.afterPropertiesSet();
 				ExRedisCacheManager.ExRedisCacheManagerBuilder builder = ExRedisCacheManager.builder2(connectionFactory);
 				RedisCacheConfiguration defaultCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
-						.serializeValuesWith(SerializationPair.fromSerializer(new HtcfFastJsonRedisSerializer()));
+						.serializeValuesWith(SerializationPair.fromSerializer(new FastJsonRedisSerializer()));
 				builder.cacheDefaults(defaultCacheConfiguration);
 				ExRedisCacheManager cacheManager = builder.transactionAware().build();
 				b.registerSingleton(cacheManagerName, cacheManager);

@@ -3,8 +3,6 @@ package  io.github.hlg212.fcf.web.api.client;
 import  io.github.hlg212.fcf.annotation.CacheableReadOnly;
 import  io.github.hlg212.fcf.api.Constants;
 import  io.github.hlg212.fcf.model.basic.App;
-import  io.github.hlg212.fcf.model.basic.Dic;
-import  io.github.hlg212.fcf.model.basic.IApp;
 import  io.github.hlg212.fcf.model.basic.Res;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cloud.openfeign.FeignClient;

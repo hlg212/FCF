@@ -1,6 +1,6 @@
 package  io.github.hlg212.fcf.cache;
 
-import  io.github.hlg212.fcf.service.DicService;
+import  io.github.hlg212.fcf.service.DictService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,10 +15,10 @@ import org.springframework.stereotype.Component;
  **/
 @Slf4j
 @Component
-public class DicCacheHandler extends CacheHandlerAdapter   {
+public class DictCacheHandler extends CacheHandlerAdapter   {
 
     @Autowired
-    private DicService dicService;
+    private DictService dictService;
 
     @Override
     public void onPut(String cacheName, String key, String value) {
@@ -34,8 +34,8 @@ public class DicCacheHandler extends CacheHandlerAdapter   {
     public void onRefresh(String cacheName, String key) {
         log.debug("refresh cache:{} , key:{} ,",cacheName,key);
         if( check(key) ) {
-            key = key.substring(Constants.DicKey.getAllDics_prefix.length());
-            dicService.refresh(  key );
+            key = key.substring(Constants.DictKey.getAllDicts_prefix.length());
+            dictService.refresh(  key );
         }
 
     }
@@ -44,14 +44,14 @@ public class DicCacheHandler extends CacheHandlerAdapter   {
     public void onRemove(String cacheName, String key) {
         log.debug("remote cache:{} , key:{} ,",cacheName,key);
         if( check(key) ) {
-            key = key.substring(Constants.DicKey.getAllDics_prefix.length());
-            dicService.refresh(key);
+            key = key.substring(Constants.DictKey.getAllDicts_prefix.length());
+            dictService.refresh(key);
         }
     }
 
     private boolean check(String key)
     {
-        if( !key.startsWith(Constants.DicKey.getAllDics_prefix) )
+        if( !key.startsWith(Constants.DictKey.getAllDicts_prefix) )
         {
             return false;
         }

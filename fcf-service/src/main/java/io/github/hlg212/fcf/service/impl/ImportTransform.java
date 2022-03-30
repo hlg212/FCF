@@ -3,7 +3,7 @@ package  io.github.hlg212.fcf.service.impl;
 import  io.github.hlg212.fcf.ISerializable;
 import  io.github.hlg212.fcf.model.ImpExpModel;
 import  io.github.hlg212.fcf.model.basic.File;
-import  io.github.hlg212.fcf.util.DicHelper;
+import  io.github.hlg212.fcf.util.DictHelper;
 import  io.github.hlg212.fcf.util.ExceptionHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.PropertyUtils;
@@ -53,15 +53,15 @@ public abstract class ImportTransform<T extends ISerializable> {
     protected Object importTransform(Object data) {
         ImpExpModel ieo = getImpExpModel(modelClass);
 
-        Map m = ieo.getDicProps();
+        Map m = ieo.getDictProps();
         if (m != null) {
             Set<Map.Entry> set = m.entrySet();
             for (Map.Entry entry : set) {
                 try {
                     Object value = PropertyUtils.getProperty(data, entry.getKey().toString());
                     if (value != null) {
-                        String dicValue = getDicValue(entry.getValue().toString(), value.toString());
-                        PropertyUtils.setProperty(data, entry.getKey().toString(), dicValue);
+                        String dictValue = getDictValue(entry.getValue().toString(), value.toString());
+                        PropertyUtils.setProperty(data, entry.getKey().toString(), dictValue);
                     }
                 } catch (Exception e) {
                     //e.printStackTrace();
@@ -72,11 +72,11 @@ public abstract class ImportTransform<T extends ISerializable> {
         return data;
     }
 
-    private String getDicValue(String dicStr, String value) {
-        String dicKey = ImpExpModelHelper.getDicKey(dicStr);
-        String appCode = ImpExpModelHelper.getDicApp(dicStr);
-        if (StringUtils.isNotEmpty(dicKey)) {
-            return DicHelper.getDicChildValByName(appCode, dicKey, value);
+    private String getDictValue(String dicStr, String value) {
+        String dictKey = ImpExpModelHelper.getDictKey(dicStr);
+        String appCode = ImpExpModelHelper.getDictApp(dicStr);
+        if (StringUtils.isNotEmpty(dictKey)) {
+            return DictHelper.getDictChildValByName(appCode, dictKey, value);
         }
         ExceptionHelper.throwBusinessException(String.format("找不到映射的字典[{}]!",dicStr));
         return null;

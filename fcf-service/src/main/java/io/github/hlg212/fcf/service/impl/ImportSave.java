@@ -28,6 +28,7 @@ class ImportSave {
     static public void importSave( Collection datas,Class entityClass) {
         log.warn("目前使用的是默认导入保存方法，请尽快根据业务重写该实现!");
         String idName = DbHelper.getModelPkId(entityClass);
+        int index = 1;
         if (StringUtils.isEmpty(idName)) {
             ExceptionHelper.throwBusinessException("找不到ID属性，无法执行默认逻辑!");
         }
@@ -40,9 +41,10 @@ class ImportSave {
             for (Object o : datas) {
                 Object id = PropertyUtils.getProperty(o, idName);
                 importSave(o, id,curdService);
+                index++;
             }
         } catch (Exception e) {
-            ExceptionHelper.throwServerException(e);
+            ExceptionHelper.throwServerException(String.format("导入第[%d]行时出现错误!",index),e);
         }
 
     }

@@ -8,14 +8,18 @@
  */
 package  io.github.hlg212.fcf.service.scanner;
 
+import io.github.hlg212.fcf.Constants;
 import  io.github.hlg212.fcf.env.DefaultPackagePropertySource;
+import io.github.hlg212.fcf.properties.PackageProperties;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,12 +33,14 @@ public class ServiceRegistryBean implements BeanDefinitionRegistryPostProcessor 
 	
 	private BeanDefinitionRegistry beanDefinitionRegistry;
 
-
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 		ClassPathServiceProxyScanner beanDefinitionScanner = new ClassPathServiceProxyScanner(beanDefinitionRegistry,beanFactory);
 		beanDefinitionScanner.registerFilters();
-		List<String> basePackages = DefaultPackagePropertySource.getBasePackages();
+		List<String> basePackages = new ArrayList<>( DefaultPackagePropertySource.getBasePackages() );
+
+		basePackages.remove(Constants.FRAME_BASE_PACKAGE);
+
 		beanDefinitionScanner.doScan(StringUtils.toStringArray(basePackages));
 	}
 

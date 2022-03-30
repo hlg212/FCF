@@ -4,7 +4,7 @@ spring:
       name: common,common-rc,common-application,common-db,common-mq,common-redis,common-actuator,common-oauth,common-esb,common-log,${spring.application.name},${spring.application.name}-rc,${spring.application.name}-application,${spring.application.name}-db,${spring.application.name}-mq,${spring.application.name}-redis,${spring.application.name}-actuator,${spring.application.name}-oauth,${spring.application.name}-esb,${spring.application.name}-log
       label: trunk
       fail-fast: true
-      uri: ${fcf.config.uri:http://fcf.config.com:8081/config/svn}
+      uri: ${fcf.config.uri:http://fcf.config.com:8181/config/svn}
 
 
 hlg212:

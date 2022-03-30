@@ -5,14 +5,19 @@ import  io.github.hlg212.fcf.annotation.RequestParamOrBody;
 import  io.github.hlg212.fcf.util.StreamHelper;
 import  io.github.hlg212.fcf.util.ThreadLocalHelper;
 import  io.github.hlg212.fcf.web.filter.AccessLogFilter;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.MethodParameter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.annotation.ModelFactory;
+import org.springframework.web.method.annotation.RequestParamMethodArgumentResolver;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
+import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor;
 import org.springframework.web.servlet.mvc.method.annotation.ServletModelAttributeMethodProcessor;
 
 import javax.servlet.ServletInputStream;
@@ -31,9 +36,16 @@ import java.util.Map;
  * @date 2018年10月24日
  */
 @Slf4j
+@Data
 public class RequestParamOrBodyArgumentResolver implements HandlerMethodArgumentResolver {
 
-    private ServletModelAttributeMethodProcessor attributeMethodProcessor = new ServletModelAttributeMethodProcessor(true);
+    private ServletModelAttributeMethodProcessor servletModelAttributeMethodProcessor = new ServletModelAttributeMethodProcessor(true);
+
+    private RequestResponseBodyMethodProcessor requestResponseBodyMethodProcessor;
+
+    private MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter;
+
+    //EmptyHttpInputMessage emptyHttpInputMessage = new EmptyHttpInputMessage();
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
@@ -44,41 +56,20 @@ public class RequestParamOrBodyArgumentResolver implements HandlerMethodArgument
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
                                   NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
+        //servletModelAttributeMethodProcessor 类型无法确定，所以先使用一个空数据进行转换；
+        Object empty =  mappingJackson2HttpMessageConverter.read(parameter.getNestedGenericParameterType(),parameter.getContainingClass(),new EmptyHttpInputMessage());
 
-        Class<?> type = parameter.getParameterType();
-        String requstParam = this.getRequestBodyValue(webRequest);
-        log.debug("body value: {}",requstParam);
-		Object bodyValue = null;
-		try {
-			if(StringUtils.isNotBlank(requstParam)) {
-				bodyValue = JSON.parseObject(requstParam, type);
-			}
-		} catch (Exception e) {
-		    log.warn("parseObject error：",e);
-			bodyValue = null;
-		}
-		if(bodyValue != null) {
-			String name = ModelFactory.getNameForParameter(parameter);
-			mavContainer.getModel().put(name, bodyValue);
-		}
-        Object headValue = attributeMethodProcessor.resolveArgument(parameter, mavContainer, webRequest, binderFactory);
-        this.mergeObject(headValue, bodyValue);
-        ThreadLocalHelper.set(AccessLogFilter.REQUEST_BODY_PARAM,JSON.toJSONString(headValue));
-        return headValue;
-    }
+        if(empty != null) {
+            String name = ModelFactory.getNameForParameter(parameter);
+            mavContainer.getModel().put(name, empty);
+        }
+        Object paramValue =  servletModelAttributeMethodProcessor.resolveArgument(parameter, mavContainer, webRequest, binderFactory);
+        Object bodyValue = requestResponseBodyMethodProcessor.resolveArgument(parameter, mavContainer, webRequest, binderFactory);
 
-    private String getRequestBodyValue(NativeWebRequest webRequest) throws IOException {
-        HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
-        log.debug("characterEncoding:{}",   request.getCharacterEncoding());
-        ServletInputStream in = request.getInputStream();
-//        int len = 0;
-//        byte[] b = new byte[1024];
-//        StringBuffer sb = new StringBuffer();
-//        while ((len = in.read(b)) > 0) {
-//            sb.append(new String(b, 0, len));
-//        }
-//        return sb.toString();
-        return new String(StreamHelper.read(in));
+        this.mergeObject(paramValue, bodyValue);
+        Object val = bodyValue == null ? paramValue : bodyValue;
+        ThreadLocalHelper.set(AccessLogFilter.REQUEST_BODY_PARAM,JSON.toJSONString(val));
+        return val;
     }
     
 	private <M> void mergeObject(M target, M destination) throws Exception {

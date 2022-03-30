@@ -12,7 +12,6 @@ public class App extends Model implements  IApp{
 	private String code;
 	private String loginPage;
 	private String type;
-	private String context;
 	private String icon;
 	private String indexPage;
 }

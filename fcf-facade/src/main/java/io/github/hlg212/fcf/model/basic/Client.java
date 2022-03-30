@@ -10,6 +10,6 @@ public class Client extends Model implements  IClient {
     private String autoApproveScopes;
     private String scopes;
     private String secret;
-    private String name;
+    private String account;
     private String registeredRedirectUri;
 }

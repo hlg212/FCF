@@ -82,6 +82,6 @@ public interface QueryClientApi<T extends ISerializable, Q extends Qco> extends 
 	 *
 	 */
 	@RequestMapping(value="/pageQuery",method=RequestMethod.POST)
-	public <E extends T> PageInfo<E>  pageQuery(@RequestBody PageQuery<Q> pageQuery);
+	public <E extends T> PageInfo<E>  pageQuery(@RequestParamOrBody PageQuery<Q> pageQuery);
 
 }

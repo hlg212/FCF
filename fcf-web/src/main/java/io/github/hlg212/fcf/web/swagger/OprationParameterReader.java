@@ -27,7 +27,7 @@ import static com.google.common.collect.Lists.newArrayList;
  */
 @Component
 @SwaggerConditional
-public class HtcfOprationParameterReader implements OperationBuilderPlugin {
+public class OprationParameterReader implements OperationBuilderPlugin {
 
     @Autowired
     private DocumentationPluginsManager pluginsManager;

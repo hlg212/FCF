@@ -3,7 +3,7 @@ package  io.github.hlg212.fcf;
 
 public class Constants {
 
-  public static  final String FRAME_BASE_PACKAGE = " io.github.hlg212.fcf";
+  public static  final String FRAME_BASE_PACKAGE = "io.github.hlg212.fcf";
 
   public static  final String FRAME_NAME = "FCF";
 

@@ -19,7 +19,7 @@ public class ImpExpModel<T extends  ISerializable> implements ISerializable {
     //必填项，导出时会标红
     private String requiredProps[] = null;
 
-    private Map dicProps = null;
+    private Map dictProps = null;
 
     // 文件名称
     private String fileName = "导入导出.xlsx";

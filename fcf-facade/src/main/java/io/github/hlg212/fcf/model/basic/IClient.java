@@ -12,7 +12,7 @@ public interface IClient  extends ISerializable {
 
     public String getSecret();
 
-    public String getName();
+    public String getAccount();
 
     public String getRegisteredRedirectUri();
 }

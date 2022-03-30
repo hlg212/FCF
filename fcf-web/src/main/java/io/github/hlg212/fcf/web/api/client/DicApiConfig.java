@@ -2,7 +2,7 @@ package  io.github.hlg212.fcf.web.api.client;
 
 import  io.github.hlg212.fcf.annotation.CacheableReadOnly;
 import  io.github.hlg212.fcf.api.Constants;
-import  io.github.hlg212.fcf.model.basic.Dic;
+import  io.github.hlg212.fcf.model.basic.Dict;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Configuration;
@@ -16,20 +16,20 @@ import java.util.List;
 @Configuration
 class DicApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.DicApi,name=Constants.APP_APIGATEWAY_BASIC,path =Constants.APP_BASIC_PATH,url =Constants.AppFeignUrl.APP_BASIC)
-    @CacheConfig(cacheNames =  io.github.hlg212.fcf.cache.Constants.Dic)
-    public interface DicApi extends  io.github.hlg212.fcf.api.DicApi<Dic>{
+    @FeignClient(contextId = Constants.ApiContextId.DictApi,name=Constants.APP_APIGATEWAY_BASIC,path =Constants.APP_BASIC_PATH,url =Constants.AppFeignUrl.APP_BASIC)
+    @CacheConfig(cacheNames =  io.github.hlg212.fcf.cache.Constants.Dict)
+    public interface DicApi extends  io.github.hlg212.fcf.api.DictApi<Dict>{
 
-        @RequestMapping(value="/getAllDics",method=RequestMethod.GET)
-        @CacheableReadOnly(key =  io.github.hlg212.fcf.cache.Constants.DicKey.getAllDics_spel)
+        @RequestMapping(value="/getAllDicts",method=RequestMethod.GET)
+        @CacheableReadOnly(key =  io.github.hlg212.fcf.cache.Constants.DictKey.getAllDicts_spel)
         @Override
-        public List<Dic> getAllDics(@RequestParam("appCode") String appCode);
+        public List<Dict> getAllDicts(@RequestParam("appCode") String appCode);
 
 
         @RequestMapping(value="/getById",method=RequestMethod.GET)
         @CacheableReadOnly(key = "#p0")
         @Override
-        public Dic getById(@RequestParam("id") String id);
+        public Dict getById(@RequestParam("id") String id);
     }
 
 }

@@ -24,7 +24,7 @@ public interface AuthApi {
      */
     @RequestMapping(value="/getAuthoritysByUserId",method=RequestMethod.GET)
     @CacheableReadOnly(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getAuthoritysByUserId_spel)
-    public List<String> getAuthoritysByUserId(@RequestParam("appCode") String appCode, @RequestParam("userId") String userId);
+    public List<String> getPermissionsByUserId(@RequestParam("appCode") String appCode, @RequestParam("userId") String userId);
 
 
     /**
@@ -34,7 +34,7 @@ public interface AuthApi {
      */
     @RequestMapping(value="/getAllAuthoritysByUserId",method=RequestMethod.GET)
     @CacheableReadOnly(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getAllAuthoritysByUserId_spel)
-    public List<String> getAllAuthoritysByUserId( @RequestParam("userId") String userId);
+    public List<String> getAllPermissionsByUserId( @RequestParam("userId") String userId);
 
 
     /**
@@ -53,13 +53,6 @@ public interface AuthApi {
     @CacheableReadOnly(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getAllAuthRes_spel)
     public <E extends  IRes>  List<E> getAllAuthRes();
 
-
-    /**
-     *  获得所有的匿名路径
-     */
-    @RequestMapping(value="/getAnonymousUrls",method=RequestMethod.GET)
-    @CacheableReadOnly(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getAnonymousUrls_spel)
-    public List<String> getAnonymousUrls();
 
     /**
      *  获取用户应用列表

@@ -4,7 +4,7 @@ import  io.github.hlg212.fcf.ISerializable;
 import  io.github.hlg212.fcf.model.ImpExpEnv;
 import  io.github.hlg212.fcf.model.ImpExpModel;
 import  io.github.hlg212.fcf.model.basic.File;
-import  io.github.hlg212.fcf.util.DicHelper;
+import  io.github.hlg212.fcf.util.DictHelper;
 import  io.github.hlg212.fcf.util.ExceptionHelper;
 import  io.github.hlg212.fcf.util.FworkHelper;
 import  io.github.hlg212.fcf.util.JsonHelper;
@@ -53,14 +53,14 @@ public abstract class ExportTransform<T extends ISerializable> {
         ImpExpModel ieo = getImpExpModel();
         Object o = JsonHelper.toJsonObject(data);
 
-        Map m = ieo.getDicProps();
+        Map m = ieo.getDictProps();
         if (m != null) {
             Set<Map.Entry> set = m.entrySet();
             for (Map.Entry entry : set) {
                 try {
                     Object value = PropertyUtils.getProperty(o, entry.getKey().toString());
                     if (value != null) {
-                        String dicName = getDicName(entry.getValue().toString(), value.toString());
+                        String dicName = getDictName(entry.getValue().toString(), value.toString());
                         PropertyUtils.setProperty(o, entry.getKey().toString(), dicName);
                     }
                 } catch (Exception e) {
@@ -81,13 +81,13 @@ public abstract class ExportTransform<T extends ISerializable> {
         return result;
     }
 
-    private String getDicName(String dicStr, String value) {
-        String dicKey = ImpExpModelHelper.getDicKey(dicStr);
-        String appCode = ImpExpModelHelper.getDicApp(dicStr);
-        if (StringUtils.isNotEmpty(dicKey)) {
-            return DicHelper.getDicChildNameByVal(appCode, dicKey, value);
+    private String getDictName(String dictStr, String value) {
+        String dictKey = ImpExpModelHelper.getDictKey(dictStr);
+        String appCode = ImpExpModelHelper.getDictApp(dictStr);
+        if (StringUtils.isNotEmpty(dictKey)) {
+            return DictHelper.getDictChildNameByVal(appCode, dictKey, value);
         }
-        ExceptionHelper.throwBusinessException(String.format("找不到映射的字典[{}]!",dicStr));
+        ExceptionHelper.throwBusinessException(String.format("找不到映射的字典[{}]!",dictStr));
         return null;
     }
 }

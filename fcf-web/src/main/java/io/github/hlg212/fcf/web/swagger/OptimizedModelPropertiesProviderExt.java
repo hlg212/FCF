@@ -1,11 +1,3 @@
-/** 
- * Project Name:demo 
- * File Name:HtcfOptimizedModelPropertiesProvider.java 
- * Package Name:com.htcf.service 
- * Date:2018年8月15日 下午3:17:44 
- * Copyright (c) 2018, 航天长峰湖南分公司  All Rights Reserved. 
- * 
- */
 package  io.github.hlg212.fcf.web.swagger;
 
 import java.lang.reflect.Field;
@@ -15,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import  io.github.hlg212.fcf.web.annotation.MvcConditional;
 import  io.github.hlg212.fcf.web.annotation.SwaggerConditional;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
@@ -46,9 +37,9 @@ import springfox.documentation.spi.schema.contexts.ModelContext;
  * @author huangligui 
  */
 @Slf4j
-@Component("htcfOptimized")
+@Component("OptimizedExt")
 @SwaggerConditional
-public class HtcfOptimizedModelPropertiesProvider extends OptimizedModelPropertiesProvider {
+public class OptimizedModelPropertiesProviderExt extends OptimizedModelPropertiesProvider {
 
 	/** 
 	 * Creates a new instance of HtcfOptimizedModelPropertiesProvider. 
@@ -62,7 +53,7 @@ public class HtcfOptimizedModelPropertiesProvider extends OptimizedModelProperti
 	 * @param typeNameExtractor 
 	 */
 	@Autowired
-	public HtcfOptimizedModelPropertiesProvider(AccessorsProvider accessors, FieldProvider fields,
+	public OptimizedModelPropertiesProviderExt(AccessorsProvider accessors, FieldProvider fields,
 			FactoryMethodProvider factoryMethods, TypeResolver typeResolver, BeanPropertyNamingStrategy namingStrategy,
 			SchemaPluginsManager schemaPluginsManager, TypeNameExtractor typeNameExtractor) {
 
@@ -91,8 +82,8 @@ public class HtcfOptimizedModelPropertiesProvider extends OptimizedModelProperti
 				if(curModelField == null) {
 					continue;
 				}
-				 io.github.hlg212.fcf.annotation.Field htcfField = curModelField.getAnnotation( io.github.hlg212.fcf.annotation.Field.class);
-				if(htcfField == null && StringUtils.isEmpty(fieldDescriptionMap.get(curModelFieldName))) {
+				 io.github.hlg212.fcf.annotation.Field field = curModelField.getAnnotation( io.github.hlg212.fcf.annotation.Field.class);
+				if(field == null && StringUtils.isEmpty(fieldDescriptionMap.get(curModelFieldName))) {
 					continue;
 				}
 				Class<?>[] parameterTypes = new Class<?>[0];
@@ -104,7 +95,7 @@ public class HtcfOptimizedModelPropertiesProvider extends OptimizedModelProperti
 					apiModelPropertyDescription = classFieldDescription;
 				}
 				description.setAccessible(true);
-				description.set(modelProperty, htcfField == null || StringUtils.isEmpty(htcfField.description()) ? apiModelPropertyDescription : htcfField.description());
+				description.set(modelProperty, field == null || StringUtils.isEmpty(field.description()) ? apiModelPropertyDescription : field.description());
 			} catch (NoSuchFieldException e) {
 				//意料之中的异常，不做任何处理
 				continue;

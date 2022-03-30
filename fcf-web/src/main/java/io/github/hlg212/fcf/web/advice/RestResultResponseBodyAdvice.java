@@ -8,10 +8,12 @@ import  io.github.hlg212.fcf.annotation.RestBody;
 import  io.github.hlg212.fcf.constants.FrameCommonConstants;
 import  io.github.hlg212.fcf.model.ActionResult;
 import  io.github.hlg212.fcf.model.ActionResultBuilder;
+import io.github.hlg212.fcf.properties.PackageProperties;
 import  io.github.hlg212.fcf.util.AccessContextHelper;
 import  io.github.hlg212.fcf.util.HandlerTypePredicateHelper;
 import  io.github.hlg212.fcf.web.annotation.MvcConditional;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -22,6 +24,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * rest接口返回值统一包装实现
@@ -34,6 +38,9 @@ import java.lang.reflect.Executable;
 @MvcConditional
 public class RestResultResponseBodyAdvice implements ResponseBodyAdvice<Object> {
 
+	private List<String> scanPackages;
+	@Autowired
+	private PackageProperties packageProperties;
 
 	@Override
 	public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
@@ -53,13 +60,13 @@ public class RestResultResponseBodyAdvice implements ResponseBodyAdvice<Object> 
 		if(restBody != null) {
 			return restBody.value();
 		}
-		/*String pkgName = controllerClass.getName();
+		String pkgName = controllerClass.getName();
 		List<String> scanPks = this.getScanPackages();
 		for(String pk : scanPks) {
 			if(pkgName.startsWith(pk)) {
 				return true;
 			}
-		}*/
+		}
 		return true;
 	}
 
@@ -90,11 +97,12 @@ public class RestResultResponseBodyAdvice implements ResponseBodyAdvice<Object> 
 		return body;
 	}
 
-	/*private List<String> getScanPackages() {
+	private List<String> getScanPackages() {
 		if(scanPackages != null) {
 			return scanPackages;
 		}
-		scanPackages = AutoConfigurationPackages.get(SpringHelper.getBeanFactory());
+		String packages[] = packageProperties.getBasePackage().split(",");
+		scanPackages = Arrays.asList(packages);
 		return scanPackages;
-	}*/
+	}
 }

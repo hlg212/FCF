@@ -12,9 +12,9 @@ import springfox.documentation.spi.service.contexts.ParameterContext;
  * 定义web框架注解对应在swagger容器中的参数类型值
  * @author huangligui
  */
-@Component
+@Component("FCF.ParameterTypeReader")
 @SwaggerConditional
-public class HtcfParameterTypeReader implements ParameterBuilderPlugin {
+public class ParameterTypeReader implements ParameterBuilderPlugin {
 
     @Override
     public void apply(ParameterContext parameterContext) {

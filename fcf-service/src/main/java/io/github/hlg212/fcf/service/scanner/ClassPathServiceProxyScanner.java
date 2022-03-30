@@ -11,6 +11,7 @@ package  io.github.hlg212.fcf.service.scanner;
 import  io.github.hlg212.fcf.service.impl.Constants;
 import  io.github.hlg212.fcf.service.proxy.ServiceProxyFactory;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
@@ -61,10 +62,12 @@ public class ClassPathServiceProxyScanner extends ClassPathBeanDefinitionScanner
 	@Override
 	protected void registerBeanDefinition(BeanDefinitionHolder definitionHolder, BeanDefinitionRegistry registry) {
 		Class serviceClass = null;
+		String name = null;
 		try {
 			serviceClass =  Class.forName(definitionHolder.getBeanDefinition().getBeanClassName());
+			name = serviceClass.getName();
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			log.warn(e.getMessage(),e);
 		}
 		String names[] = beanFactory.getBeanNamesForType(serviceClass);
 		/*Object o = beanFactory.getBean(serviceClass);
@@ -83,7 +86,8 @@ public class ClassPathServiceProxyScanner extends ClassPathBeanDefinitionScanner
 		beanDefinition.setBeanClass(ServiceProxyFactory.class);
 		beanDefinition.setAutowireMode(GenericBeanDefinition.AUTOWIRE_BY_TYPE);
 		beanDefinition.setPrimary(true);
-		String beanName = definitionHolder.getBeanName() + Constants.SERVICEPROXY_SUFFIX;
+
+		String beanName = ( StringUtils.isNotEmpty(name) ? definitionHolder.getBeanName() : name ) + Constants.SERVICEPROXY_SUFFIX;
 		registry.registerBeanDefinition(beanName, beanDefinition);
 		log.info("register proxy interface instance:{},", realInterfaceName);
 	}

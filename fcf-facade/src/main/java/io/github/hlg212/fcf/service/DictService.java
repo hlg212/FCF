@@ -1,11 +1,11 @@
 package  io.github.hlg212.fcf.service;
 
-import  io.github.hlg212.fcf.model.basic.IDic;
+import  io.github.hlg212.fcf.model.basic.IDict;
 
 import java.util.List;
 import java.util.Map;
 
-public interface DicService{
+public interface DictService{
     /**
      * 获取字典值
      * @param code
@@ -42,7 +42,7 @@ public interface DicService{
      * 获取指定系统所有的字典
      *  
      */
-    public List<IDic> getAllDic(String code);
+    public List<IDict> getAllDicts(String code);
 
     public void refresh(String appCode);
 }

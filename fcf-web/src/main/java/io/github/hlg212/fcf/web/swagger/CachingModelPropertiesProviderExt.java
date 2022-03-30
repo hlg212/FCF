@@ -1,16 +1,7 @@
-/** 
- * Project Name:demo 
- * File Name:HtcfCachingModelPropertiesProvider.java 
- * Package Name:com.htcf.service 
- * Date:2018年8月15日 下午3:13:36 
- * Copyright (c) 2018, 航天长峰湖南分公司  All Rights Reserved. 
- * 
- */
 package  io.github.hlg212.fcf.web.swagger;
 
 import java.util.List;
 
-import  io.github.hlg212.fcf.web.annotation.MvcConditional;
 import  io.github.hlg212.fcf.web.annotation.SwaggerConditional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -35,16 +26,16 @@ import springfox.documentation.spi.schema.contexts.ModelContext;
 @Component
 @Qualifier("cachedModelProperties")
 @SwaggerConditional
-public class HtcfCachingModelPropertiesProvider extends CachingModelPropertiesProvider {
+public class CachingModelPropertiesProviderExt extends CachingModelPropertiesProvider {
 
 	/** 
-	 * Creates a new instance of HtcfCachingModelPropertiesProvider. 
+	 * Creates a new instance of CachingModelPropertiesProviderExt.
 	 * 
 	 * @param resolver
 	 * @param delegate 
 	 */
 	@Autowired
-	public HtcfCachingModelPropertiesProvider(TypeResolver resolver,  @Qualifier("htcfOptimized")ModelPropertiesProvider delegate) {
+	public CachingModelPropertiesProviderExt(TypeResolver resolver,  @Qualifier("OptimizedExt")ModelPropertiesProvider delegate) {
 		super(resolver, delegate);
 	}
 	

@@ -64,10 +64,11 @@ public class CacheConfig extends CachingConfigurerSupport{
 	public RedisCacheManager createCacheManager() {
 		ExRedisCacheManager.ExRedisCacheManagerBuilder builder = ExRedisCacheManager
 				.builder2(redisConnectionFactory);
+		//RedisCacheManager.RedisCacheManagerBuilder builder = RedisCacheManager.builder(redisConnectionFactory);
 		RedisCacheConfiguration defaultCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
 				.entryTtl(Duration.ofDays(1))
 				//.disableCachingNullValues()
-				.serializeValuesWith(SerializationPair.fromSerializer(htcfFastJsonRedisSerializer()));
+				.serializeValuesWith(SerializationPair.fromSerializer(fastJsonRedisSerializer()));
 		builder.cacheDefaults(defaultCacheConfiguration);
 		if( cusRedisCacheConfigurations != null )
 		{
@@ -115,12 +116,12 @@ public class CacheConfig extends CachingConfigurerSupport{
 	}
 
 	@Bean
-	public RedisSerializer htcfFastJsonRedisSerializer()
+	public RedisSerializer fastJsonRedisSerializer()
 	{
-		return new HtcfFastJsonRedisSerializer();
+		return new FastJsonRedisSerializer();
 	}
 
-	static class HtcfFastJsonRedisSerializer implements RedisSerializer<Object>{
+	static class FastJsonRedisSerializer implements RedisSerializer<Object>{
 		
 		private final static ParserConfig defaultRedisConfig = new ParserConfig();
 		

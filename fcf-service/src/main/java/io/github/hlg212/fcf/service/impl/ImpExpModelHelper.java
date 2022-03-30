@@ -50,18 +50,18 @@ class ImpExpModelHelper {
     }
 
 
-    static public String getDicKey(String dicStr) {
-        int index = dicStr.indexOf("#");
+    static public String getDictKey(String dictStr) {
+        int index = dictStr.indexOf("#");
         if (index != -1) {
-            return dicStr.substring(index + 1);
+            return dictStr.substring(index + 1);
         }
-        return dicStr;
+        return dictStr;
     }
 
-    static public String getDicApp(String dicStr) {
-        String dicKeys[] = dicStr.split("#");
-        if (dicKeys.length > 1) {
-            return dicKeys[0];
+    static public String getDictApp(String dictStr) {
+        String dictKeys[] = dictStr.split("#");
+        if (dictKeys.length > 1) {
+            return dictKeys[0];
         }
         return AppContextHelper.getAppCode();
     }
