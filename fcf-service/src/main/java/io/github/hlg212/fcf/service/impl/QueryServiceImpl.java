@@ -3,6 +3,7 @@ package  io.github.hlg212.fcf.service.impl;
 import  io.github.hlg212.fcf.dao.BaseDao;
 import  io.github.hlg212.fcf.model.Model;
 import  io.github.hlg212.fcf.model.PageInfo;
+import io.github.hlg212.fcf.model.PageQuery;
 import  io.github.hlg212.fcf.model.Qco;
 import  io.github.hlg212.fcf.util.ServiceDaoHelper;
 import org.springframework.cache.annotation.Cacheable;
@@ -48,7 +49,8 @@ public interface QueryServiceImpl<T extends Model>extends  io.github.hlg212.fcf.
     }
 
     @Override
-    default public <E extends T> PageInfo<E> findPage(Qco queryProperty, int pageNum, int pageSize) {
-        return getDao().findPage(queryProperty, pageNum, pageSize);
+    default public  <E extends T> PageInfo<E> findPage(PageQuery<Qco> pageQuery)
+    {
+        return getDao().findPage(pageQuery);
     }
 }

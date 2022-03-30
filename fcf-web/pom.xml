@@ -11,6 +11,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>fcf-web</artifactId>
+    <name>${project.artifactId}</name>
     <packaging>jar</packaging>
 
 

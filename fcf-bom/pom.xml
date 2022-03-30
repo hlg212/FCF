@@ -10,6 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>fcf-bom</artifactId>
+    <name>${project.artifactId}</name>
     <packaging>pom</packaging>
     <properties>
         <flatten.flattenMode>bom</flatten.flattenMode>

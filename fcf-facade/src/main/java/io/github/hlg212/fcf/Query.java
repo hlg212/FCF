@@ -2,6 +2,7 @@
 package  io.github.hlg212.fcf;
 
 import  io.github.hlg212.fcf.model.PageInfo;
+import io.github.hlg212.fcf.model.PageQuery;
 import  io.github.hlg212.fcf.model.Qco;
 
 import java.util.List;
@@ -25,33 +26,24 @@ public interface Query<T extends ISerializable, Q extends Qco>{
 
 	/**
 	 * 获取实体单条数据
-	 * @param queryProperty
+	 * @param qco
 	 *
 	 */
-	<E extends T> E get(Q queryProperty);
+	<E extends T> E get(Q qco);
 
 	/**
 	 * 查询数据数量
-	 * @param queryProperty
+	 * @param qco
 	 *
 	 */
-	 Integer count(Q queryProperty);
+	 Integer count(Q qco);
 	
 	/**
 	 *  根据QueryParam对象查询实体信息
-	 * @param queryProperty
+	 * @param qco
 	 *
 	 */
-	 <E extends T> List<E> find(Q queryProperty);
-	
-	/**
-	 * 根据List<QueryProperty>对象查询对象信息，提供分页查询功能
-	 * 
-	 * @param queryProperty
-	 * @param pageNum 当前页数
-	 * @param pageSize 每页显示数量
-	 *
-	 */
-	 <E extends T> PageInfo<E> findPage(Q queryProperty, int pageNum, int pageSize);
+	 <E extends T> List<E> find(Q qco);
 
+	 <E extends T> PageInfo<E> findPage(PageQuery<Q> pageQuery);
 }

@@ -57,24 +57,11 @@ public interface QueryController<T extends ISerializable,Q extends Qco> extends 
     }
 
     @ResponseBody
-    @ApiOperation("查询实体数据列表，提供分页功能")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name="pageNum", value="当前页数", required=true, dataType="int",example = "1",paramType="query"),
-            @ApiImplicitParam(name="pageSize", value="每页显示数量", required=true, dataType="int",example = "10",paramType="query")
-    })
-    @Override
-    @RequestMapping(value="/findPage",method={RequestMethod.POST,RequestMethod.GET})
-    default public  <E extends T> PageInfo<E> findPage(@RequestParamOrBody Q queryProperty, @RequestParam(name="pageNum",defaultValue = Constants.QueryClientApi.PAGE_NUM) int pageNum, @RequestParam(name="pageSize",defaultValue = Constants.QueryClientApi.PAGE_SIZE) int pageSize) {
-        LogHelper.getLog(getClass()).debug("查询实体数据列表，提供分页功能.queryProperty:{},pageNum:{},pageSize:{}", queryProperty, pageNum, pageSize);
-        return getQueryService().findPage(queryProperty, pageNum, pageSize);
-    }
-
-    @ResponseBody
     @ApiOperation("查询实体数据列表，提供分页功能,该接口支持使用json的方式，不会对前端数据请求造成参数不一致问题")
     @Override
-    @RequestMapping(value="/pageQuery",method={RequestMethod.POST,RequestMethod.GET})
-    default public <E extends T> PageInfo<E> pageQuery(@RequestParamOrBody PageQuery<Q> pageQuery) {
-        return this.findPage(pageQuery.getQco(),pageQuery.getPageNum(),pageQuery.getPageSize());
+    @RequestMapping(value="/findPage",method={RequestMethod.POST,RequestMethod.GET})
+    default public <E extends T> PageInfo<E> findPage(@RequestParamOrBody PageQuery<Q> pageQuery) {
+        return getQueryService().findPage((PageQuery<Qco>)pageQuery);
     }
 
 

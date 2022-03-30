@@ -33,7 +33,7 @@ public interface ExportServiceImpl<T extends Model> extends  io.github.hlg212.fc
     @Override
     default  public File exportPage(PageQuery pageQuery) {
         QueryService queryService = ServiceDaoHelper.getService(this.getClass(),QueryService.class);
-        PageInfo pageInfo = queryService.findPage(pageQuery.getQco(), pageQuery.getPageNum(), pageQuery.getPageSize());
+        PageInfo pageInfo = queryService.findPage(pageQuery);
         List datas = pageInfo.getList();
         return export(datas);
     }

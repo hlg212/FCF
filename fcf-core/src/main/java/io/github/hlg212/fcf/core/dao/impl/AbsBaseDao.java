@@ -18,7 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.reflect.FieldUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
@@ -105,13 +104,9 @@ public abstract class AbsBaseDao<T extends Model> implements BaseDao<T> {
     @Override
     public <E extends T> E get(Qco queryProperty) {
         QueryParam queryParam = QueryPropertyParseUtils.convertForQueryParam(queryProperty);
-        return this.get(queryParam);
-    }
-
-    protected <E extends T> E get(QueryParam queryParam) {
         queryParam.setPageNum(0);
         queryParam.setPageSize(1);
-        PageInfo<E> page = this.findPage(queryParam, false);
+        PageInfo<E> page = this.findPage(queryParam);
         List<E> list = page.getList();
         if (list == null || list.size() == 0) {
             //List返回类型默认为com.github.pagehelper.Page 若查询结构集为空时,强制返回null对象
@@ -119,7 +114,6 @@ public abstract class AbsBaseDao<T extends Model> implements BaseDao<T> {
         }
         return list.get(0);
     }
-
 
     private void checkQueryCondition(QueryParam queryParam) {
         List<QueryCondition> list = queryParam.getConditions();
@@ -190,23 +184,19 @@ public abstract class AbsBaseDao<T extends Model> implements BaseDao<T> {
     @Override
     public <E extends T> List<E> find(Qco queryProperty) {
         QueryParam param = QueryPropertyParseUtils.convertForQueryParam(queryProperty);
-        return this.find(param, false);
+        param.setPageNum(0);
+        param.setPageSize(MAX_PAGE_SIZE_DEFAULT);
+        PageInfo<E> page = this.findPage(param);
+        List<E> list = page.getList();
+        return list;
     }
 
     @Override
-    public <E extends T> PageInfo<E> findPage(Qco queryProperty, int pageNum, int pageSize) {
-        QueryParam param = QueryPropertyParseUtils.convertForQueryParam(queryProperty);
-        param.setPageNum(pageNum);
-        param.setPageSize(pageSize);
-        return this.findPage(param, true);
-    }
-
-    protected <E extends T> PageInfo<E> findPage(QueryParam queryParam, boolean isCount) {
-        if (queryParam == null) {
-            ExceptionHelper.throwBusinessException("查询参数不正确");
-        }
-        this.checkQueryCondition(queryParam);
-        return findPage(queryParam);
+    public <E extends T> PageInfo<E> findPage(PageQuery<Qco> pageQuery) {
+        QueryParam param = QueryPropertyParseUtils.convertForQueryParam(pageQuery.getQco());
+        param.setPageNum(pageQuery.getPageNum());
+        param.setPageSize(pageQuery.getPageSize());
+        return this.findPage(param);
     }
 
     abstract protected <E extends T> PageInfo<E> findPage(QueryParam queryParam);
@@ -219,19 +209,6 @@ public abstract class AbsBaseDao<T extends Model> implements BaseDao<T> {
     }
 
     abstract protected Integer count(QueryParam queryParam);
-
-
-    protected <E extends T> List<E> find(QueryParam queryParam, boolean isCount) {
-        queryParam.setPageNum(0);
-        queryParam.setPageSize(MAX_PAGE_SIZE_DEFAULT);
-        PageInfo<E> page = this.findPage(queryParam, isCount);
-        List<E> list = page.getList();
-        return list;
-    }
-
-    protected <E extends T> List<E> find(QueryParam queryParam) {
-        return this.find(queryParam, true);
-    }
 
     @Override
     public Class<T> getModelClass() {

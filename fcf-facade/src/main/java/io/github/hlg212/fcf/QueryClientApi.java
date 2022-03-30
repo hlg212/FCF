@@ -37,51 +37,38 @@ public interface QueryClientApi<T extends ISerializable, Q extends Qco> extends 
 
 	/**
 	 * 获取实体单条数据
-	 * @param queryProperty
+	 * @param qco
 	 *
 	 */
 	@RequestMapping(value="/get",method=RequestMethod.POST)
 	@Override
-	public <E extends T> E get(@RequestParamOrBody Q queryProperty);
+	public <E extends T> E get(@RequestParamOrBody Q qco);
 
 	/**
 	 * 查询数据数量
-	 * @param queryProperty
+	 * @param qco
 	 *
 	 */
 	@RequestMapping(value="/count",method=RequestMethod.POST)
 	@Override
-	public Integer count(@RequestParamOrBody Q queryProperty);
+	public Integer count(@RequestParamOrBody Q qco);
 	
 	/**
-	 *  根据QueryParam对象查询实体信息
+	 *  根据Qco对象查询实体信息
 	 * @param queryProperty
 	 *
 	 */
 	@RequestMapping(value="/find",method=RequestMethod.POST)
 	@Override
-	public <E extends T> List<E> find(@RequestParamOrBody Q queryProperty);
-	
-	/**
-	 * 根据List<QueryProperty>对象查询对象信息，提供分页查询功能
-	 * 
-	 * @param queryProperty
-	 * @param pageNum 当前页数
-	 * @param pageSize 每页显示数量
-	 *
-	 */
-	@RequestMapping(value="/findPage",method=RequestMethod.POST)
-	@Override
-	public <E extends T> PageInfo<E>  findPage(@RequestParamOrBody Q queryProperty, @RequestParam(name="pageNum",defaultValue = Constants.QueryClientApi.PAGE_NUM) int pageNum, @RequestParam(name="pageSize",defaultValue = Constants.QueryClientApi.PAGE_SIZE) int pageSize);
+	public <E extends T> List<E> find(@RequestParamOrBody Q qco);
 
 	/**
 	 * 根据 PageQuery 对象查询对象信息，提供分页查询功能
-	 * 防止findPage前端json提交时让接口访问比较丑陋的问题
-	 *
 	 * @param pageQuery
 	 *
 	 */
 	@RequestMapping(value="/pageQuery",method=RequestMethod.POST)
-	public <E extends T> PageInfo<E>  pageQuery(@RequestParamOrBody PageQuery<Q> pageQuery);
+	@Override
+	public <E extends T> PageInfo<E>  findPage(@RequestParamOrBody PageQuery<Q> pageQuery);
 
 }

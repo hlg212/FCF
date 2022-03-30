@@ -34,13 +34,8 @@ public interface QueryClientApiAdapter<T extends ISerializable, Q extends Qco> e
 	@Override
 	default public <E extends T> List<E> find(@RequestParamOrBody Q queryProperty){return null;}
 
-
 	@Override
-	default public <E extends T> PageInfo<E>  findPage(@RequestParamOrBody Q queryProperty, @RequestParam(name = "pageNum", defaultValue = Constants.QueryClientApi.PAGE_NUM) int pageNum, @RequestParam(name = "pageSize", defaultValue = Constants.QueryClientApi.PAGE_SIZE) int pageSize)
-	{return null;}
-
-	@Override
-	default public <E extends T> PageInfo<E>  pageQuery(@RequestBody PageQuery<Q> pageQuery)
+	default public <E extends T> PageInfo<E>  findPage(@RequestBody PageQuery<Q> pageQuery)
 	{return null;}
 
 }
