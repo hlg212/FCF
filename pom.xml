@@ -13,7 +13,7 @@
     <version>${revision}</version>
 
     <properties>
-        <revision>1.0.0</revision>
+        <revision>1.0.1</revision>
         <!--<flatten.pomElements.parent>interpolate</flatten.pomElements.parent>
       -->  <spring-boot-maven-plugin.skip>true</spring-boot-maven-plugin.skip>
         <flatten.flattenMode>oss</flatten.flattenMode>
