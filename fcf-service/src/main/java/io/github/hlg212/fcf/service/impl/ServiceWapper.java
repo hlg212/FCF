@@ -32,7 +32,7 @@ public abstract class ServiceWapper<T extends Model> implements CurdieServiceImp
 			return CurdieServiceImpl.super.save(t);
 		}
 
-		CurdieServiceImpl<T> service = (CurdieServiceImpl)workService;
+		CurdServiceImpl<T> service = (CurdServiceImpl)workService;
 		return service.save(t);
 	}
 	
@@ -45,7 +45,7 @@ public abstract class ServiceWapper<T extends Model> implements CurdieServiceImp
 			return;
 		}
 
-		CurdieServiceImpl<T> service = (CurdieServiceImpl)workService;
+		CurdServiceImpl<T> service = (CurdServiceImpl)workService;
 		service.deleteById(id);
 	}
 
@@ -58,7 +58,7 @@ public abstract class ServiceWapper<T extends Model> implements CurdieServiceImp
 			return CurdieServiceImpl.super.update(t);
 		}
 
-		CurdieServiceImpl<T> service =  (CurdieServiceImpl)workService;
+		CurdServiceImpl<T> service =  (CurdServiceImpl)workService;
 		return service.update(t);
 	}
 
