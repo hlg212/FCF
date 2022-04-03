@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 
-@FeignClient(contextId = Constants.ApiContextId.AuthApi,name=Constants.APP_APIGATEWAY_BASIC,path =Constants.APP_BASIC_PATH,url =Constants.AppFeignUrl.APP_BASIC)
+@FeignClient(contextId = Constants.ApiContextId.AuthApi,name=Constants.ApiName.AuthApi,path =Constants.ApiPath.AuthApi,url =Constants.AppFeignUrl.AuthApi)
 @RequestMapping(Constants.ApiMapping.AuthApi)
 @ConditionalOnExpression("false")
 public interface AuthApi {

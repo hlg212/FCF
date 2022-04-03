@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(contextId = Constants.ApiContextId.UserInfoApi,name=Constants.APP_APIGATEWAY_CAS,path =Constants.APP_CAS_PATH,url =Constants.AppFeignUrl.APP_CAS)
+@FeignClient(contextId = Constants.ApiContextId.UserInfoApi,name=Constants.ApiName.UserInfoApi,path =Constants.ApiPath.UserInfoApi,url =Constants.AppFeignUrl.UserInfoApi)
 @ConditionalOnExpression("false")
 public interface UserInfoApi<T extends  IUser> {
 

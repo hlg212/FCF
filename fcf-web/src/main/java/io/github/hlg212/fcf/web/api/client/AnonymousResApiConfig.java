@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 class AnonymousResApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.AnonymousResApi,name=Constants.APP_APIGATEWAY_ADMIN,path =Constants.APP_ADMIN_PATH,url =Constants.AppFeignUrl.APP_ADMIN)
+    @FeignClient(contextId = Constants.ApiContextId.AnonymousResApi ,name=Constants.ApiName.AnonymousResApi,path =Constants.ApiPath.AnonymousResApi,url =Constants.AppFeignUrl.AnonymousResApi)
     @CacheConfig(cacheNames =  io.github.hlg212.fcf.cache.Constants.AnonymousRes)
     public interface AnonymousResApi extends   io.github.hlg212.fcf.api.AnonymousResApi {
 

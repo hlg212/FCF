@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import  io.github.hlg212.fcf.model.ga.ILongRunningRes;
 
-@FeignClient(contextId = Constants.ApiContextId.LongRunningResApi,name=Constants.APP_APIGATEWAY_ADMIN,path =Constants.APP_ADMIN_PATH,url =Constants.AppFeignUrl.APP_ADMIN)
+@FeignClient(contextId = Constants.ApiContextId.LongRunningResApi,name=Constants.ApiName.LongRunningResApi,path =Constants.ApiPath.LongRunningResApi,url =Constants.AppFeignUrl.LongRunningResApi)
 @RequestMapping(Constants.ApiMapping.LongRunningResApi)
-@ConditionalOnExpression("true")
+@ConditionalOnExpression("false")
 public interface LongRunningResApi<T extends ILongRunningRes> {
 
     @RequestMapping(value="/getAllLongRunningRes",method=RequestMethod.GET)

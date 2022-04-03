@@ -17,7 +17,7 @@ import java.util.Map;
 @Configuration
 class ClientApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.ClientApi,name=Constants.APP_APIGATEWAY_BASIC,path =Constants.APP_BASIC_PATH,url =Constants.AppFeignUrl.APP_BASIC)
+    @FeignClient(contextId = Constants.ApiContextId.ClientApi,name=Constants.ApiName.ClientApi,path =Constants.ApiPath.ClientApi,url =Constants.AppFeignUrl.ClientApi)
     @CacheConfig(cacheNames =  io.github.hlg212.fcf.cache.Constants.Client)
     public interface ClientApi extends  io.github.hlg212.fcf.api.ClientApi<Client>{
 
@@ -26,10 +26,10 @@ class ClientApiConfig {
         @Override
         public Client getById(@RequestParam("id") String id);
 
-        @RequestMapping(value="/getAuthoritysByKhdid",method=RequestMethod.GET)
+        @RequestMapping(value="/getAuthoritysByClientId",method=RequestMethod.GET)
         @CacheableReadOnly(key =  io.github.hlg212.fcf.cache.Constants.ClientKey.getAuthoritysByKhdid_spel)
         @Override
-        public Map getAuthoritysByKhdid(@RequestParam("khdid") String khdid);
+        public Map getAuthoritysByClientId(@RequestParam("clientId") String clientId);
     }
 
 }

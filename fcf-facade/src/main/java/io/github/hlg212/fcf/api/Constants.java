@@ -1,46 +1,115 @@
 package  io.github.hlg212.fcf.api;
 
+
 public class Constants {
-
-    //public final static String APP_BASIC_PATH = "${fcf.feign.system.name:system}";
-    public final static String APP_BASIC_PATH = "${fcf.feign.basic.name:basic}";
-    public final static String APP_TASK_PATH = "${fcf.feign.task.name:task}";
-    public final static String APP_FILES_PATH = "${fcf.feign.files.name:files}";
-    public final static String APP_CAS_PATH = "${fcf.feign.cas.name:cas}";
-    public final static String APP_ADMIN_PATH = "${fcf.feign.admin.name:admin}";
-    public final static String APP_RTP_PATH = "${fcf.feign.rtp.name:rtp}";
-    public final static String APP_MQ_PATH = "${fcf.feign.mq.name:mq}";
-    public final static String APP_DAM_PATH = "${fcf.feign.dam.name:dam}";
-
-
     public final static String APP_APPLICATION_NAME = "${spring.application.name:}";
-
-    public final static String APP_APIGATEWAY_BASIC = "${fcf.feign."+ APP_BASIC_PATH + ".gateway:apiGateway}";
-    public final static String APP_APIGATEWAY_TASK = "${fcf.feign."+ APP_TASK_PATH + ".gateway:apiGateway}";
-    public final static String APP_APIGATEWAY_CAS = "${fcf.feign."+ APP_CAS_PATH + ".gateway:apiGateway}";
-    public final static String APP_APIGATEWAY_FILES = "${fcf.feign."+ APP_FILES_PATH + ".gateway:apiGateway}";
-    public final static String APP_APIGATEWAY_ADMIN = "${fcf.feign."+ APP_ADMIN_PATH + ".gateway:apiGateway}";
-    public final static String APP_APIGATEWAY_RTP = "${fcf.feign."+ APP_RTP_PATH + ".gateway:apiGateway}";
-    public final static String APP_APIGATEWAY_MQ = "${fcf.feign."+ APP_MQ_PATH + ".gateway:apiGateway}";
-    public final static String APP_APIGATEWAY_DAM = "${fcf.feign."+ APP_DAM_PATH + ".gateway:apiGateway}";
-
-
 
     public final static String API_PREFIX = "/api";
 
-    public static class AppFeignUrl
-    {
-       // public final static String APP_BASIC =  "${fcf.feign."+ APP_BASIC_PATH + ".url:}";
-        public final static String APP_BASIC =  "${fcf.feign."+ APP_BASIC_PATH + ".url:}";
-        public final static String APP_TASK =  "${fcf.feign."+ APP_TASK_PATH + ".url:}";
-        public final static String APP_CAS =  "${fcf.feign."+ APP_CAS_PATH + ".url:}";
-        public final static String APP_FILES =  "${fcf.feign."+ APP_FILES_PATH + ".url:}";
-        public final static String APP_APPLICATION_URL = "${fcf.feign."+ APP_APPLICATION_NAME + ".url:}";
-        public final static String APP_ADMIN =  "${fcf.feign."+ APP_ADMIN_PATH + ".url:}";
-        public final static String APP_RTP =  "${fcf.feign."+ APP_RTP_PATH + ".url:}";
-        public final static String APP_MQ =  "${fcf.feign."+ APP_MQ_PATH + ".url:}";
 
-        public final static String APP_DAM =  "${fcf.feign."+ APP_DAM_PATH + ".url:}";
+    public static class AppFeignUrl {
+        public final static String AppApi = "${fcf.feign.AppApi.url:}";
+        public final static String AuthApi = "${fcf.feign.AuthApi.url:}";
+        public final static String FileApi = "${fcf.feign.FileApi.url:}";
+        public final static String ClientApi = "${fcf.feign.ClientApi.url:}";
+        public final static String DictApi = "${fcf.feign.DictApi.url:}";
+        public final static String UserApi = "${fcf.feign.UserApi.url:}";
+        public final static String UserInfoApi = "${fcf.feign.UserInfoApi.url:}";
+        public final static String OAuthApi = "${fcf.feign.OAuthApi.url:}";
+        public final static String AnonymousResApi = "${fcf.feign.AnonymousResApi.url:}";
+        public final static String LongRunningResApi = "${fcf.feign.LongRunningResApi.url:}";
+        public final static String RouteApi = "${fcf.feign.RouteApi.url:}";
+        public final static String TopicApi = "${fcf.feign.TopicApi.url:}";
+        public final static String PartitionApi = "${fcf.feign.PartitionApi.url:}";
+        public final static String TaskApi = "${fcf.feign.TaskApi.url:}";
+
+        public final static String ExchangeApi =   "${fcf.feign.ExchangeApi.url:}";
+        public final static String QueueApi =   "${fcf.feign.QueueApi.url:}";
+
+
+        public final static String OnlineUserApi = "${fcf.feign.OnlineUserApi.url:}";
+        public final static String LogoutApi = "${fcf.feign.LogoutApi.url:}";
+        public final static String BlackWhiteListApi = "${fcf.feign.BlackWhiteListApi.url:}";
+        public final static String AutomateApi = "${fcf.feign.AutomateApi.url:}";
+        public final static String CacheApi = "${fcf.feign.CacheApi.url:}";
+        public final static String PoInfoApi = "${fcf.feign.PoInfoApi.url:}";
+        public final static String AppInfoApi = "${fcf.feign.AppInfoApi.url:}";
+
+        public final static String UserLockApi = "${fcf.feign.UserLockApi.url:}";
+        public final static String OrgDataAuthorityApi = "${fcf.feign.OrgDataAuthorityApi.url:}";
+        public final static String DataAuthorityPropertyConditionApi = "${fcf.feign.DataAuthorityPropertyConditionApi.url:}";
+        public final static String DataAuthorityConfigSetApi = "${fcf.feign.DataAuthorityConfigSetApi.url:}";
+        public final static String DataAuthorityConfigSetInfoApi = "${fcf.feign.DataAuthorityConfigSetInfoApi.url:}";
+
+    }
+
+
+    public static class ApiName
+    {
+        public final static String AppApi = "${fcf.feign.AppApi.name:apiGateway}";
+        public final static String AuthApi = "${fcf.feign.AuthApi.name:apiGateway}";
+        public final static String FileApi = "${fcf.feign.FileApi.name:apiGateway}";
+        public final static String ClientApi = "${fcf.feign.ClientApi.name:apiGateway}";
+        public final static String DictApi = "${fcf.feign.DictApi.name:apiGateway}";
+        public final static String UserApi = "${fcf.feign.UserApi.name:apiGateway}";
+        public final static String UserInfoApi = "${fcf.feign.UserInfoApi.name:apiGateway}";
+        public final static String OAuthApi = "${fcf.feign.OAuthApi.name:apiGateway}";
+        public final static String AnonymousResApi = "${fcf.feign.AnonymousResApi.name:apiGateway}";
+        public final static String LongRunningResApi = "${fcf.feign.LongRunningResApi.name:apiGateway}";
+        public final static String RouteApi = "${fcf.feign.RouteApi.name:apiGateway}";
+        public final static String TopicApi = "${fcf.feign.TopicApi.name:apiGateway}";
+        public final static String PartitionApi = "${fcf.feign.PartitionApi.name:apiGateway}";
+        public final static String TaskApi = "${fcf.feign.TaskApi.name:apiGateway}";
+        public final static String ExchangeApi =   "${fcf.feign.ExchangeApi.name:apiGateway}";
+        public final static String QueueApi =   "${fcf.feign.QueueApi.name:apiGateway}";
+        public final static String OnlineUserApi = "${fcf.feign.OnlineUserApi.name:apiGateway}";
+        public final static String LogoutApi = "${fcf.feign.LogoutApi.name:apiGateway}";
+        public final static String BlackWhiteListApi = "${fcf.feign.BlackWhiteListApi.name:apiGateway}";
+        public final static String AutomateApi = "${fcf.feign.AutomateApi.name:apiGateway}";
+        public final static String CacheApi = "${fcf.feign.CacheApi.name:apiGateway}";
+        public final static String PoInfoApi = "${fcf.feign.PoInfoApi.name:apiGateway}";
+
+        public final static String AppInfoApi = "${fcf.feign.AppInfoApi.name:apiGateway}";
+
+        public final static String UserLockApi = "${fcf.feign.UserLockApi.name:apiGateway}";
+        public final static String OrgDataAuthorityApi = "${fcf.feign.OrgDataAuthorityApi.name:apiGateway}";
+        public final static String DataAuthorityPropertyConditionApi = "${fcf.feign.DataAuthorityPropertyConditionApi.name:apiGateway}";
+        public final static String DataAuthorityConfigSetApi = "${fcf.feign.DataAuthorityConfigSetApi.name:apiGateway}";
+        public final static String DataAuthorityConfigSetInfoApi = "${fcf.feign.DataAuthorityConfigSetInfoApi.name:apiGateway}";
+
+    }
+
+
+    public static class ApiPath
+    {
+        public final static String AppApi = "${fcf.feign.AppApi.path:basic}";
+        public final static String AuthApi = "${fcf.feign.AuthApi.path:basic}";
+        public final static String FileApi = "${fcf.feign.FileApi.path:file}";
+        public final static String ClientApi = "${fcf.feign.ClientApi.path:basic}";
+        public final static String DictApi = "${fcf.feign.DictApi.path:basic}";
+        public final static String UserApi = "${fcf.feign.UserApi.path:basic}";
+        public final static String UserInfoApi = "${fcf.feign.UserInfoApi.path:cas}";
+        public final static String OAuthApi = "${fcf.feign.OAuthApi.path:cas}";
+        public final static String AnonymousResApi = "${fcf.feign.AnonymousResApi.path:gatewayAdmin}";
+        public final static String LongRunningResApi = "${fcf.feign.LongRunningResApi.path:gatewayAdmin}";
+        public final static String RouteApi = "${fcf.feign.RouteApi.path:gatewayAdmin}";
+        public final static String TopicApi = "${fcf.feign.TopicApi.path:apiGateway}";
+        public final static String PartitionApi = "${fcf.feign.PartitionApi.path:task}";
+        public final static String TaskApi = "${fcf.feign.TaskApi.path:task";
+
+        public final static String OnlineUserApi = "${fcf.feign.OnlineUserApi.path:cas}";
+        public final static String LogoutApi = "${fcf.feign.LogoutApi.path:cas}";
+        public final static String BlackWhiteListApi = "${fcf.feign.BlackWhiteListApi.path:gatewayAdmin}";
+
+        //public final static String AutomateApi = "${fcf.feign.AutomateApi.path:apiGateway}";
+
+        public final static String CacheApi = "${fcf.feign.CacheApi.path:admin}";
+       // public final static String PoInfoApi = "${fcf.feign.PoInfoApi.path:apiGateway}";
+        public final static String UserLockApi = "${fcf.feign.UserLockApi.path:cas}";
+        public final static String OrgDataAuthorityApi = "${fcf.feign.OrgDataAuthorityApi.path:dam}";
+        public final static String DataAuthorityPropertyConditionApi = "${fcf.feign.DataAuthorityPropertyConditionApi.path:dam}";
+        public final static String DataAuthorityConfigSetApi = "${fcf.feign.DataAuthorityConfigSetApi.path:dam}";
+        public final static String DataAuthorityConfigSetInfoApi = "${fcf.feign.DataAuthorityConfigSetInfoApi.path:dam}";
 
     }
 
@@ -52,6 +121,7 @@ public class Constants {
         public final static String ClientApi = API_PREFIX + "/client";
         public final static String DictApi = API_PREFIX + "/dict";
         public final static String UserApi = API_PREFIX + "/user";
+
         public final static String OAuthApi = "/oauth";
 
         public final static String AnonymousResApi = API_PREFIX +"/anonymousRes";
@@ -78,6 +148,7 @@ public class Constants {
 
         public final static String PoInfoApi = API_PREFIX + "/poInfo";
 
+        public final static String AppInfoApi =  "/actuator";
 
         public final static String UserLockApi = API_PREFIX + "/userLock";
 

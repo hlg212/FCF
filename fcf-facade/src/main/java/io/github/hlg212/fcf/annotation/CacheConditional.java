@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import java.lang.annotation.Inherited;
 
 
-@ConditionalOnProperty(matchIfMissing = true,value = "cache.enable",prefix = "hlg")
+@ConditionalOnProperty(matchIfMissing = true,value = "cache.enable",prefix = "fcf")
 @Inherited
 public @interface CacheConditional {
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import java.util.Map;
 
-@FeignClient(contextId = Constants.ApiContextId.BlackWhiteListApi,name=Constants.APP_APIGATEWAY_ADMIN,path =Constants.APP_ADMIN_PATH,url =Constants.AppFeignUrl.APP_ADMIN)
+@FeignClient(contextId = Constants.ApiContextId.BlackWhiteListApi,name=Constants.ApiName.BlackWhiteListApi,path =Constants.ApiPath.BlackWhiteListApi,url =Constants.AppFeignUrl.BlackWhiteListApi)
 @RequestMapping(Constants.ApiMapping.BlackWhiteListApi)
 @ConditionalOnExpression("false")
 public interface BlackWhiteListApi<T extends IBlackWhiteList> {

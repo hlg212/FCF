@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 class PartitionApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.PartitionApi,name=Constants.APP_APIGATEWAY_RTP,path =Constants.APP_RTP_PATH,url =Constants.AppFeignUrl.APP_RTP)
+    @FeignClient(contextId = Constants.ApiContextId.PartitionApi,name=Constants.ApiName.PartitionApi,path =Constants.ApiPath.PartitionApi,url =Constants.AppFeignUrl.PartitionApi)
     public interface PartitionApi extends  io.github.hlg212.fcf.api.rtp.PartitionApi {
 
 

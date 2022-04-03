@@ -16,7 +16,7 @@ import java.util.Collection;
 @Configuration
 class ExchangeApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.ExchangeApi,name=Constants.APP_APIGATEWAY_MQ,url =Constants.AppFeignUrl.APP_MQ,configuration =MqApiConfig.class)
+    @FeignClient(contextId = Constants.ApiContextId.ExchangeApi,name=Constants.ApiName.ExchangeApi,url =Constants.AppFeignUrl.ExchangeApi,configuration =MqApiConfig.class)
     public interface ExchangeApi extends  io.github.hlg212.fcf.api.mq.ExchangeApi<Exchange> {
 
         @RequestMapping(value="/api/exchanges/{virtualHost}?page={page}&page_size={page_size}&use_regex=true&pagination=true&name={name}",method=RequestMethod.GET)

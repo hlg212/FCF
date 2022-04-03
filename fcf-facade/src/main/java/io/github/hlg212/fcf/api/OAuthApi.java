@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author huangligui
  * @date 2019年1月11日
  */
-@FeignClient(contextId = Constants.ApiContextId.OAuthApi, name = Constants.APP_APIGATEWAY_CAS, path = Constants.APP_CAS_PATH, url = Constants.AppFeignUrl.APP_CAS)
+@FeignClient(contextId = Constants.ApiContextId.OAuthApi, name = Constants.ApiName.OAuthApi, path = Constants.ApiPath.OAuthApi, url = Constants.AppFeignUrl.OAuthApi)
 @RequestMapping(Constants.ApiMapping.OAuthApi)
 @ConditionalOnExpression("false")
 public interface OAuthApi {

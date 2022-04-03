@@ -16,7 +16,7 @@ import java.util.List;
 @Configuration
 class BlackWhiteListApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.BlackWhiteListApi,name=Constants.APP_APIGATEWAY_ADMIN,path =Constants.APP_ADMIN_PATH,url =Constants.AppFeignUrl.APP_ADMIN)
+    @FeignClient(contextId = Constants.ApiContextId.BlackWhiteListApi,name=Constants.ApiName.BlackWhiteListApi,path =Constants.ApiPath.BlackWhiteListApi,url =Constants.AppFeignUrl.BlackWhiteListApi)
     @CacheConfig(cacheNames =  io.github.hlg212.fcf.cache.Constants.BlackWhiteList)
     public interface BlackWhiteListApi extends  io.github.hlg212.fcf.api.BlackWhiteListApi<BlackWhiteList>{
 

@@ -11,12 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-/**
- * 
- * @author wuwei
- * @date 2019年2月22日
- */
-@FeignClient(contextId = Constants.ApiContextId.TaskApi,name=Constants.APP_APIGATEWAY_TASK, url=Constants.AppFeignUrl.APP_TASK)
+
+@FeignClient(contextId = Constants.ApiContextId.TaskApi,name=Constants.ApiName.TaskApi, url=Constants.AppFeignUrl.TaskApi)
 @RequestMapping(Constants.ApiMapping.TaskApi)
 @ConditionalOnExpression("false")
 public interface TaskApi{

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collection;
 
-@FeignClient(contextId = Constants.ApiContextId.TopicApi,name=Constants.APP_APIGATEWAY_RTP,path =Constants.APP_RTP_PATH,url =Constants.AppFeignUrl.APP_RTP)
+@FeignClient(contextId = Constants.ApiContextId.TopicApi,name=Constants.ApiName.TopicApi,path =Constants.ApiPath.TopicApi,url =Constants.AppFeignUrl.TopicApi)
 @RequestMapping(Constants.ApiMapping.TopicApi)
 @ConditionalOnExpression("false")
 public interface TopicApi <T extends ITopic, Q extends Qco> extends CurdClientApi<T,Q> {

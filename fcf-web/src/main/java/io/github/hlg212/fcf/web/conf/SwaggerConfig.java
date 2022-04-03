@@ -1,11 +1,3 @@
-/** 
- * Project Name:demo 
- * File Name:SwaggerConfig.java 
- * Package Name:com.htcf.conf 
- * Date:2018年7月27日 下午2:13:58 
- * Copyright (c) 2018, 航天长峰湖南分公司  All Rights Reserved. 
- * 
- */
 package  io.github.hlg212.fcf.web.conf;
 
 import com.google.common.base.Predicate;

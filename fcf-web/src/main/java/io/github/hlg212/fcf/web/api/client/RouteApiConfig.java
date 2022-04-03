@@ -15,7 +15,7 @@ import java.util.List;
 @Configuration
 class RouteApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.RouteApi,name=Constants.APP_APIGATEWAY_ADMIN,path =Constants.APP_ADMIN_PATH,url =Constants.AppFeignUrl.APP_ADMIN)
+    @FeignClient(contextId = Constants.ApiContextId.RouteApi,name=Constants.ApiName.RouteApi,path =Constants.ApiPath.RouteApi,url =Constants.AppFeignUrl.RouteApi)
     @CacheConfig(cacheNames =  io.github.hlg212.fcf.cache.Constants.Route)
     public interface RouteApi extends  io.github.hlg212.fcf.api.RouteApi<Route> {
 

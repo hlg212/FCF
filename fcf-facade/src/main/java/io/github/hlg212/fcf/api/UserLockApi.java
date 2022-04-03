@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(contextId = Constants.ApiContextId.UserLockApi,name=Constants.APP_APIGATEWAY_CAS,path =Constants.APP_CAS_PATH,url =Constants.AppFeignUrl.APP_CAS)
+@FeignClient(contextId = Constants.ApiContextId.UserLockApi,name=Constants.ApiName.UserLockApi,path =Constants.ApiPath.UserLockApi,url =Constants.AppFeignUrl.UserLockApi)
 @RequestMapping(Constants.ApiMapping.UserLockApi)
 @ConditionalOnExpression("false")
 public interface UserLockApi<T extends IUserLock,Q extends Qco> extends CurdClientApi<T,Q>  {

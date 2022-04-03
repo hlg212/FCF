@@ -18,7 +18,7 @@ import java.util.List;
  * @date 2021年1月11日
  */
 
-@FeignClient(contextId = Constants.ApiContextId.DataAuthorityConfigSetApi,name=Constants.APP_APIGATEWAY_DAM,path =Constants.APP_DAM_PATH,url =Constants.AppFeignUrl.APP_DAM)
+@FeignClient(contextId = Constants.ApiContextId.DataAuthorityConfigSetApi,name=Constants.ApiName.DataAuthorityConfigSetApi,path =Constants.ApiPath.DataAuthorityConfigSetApi,url =Constants.AppFeignUrl.DataAuthorityConfigSetApi)
 @RequestMapping(Constants.ApiMapping.DataAuthorityConfigSetApi)
 @ConditionalOnExpression("false")
 public interface DataAuthorityConfigSetApi<T extends IDataAuthorityConfigSet>{

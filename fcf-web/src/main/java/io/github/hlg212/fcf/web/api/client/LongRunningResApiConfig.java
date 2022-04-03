@@ -33,7 +33,7 @@ import  io.github.hlg212.fcf.model.ga.LongRunningRes;
 @Configuration
 public class LongRunningResApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.LongRunningResApi,name=Constants.APP_APIGATEWAY_ADMIN,path =Constants.APP_ADMIN_PATH,url =Constants.AppFeignUrl.APP_ADMIN)
+    @FeignClient(contextId = Constants.ApiContextId.LongRunningResApi,name=Constants.ApiName.LongRunningResApi,path =Constants.ApiPath.LongRunningResApi,url =Constants.AppFeignUrl.LongRunningResApi)
     @CacheConfig(cacheNames =  io.github.hlg212.fcf.cache.Constants.LongRunningRes)
     public interface LongRunningResApi extends  io.github.hlg212.fcf.api.LongRunningResApi<LongRunningRes> {
 

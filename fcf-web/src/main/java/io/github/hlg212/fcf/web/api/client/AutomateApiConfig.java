@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Configuration
 class AutomateApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.AutomateApi ,name=Constants.APP_APIGATEWAY_BASIC,url =Constants.AppFeignUrl.APP_APPLICATION_URL)
+    @FeignClient(contextId = Constants.ApiContextId.AutomateApi ,name=Constants.ApiName.AutomateApi,url =Constants.AppFeignUrl.AutomateApi)
     @RequestMapping(Constants.ApiMapping.AutomateApi)
     public interface AutomateApi extends  io.github.hlg212.fcf.api.AutomateApi{
 

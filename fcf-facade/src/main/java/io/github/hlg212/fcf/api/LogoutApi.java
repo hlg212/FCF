@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-@FeignClient(contextId = Constants.ApiContextId.LogoutApi,name=Constants.APP_APIGATEWAY_CAS,path =Constants.APP_CAS_PATH,url =Constants.AppFeignUrl.APP_CAS)
+@FeignClient(contextId = Constants.ApiContextId.LogoutApi,name=Constants.ApiName.LogoutApi,path =Constants.ApiPath.LogoutApi,url =Constants.AppFeignUrl.LogoutApi)
 @RequestMapping(Constants.ApiMapping.LogoutApi)
 @ConditionalOnExpression("false")
 public interface LogoutApi {

@@ -8,11 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 class TaskApiConfig {
 
-    /**
-     * @author wuwei
-     * @date 2019年2月22日
-     */
-    @FeignClient(contextId = Constants.ApiContextId.TaskApi,name=Constants.APP_APIGATEWAY_TASK,url=Constants.AppFeignUrl.APP_TASK)
+    @FeignClient(contextId = Constants.ApiContextId.TaskApi,name=Constants.ApiName.TaskApi, url=Constants.AppFeignUrl.TaskApi)
     public interface TaskApi extends  io.github.hlg212.fcf.api.common.TaskApi {
 
     }

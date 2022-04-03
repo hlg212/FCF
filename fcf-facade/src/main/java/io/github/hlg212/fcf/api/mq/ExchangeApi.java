@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.Collection;
 import java.util.HashMap;
 
-@FeignClient(contextId = Constants.ApiContextId.ExchangeApi,name=Constants.APP_APIGATEWAY_MQ,url =Constants.AppFeignUrl.APP_MQ)
+@FeignClient(contextId = Constants.ApiContextId.ExchangeApi,name=Constants.ApiName.ExchangeApi,url =Constants.AppFeignUrl.ExchangeApi)
 @ConditionalOnExpression("false")
 public interface ExchangeApi<T extends  IExchange>{
 

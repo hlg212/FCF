@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Configuration
 class UserLockApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.UserLockApi,name=Constants.APP_APIGATEWAY_CAS,path =Constants.APP_CAS_PATH,url =Constants.AppFeignUrl.APP_CAS)
+    @FeignClient(contextId = Constants.ApiContextId.UserLockApi,name=Constants.ApiName.UserLockApi,path =Constants.ApiPath.UserLockApi,url =Constants.AppFeignUrl.UserLockApi)
     @RequestMapping(Constants.ApiMapping.UserLockApi)
     public interface UserLockApi extends   io.github.hlg212.fcf.api.UserLockApi<UserLock,Qco> {
 

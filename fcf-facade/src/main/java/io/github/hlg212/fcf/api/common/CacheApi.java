@@ -19,7 +19,7 @@ import  io.github.hlg212.fcf.model.basic.CacheInfo;
  * @author huangligui
  * @date 2019年1月11日
  */
-@FeignClient(contextId = Constants.ApiContextId.CacheApi,name=Constants.APP_APIGATEWAY_BASIC, url=Constants.AppFeignUrl.APP_APPLICATION_URL)
+@FeignClient(contextId = Constants.ApiContextId.CacheApi,name=Constants.ApiName.CacheApi, url=Constants.AppFeignUrl.CacheApi)
 @RequestMapping(Constants.ApiMapping.CacheApi)
 @ConditionalOnExpression("false")
 public interface CacheApi {

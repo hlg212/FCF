@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-@FeignClient(contextId = Constants.ApiContextId.UserApi,name=Constants.APP_APIGATEWAY_BASIC,path =Constants.APP_BASIC_PATH,url =Constants.AppFeignUrl.APP_BASIC)
+@FeignClient(contextId = Constants.ApiContextId.UserApi,name=Constants.ApiName.UserApi,path =Constants.ApiPath.UserApi,url =Constants.AppFeignUrl.UserApi)
 @RequestMapping(Constants.ApiMapping.UserApi)
 @ConditionalOnExpression("false")
 public interface UserApi<T extends IUser> {
@@ -30,10 +30,10 @@ public interface UserApi<T extends IUser> {
     /**
           * 修改当前登录用户密码
      * 
-     * @param yhid
+     * @param userId
      * @param oldPassword
      * @param newPassword
      */
     @RequestMapping(value="/changePassword",method=RequestMethod.POST)
-    public void changePassword(@RequestParam("yhid") String yhid,@RequestParam("oldPassword") String oldPassword,@RequestParam("newPassword") String newPassword);
+    public void changePassword(@RequestParam("userId") String userId,@RequestParam("oldPassword") String oldPassword,@RequestParam("newPassword") String newPassword);
 }

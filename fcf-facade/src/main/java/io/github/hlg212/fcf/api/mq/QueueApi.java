@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Collection;
 
-@FeignClient(contextId = Constants.ApiContextId.ExchangeApi,name=Constants.APP_APIGATEWAY_MQ,url =Constants.AppFeignUrl.APP_MQ)
+@FeignClient(contextId = Constants.ApiContextId.QueueApi,name=Constants.ApiName.QueueApi,url =Constants.AppFeignUrl.QueueApi)
 @ConditionalOnExpression("false")
 public interface QueueApi<T extends IQueue> {
 

@@ -10,13 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import static  io.github.hlg212.fcf.api.Constants.APP_BASIC_PATH;
-
 
 @Configuration
 class UserApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.UserApi,name=Constants.APP_APIGATEWAY_BASIC,path =APP_BASIC_PATH,url =Constants.AppFeignUrl.APP_BASIC )
+    @FeignClient(contextId = Constants.ApiContextId.UserApi,name=Constants.ApiName.UserApi,path =Constants.ApiPath.UserApi,url =Constants.AppFeignUrl.UserApi)
     @CacheConfig(cacheNames =  io.github.hlg212.fcf.cache.Constants.User)
     public interface UserApi extends  io.github.hlg212.fcf.api.UserApi<User>{
 

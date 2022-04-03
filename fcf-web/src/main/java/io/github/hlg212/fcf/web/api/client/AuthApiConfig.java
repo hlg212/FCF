@@ -17,7 +17,7 @@ import java.util.List;
 @Configuration
 class AuthApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.AuthApi,name=Constants.APP_APIGATEWAY_BASIC,path =Constants.APP_BASIC_PATH,url =Constants.AppFeignUrl.APP_BASIC)
+    @FeignClient(contextId = Constants.ApiContextId.AuthApi,name=Constants.ApiName.AuthApi,path =Constants.ApiPath.AuthApi,url =Constants.AppFeignUrl.AuthApi)
     @CacheConfig(cacheNames =  io.github.hlg212.fcf.cache.Constants.Auth)
     public interface AuthApi extends  io.github.hlg212.fcf.api.AuthApi{
 

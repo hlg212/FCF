@@ -4,6 +4,7 @@ import  io.github.hlg212.fcf.api.LongRunningResApi;
 import  io.github.hlg212.fcf.cache.Constants;
 import  io.github.hlg212.fcf.model.ga.ILongRunningRes;
 import  io.github.hlg212.fcf.service.LongRunningResService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -19,6 +20,7 @@ import java.util.List;
  */
 @Component
 @CacheConfig(cacheNames = Constants.LongRunningRes,cacheManager = Constants.CacheManager.SimpleCacheManager)
+@Slf4j
 public class LongRunningResServiceImpl implements LongRunningResService {
 
     @Autowired
@@ -34,15 +36,21 @@ public class LongRunningResServiceImpl implements LongRunningResService {
     @Override
     @Cacheable(key = Constants.LongRunningResKey.getUriTimeout_spel,unless="#result == null")
     public Integer getUriTimeout(String uri) {
-        List<ILongRunningRes> res = self.getAllLongRunningRes();
-        Iterator<ILongRunningRes> iter = res.iterator();
-
-        while( iter.hasNext() )
+        List<ILongRunningRes> res = null;
+        try {
+            res = self.getAllLongRunningRes();
+        }catch (Exception e)
         {
-            ILongRunningRes entry = iter.next();
-            if( matcher.match(entry.getUri(),uri) )
-            {
-                return entry.getTimeout();
+            log.warn(e.getMessage(),e);
+        }
+        if( res != null ) {
+            Iterator<ILongRunningRes> iter = res.iterator();
+
+            while (iter.hasNext()) {
+                ILongRunningRes entry = iter.next();
+                if (matcher.match(entry.getUri(), uri)) {
+                    return entry.getTimeout();
+                }
             }
         }
         return null;

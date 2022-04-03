@@ -15,7 +15,7 @@ import java.util.Collection;
 @Configuration
 class TopicApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.TopicApi,name=Constants.APP_APIGATEWAY_RTP,path =Constants.APP_RTP_PATH,url =Constants.AppFeignUrl.APP_RTP)
+    @FeignClient(contextId = Constants.ApiContextId.TopicApi,name=Constants.ApiName.TopicApi,path =Constants.ApiPath.TopicApi,url =Constants.AppFeignUrl.TopicApi)
     public interface TopicApi extends  io.github.hlg212.fcf.api.rtp.TopicApi<Topic,Qco> {
 
         @RequestMapping(value = "/getBinds", method = RequestMethod.GET)

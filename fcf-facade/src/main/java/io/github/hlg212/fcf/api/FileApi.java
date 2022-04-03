@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(contextId = Constants.ApiContextId.FileApi,name=Constants.APP_APIGATEWAY_FILES,path =Constants.APP_FILES_PATH,url =Constants.AppFeignUrl.APP_FILES)
+@FeignClient(contextId = Constants.ApiContextId.FileApi,name=Constants.ApiName.FileApi,path =Constants.ApiPath.FileApi,url =Constants.AppFeignUrl.FileApi)
 @RequestMapping(Constants.ApiMapping.FileApi)
 @ConditionalOnExpression("false")
 public interface FileApi{
@@ -22,11 +22,11 @@ public interface FileApi{
      * 下载文件
      */
     @RequestMapping(value="/download",method=RequestMethod.GET)
-    public <E extends IFile> E download(@RequestParam("cclj") String cclj);
+    public <E extends IFile> E download(@RequestParam("path") String path);
 
     /**
      * 删除文件
      */
     @RequestMapping(value="/delete",method=RequestMethod.GET)
-    public void delete(@RequestParam("cclj") String cclj);
+    public void delete(@RequestParam("path") String path);
 }

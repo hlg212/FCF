@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Configuration
 class UserInfoApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.UserInfoApi,name=Constants.APP_APIGATEWAY_CAS,path =Constants.APP_CAS_PATH,url =Constants.AppFeignUrl.APP_CAS)
+    @FeignClient(contextId = Constants.ApiContextId.UserInfoApi,name=Constants.ApiName.UserInfoApi,path =Constants.ApiPath.UserInfoApi,url =Constants.AppFeignUrl.UserInfoApi)
     @CacheConfig(cacheNames =  io.github.hlg212.fcf.cache.Constants.UserInfo)
     public interface UserInfoApi extends   io.github.hlg212.fcf.api.UserInfoApi<User> {
 

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-@FeignClient(contextId = Constants.ApiContextId.AnonymousResApi ,name=Constants.APP_APIGATEWAY_ADMIN,path =Constants.APP_ADMIN_PATH,url =Constants.AppFeignUrl.APP_ADMIN)
+@FeignClient(contextId = Constants.ApiContextId.AnonymousResApi ,name=Constants.ApiName.AnonymousResApi,path =Constants.ApiPath.AnonymousResApi,url =Constants.AppFeignUrl.AnonymousResApi)
 @RequestMapping(Constants.ApiMapping.AnonymousResApi)
 @ConditionalOnExpression("false")
 public interface AnonymousResApi {

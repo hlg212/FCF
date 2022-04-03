@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 class CacheApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.CacheApi,name=Constants.APP_APIGATEWAY_BASIC, url=Constants.AppFeignUrl.APP_APPLICATION_URL)
+    @FeignClient(contextId = Constants.ApiContextId.CacheApi,name=Constants.ApiName.CacheApi, url=Constants.AppFeignUrl.CacheApi)
     public interface CacheApi extends  io.github.hlg212.fcf.api.common.CacheApi {
 
     }
