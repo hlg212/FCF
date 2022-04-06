@@ -15,7 +15,7 @@ import java.lang.annotation.*;
 @Documented
 @Inherited
 @Cacheable(unless = "true")
-public @interface CacheableReadOnly {
+public @interface CacheRead {
 
 	/**
 	 * cacheName list

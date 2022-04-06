@@ -236,7 +236,7 @@ public class BaseDaoImpl<T extends Model> extends AbsBaseDao<T> {
         queryParam.getOrderConditions();
         for(OrderCondition orderCondition : queryParam.getOrderConditions() )
         {
-            String column =  orderCondition.getName();
+            String column =  getColumn(orderCondition.getName());
             if( StringUtils.isNotEmpty(orderCondition.getPrefix()) )
             {
                 column = orderCondition.getPrefix() + "." + column;

@@ -2,11 +2,8 @@ package  io.github.hlg212.fcf.api.mq;
 
 import  io.github.hlg212.fcf.api.Constants;
 import  io.github.hlg212.fcf.model.PageInfo;
-import  io.github.hlg212.fcf.model.basic.IRes;
-import  io.github.hlg212.fcf.model.mq.Exchange;
 import  io.github.hlg212.fcf.model.mq.IBinding;
 import  io.github.hlg212.fcf.model.mq.IExchange;
-import  io.github.hlg212.fcf.model.mq.MqPageInfo;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Collection;
-import java.util.HashMap;
 
 @FeignClient(contextId = Constants.ApiContextId.ExchangeApi,name=Constants.ApiName.ExchangeApi,url =Constants.AppFeignUrl.ExchangeApi)
 @ConditionalOnExpression("false")

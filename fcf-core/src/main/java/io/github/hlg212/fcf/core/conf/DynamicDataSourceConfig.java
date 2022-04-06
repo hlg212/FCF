@@ -2,7 +2,7 @@ package  io.github.hlg212.fcf.core.conf;
 
 import io.github.hlg212.fcf.Constants;
 import io.github.hlg212.fcf.annotation.DynamicDataSourceConditional;
-import io.github.hlg212.fcf.core.RoutingDataSource;
+import io.github.hlg212.fcf.core.data.RoutingDataSource;
 import io.github.hlg212.fcf.core.properties.CommonProperties;
 import io.github.hlg212.fcf.core.properties.ExDataSourceProperties;
 import lombok.extern.slf4j.Slf4j;

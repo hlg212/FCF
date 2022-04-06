@@ -1,33 +1,22 @@
-package  io.github.hlg212.fcf.core.conf;
+package io.github.hlg212.fcf.web.conf;
 
-import  io.github.hlg212.fcf.annotation.CacheConditional;
-import  io.github.hlg212.fcf.constants.FrameCommonConstants;
-import  io.github.hlg212.fcf.core.cachex.ExRedisCacheManager;
-import  io.github.hlg212.fcf.core.conf.CacheConfig.FastJsonRedisSerializer;
-import  io.github.hlg212.fcf.core.properties.CommonProperties;
-import  io.github.hlg212.fcf.service.FrameService;
-import  io.github.hlg212.fcf.util.ThreadLocalHelper;
+import io.github.hlg212.fcf.annotation.CacheConditional;
+import io.github.hlg212.fcf.constants.FrameCommonConstants;
+import io.github.hlg212.fcf.service.FrameService;
+import io.github.hlg212.fcf.util.SpringHelper;
+import io.github.hlg212.fcf.util.ThreadLocalHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.aop.support.AopUtils;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.cache.annotation.AnnotationCacheOperationSource;
 import org.springframework.cache.config.CacheManagementConfigUtils;
 import org.springframework.cache.interceptor.*;
 import org.springframework.cache.interceptor.CacheableOperation.Builder;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.core.env.Environment;
-import org.springframework.data.redis.cache.RedisCacheConfiguration;
-import org.springframework.data.redis.connection.*;
-import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
-import org.springframework.data.redis.serializer.RedisSerializationContext.SerializationPair;
 import org.springframework.lang.Nullable;
 import org.springframework.util.SystemPropertyUtils;
 
@@ -47,96 +36,19 @@ import java.util.stream.Collectors;
 @Slf4j
 @Configuration
 @CacheConditional
-public class FeignCacheConfig implements ApplicationContextAware{
-
-	@Autowired
-	private CommonProperties commonProperties;
+public class FeignCacheConfig{
 
 	@Autowired
 	private Environment environment;
 
-	@Autowired
-	private RedisConnectionFactory redisConnectionFactory;
-
 	
 	@Resource(name=CacheManagementConfigUtils.CACHE_ADVISOR_BEAN_NAME)
 	private BeanFactoryCacheOperationSourceAdvisor beanFactoryCacheOperationSourceAdvisor;
-	
-	private final String cacheManagerBeanSuffix = FrameCommonConstants.CACHE_MANAGER_BEAN_SUFFIX;
-	
-	private final Set<String> cacheManagerSystemNameSet = new HashSet<>();
 
-	
-	public void registerCacheManager(ApplicationContext applicationContext) {
-		GenericApplicationContext c = (GenericApplicationContext) applicationContext;
-		final DefaultListableBeanFactory b = (DefaultListableBeanFactory) c.getBeanFactory();
-//		final ClientResources clientResources = b.getBean(ClientResources.class);
-//		LettuceClientConfiguration clientConfig = getLettuceClientConfiguration(
-//				clientResources, this.properties.getLettuce().getPool());
-		
-		Optional.ofNullable(commonProperties.getRedis()).orElse(Collections.emptyMap()).forEach((k, v) -> {
-			
-			String cacheManagerName = k + cacheManagerBeanSuffix;
-			if( redisConnectionFactory instanceof LettuceConnectionFactory )
-			{
-				LettuceConnectionFactory defLettuceConnectionFactory = (LettuceConnectionFactory)redisConnectionFactory;
-				RedisConfiguration redisConfiguration = copyRedisConfiguration(defLettuceConnectionFactory,v.getDatabase());
-
-				LettuceConnectionFactory connectionFactory = new LettuceConnectionFactory(redisConfiguration, defLettuceConnectionFactory.getClientConfiguration());
-				connectionFactory.afterPropertiesSet();
-				ExRedisCacheManager.ExRedisCacheManagerBuilder builder = ExRedisCacheManager.builder2(connectionFactory);
-				RedisCacheConfiguration defaultCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
-						.serializeValuesWith(SerializationPair.fromSerializer(new FastJsonRedisSerializer()));
-				builder.cacheDefaults(defaultCacheConfiguration);
-				ExRedisCacheManager cacheManager = builder.transactionAware().build();
-				b.registerSingleton(cacheManagerName, cacheManager);
-				cacheManagerSystemNameSet.add(k);
-			}
-
-
-		});
-	}
-
-	private RedisConfiguration copyRedisConfiguration(LettuceConnectionFactory connectionFactory,int database)
-	{
-		if( connectionFactory.getSentinelConfiguration() != null )
-		{
-			RedisSentinelConfiguration old = connectionFactory.getSentinelConfiguration();
-			RedisSentinelConfiguration redisConfiguration = new RedisSentinelConfiguration();
-			redisConfiguration.setMaster(old.getMaster());
-			redisConfiguration.setSentinels(old.getSentinels());
-			redisConfiguration.setDatabase(database);
-			redisConfiguration.setPassword(old.getPassword());
-			return redisConfiguration;
-		}
-		else if( connectionFactory.getClusterConfiguration() != null )
-		{
-			RedisClusterConfiguration old = connectionFactory.getClusterConfiguration();
-			RedisClusterConfiguration redisConfiguration = new RedisClusterConfiguration();
-			redisConfiguration.setClusterNodes(old.getClusterNodes());
-			if( old.getMaxRedirects() != null ){
-				redisConfiguration.setMaxRedirects(old.getMaxRedirects());
-			}
-			redisConfiguration.setPassword(old.getPassword());
-			return redisConfiguration;
-		}
-		else if( connectionFactory.getStandaloneConfiguration() != null )
-		{
-			RedisStandaloneConfiguration old = connectionFactory.getStandaloneConfiguration();
-			RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
-			redisStandaloneConfiguration.setHostName(old.getHostName());
-			redisStandaloneConfiguration.setPassword(old.getPassword());
-			redisStandaloneConfiguration.setPort(old.getPort());
-			redisStandaloneConfiguration.setDatabase(database);
-			return redisStandaloneConfiguration;
-		}
-		log.warn("not impl RedisConfiguration");
-		return null;
-	}
 	
 	@PostConstruct
 	public void rewriteCacheAnnotationScan() {
-		CacheOperationSource arr[] = new CacheOperationSource[] { new HtcfAnnotationCacheOperationSource()};
+		CacheOperationSource arr[] = new CacheOperationSource[] { new ExAnnotationCacheOperationSource()};
 		CompositeCacheOperationSource c = new CompositeCacheOperationSource(arr);
 		beanFactoryCacheOperationSourceAdvisor.setCacheOperationSource(c);
 		CacheInterceptor cacheInterceptor = (CacheInterceptor) beanFactoryCacheOperationSourceAdvisor.getAdvice();
@@ -145,7 +57,7 @@ public class FeignCacheConfig implements ApplicationContextAware{
 	
 
 	
-	class HtcfAnnotationCacheOperationSource extends AnnotationCacheOperationSource{
+	class ExAnnotationCacheOperationSource extends AnnotationCacheOperationSource{
 
 		private static final long serialVersionUID = 1L;
 		
@@ -168,25 +80,20 @@ public class FeignCacheConfig implements ApplicationContextAware{
 			}
 
 			method = primitiveMethodMap.get(method) != null ? primitiveMethodMap.get(method) : method;
-			log.trace("scan cache class:{},method :{}, result:{},config:{}", method.getDeclaringClass().getName(), method.getName(), result.size(), method.getDeclaringClass().getAnnotation(org.springframework.cache.annotation.CacheConfig.class));
+			log.info("scan cache class:{},method :{}, result:{},config:{}", method.getDeclaringClass().getName(), method.getName(), result.size(), method.getDeclaringClass().getAnnotation(org.springframework.cache.annotation.CacheConfig.class));
 			Class<?> clazz = method.getDeclaringClass();
 			FeignClient feignClient = clazz.getAnnotation(FeignClient.class);
 			if(feignClient != null && StringUtils.isNotBlank(feignClient.path())) {
 				String path = getPath(feignClient);
-				if(cacheManagerSystemNameSet.contains(path)) {
-					String cacheManager = path + cacheManagerBeanSuffix;
-					log.info("do retry {}.{} set cacheManager value to:{}", method.getDeclaringClass().getName(), method.getName(), cacheManager);
-					result = result.stream().map(o -> this.rewriteCacheManager(o, cacheManager)).collect(Collectors.toList());
+				String cacheManagerName = path + FrameCommonConstants.CACHE_MANAGER_BEAN_SUFFIX;
+				Object cacheManager = SpringHelper.getBean(cacheManagerName);
+				if(cacheManager != null) {
+					log.info("do retry {}.{} set cacheManager value to:{}", method.getDeclaringClass().getName(), method.getName(), cacheManagerName);
+					result = result.stream().map(o -> this.rewriteCacheManager(o, cacheManagerName)).collect(Collectors.toList());
 				} else {
-					log.warn("cacheManagerSystemNameSet not exists {}, please check @FeignClient path property value or Manual setting cacheManager property value", path);
+					log.warn("not exists {}, please check @FeignClient path property value or Manual setting cacheManager property value", path);
 				}
 			}
-//			CacheNameHolder holder = SpringHelper.getBean(CacheNameHolder.class);
-//			result.forEach(cacheOperation -> {
-//				cacheOperation.getCacheNames().forEach(cacheName ->{
-//					holder.add(cacheOperation.getCacheManager(),cacheName);
-//				});
-//			});
 			return result;
 		}
 
@@ -195,10 +102,10 @@ public class FeignCacheConfig implements ApplicationContextAware{
 		private CacheOperation rewriteCacheOperation(CacheOperation operation) {
 			if( operation.getCacheNames().isEmpty() )
 			{
-				org.springframework.cache.interceptor.CacheOperation.Builder builder = null;
+				CacheOperation.Builder builder = null;
 					if(operation instanceof CacheableOperation) {
 						CacheableOperation co = (CacheableOperation) operation;
-						Builder b = new CacheableOperation.Builder();
+						Builder b = new Builder();
 						b.setCacheManager(co.getCacheManager());
 						b.setCacheResolver(co.getCacheResolver());
 						b.setCacheNames(co.getCacheNames().toArray(new String[0]));
@@ -211,7 +118,7 @@ public class FeignCacheConfig implements ApplicationContextAware{
 						builder = b;
 					}else if(operation instanceof CacheEvictOperation) {
 						CacheEvictOperation ceo = (CacheEvictOperation) operation;
-						org.springframework.cache.interceptor.CacheEvictOperation.Builder b = new CacheEvictOperation.Builder();
+						CacheEvictOperation.Builder b = new CacheEvictOperation.Builder();
 						b.setBeforeInvocation(ceo.isBeforeInvocation());
 						b.setCacheManager(ceo.getCacheManager());
 						b.setCacheNames(ceo.getCacheNames().toArray(new String[0]));
@@ -224,7 +131,7 @@ public class FeignCacheConfig implements ApplicationContextAware{
 						builder = b;
 					}else if(operation instanceof CachePutOperation) {
 						CachePutOperation cpo = (CachePutOperation) operation;
-						org.springframework.cache.interceptor.CachePutOperation.Builder b = new CachePutOperation.Builder();
+						CachePutOperation.Builder b = new CachePutOperation.Builder();
 						b.setCacheManager(cpo.getCacheManager());
 						b.setCacheNames(cpo.getCacheNames().toArray(new String[0]));
 						b.setCacheResolver(cpo.getCacheResolver());
@@ -247,7 +154,7 @@ public class FeignCacheConfig implements ApplicationContextAware{
 		}
 
 
-		private void applyCacheConfig(CacheOperation operation,org.springframework.cache.interceptor.CacheOperation.Builder b)
+		private void applyCacheConfig(CacheOperation operation, CacheOperation.Builder b)
 		{
 
 			Class cacheTargetClass = ThreadLocalHelper.get("cacheTargetClass");
@@ -279,7 +186,7 @@ public class FeignCacheConfig implements ApplicationContextAware{
 		private CacheOperation rewriteCacheManager(CacheOperation operation, String cacheManager) {
 			if(operation instanceof CacheableOperation) {
 				CacheableOperation co = (CacheableOperation) operation;
-				Builder b = new CacheableOperation.Builder();
+				Builder b = new Builder();
 				b.setCacheManager(StringUtils.isBlank(co.getCacheManager())? cacheManager : co.getCacheManager());
 				Optional.ofNullable(co.getCacheNames()).orElse(Collections.emptySet()).forEach(c -> b.setCacheName(c));
 				b.setCacheResolver(co.getCacheResolver());
@@ -292,7 +199,7 @@ public class FeignCacheConfig implements ApplicationContextAware{
 				return b.build();
 			}else if(operation instanceof CacheEvictOperation) {
 				CacheEvictOperation ceo = (CacheEvictOperation) operation;
-				org.springframework.cache.interceptor.CacheEvictOperation.Builder b = new CacheEvictOperation.Builder();
+				CacheEvictOperation.Builder b = new CacheEvictOperation.Builder();
 				b.setBeforeInvocation(ceo.isBeforeInvocation());
 				b.setCacheManager(StringUtils.isBlank(ceo.getCacheManager())? cacheManager : ceo.getCacheManager());
 				Optional.ofNullable(ceo.getCacheNames()).orElse(Collections.emptySet()).forEach(c -> b.setCacheName(c));
@@ -305,7 +212,7 @@ public class FeignCacheConfig implements ApplicationContextAware{
 				return b.build();
 			}else if(operation instanceof CachePutOperation) {
 				CachePutOperation cpo = (CachePutOperation) operation;
-				org.springframework.cache.interceptor.CachePutOperation.Builder b = new CachePutOperation.Builder();
+				CachePutOperation.Builder b = new CachePutOperation.Builder();
 				b.setCacheManager(StringUtils.isBlank(cpo.getCacheManager())? cacheManager : cpo.getCacheManager());
 				Optional.ofNullable(cpo.getCacheNames()).orElse(Collections.emptySet()).forEach(c -> b.setCacheName(c));
 				b.setCacheResolver(cpo.getCacheResolver());
@@ -398,12 +305,6 @@ public class FeignCacheConfig implements ApplicationContextAware{
 		}
 
 		return false;
-	}
-
-
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		this.registerCacheManager(applicationContext);
 	}
 
 	private String getPath(FeignClient feignClient) {

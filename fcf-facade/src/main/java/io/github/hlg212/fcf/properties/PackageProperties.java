@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 
 
-@ConfigurationProperties(prefix = "hlg212.package")
+@ConfigurationProperties(prefix = "fcf.package")
 @Data
 @Component
 public class PackageProperties {

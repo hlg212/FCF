@@ -1,6 +1,6 @@
 package  io.github.hlg212.fcf.api;
 
-import  io.github.hlg212.fcf.annotation.CacheableReadOnly;
+import  io.github.hlg212.fcf.annotation.CacheRead;
 import  io.github.hlg212.fcf.model.basic.IBlackWhiteList;
 import  io.github.hlg212.fcf.model.basic.IClient;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
@@ -17,14 +17,14 @@ import java.util.Map;
 @ConditionalOnExpression("false")
 public interface BlackWhiteListApi<T extends IBlackWhiteList> {
     @RequestMapping(value="/getBlackWhiteList",method= RequestMethod.GET)
-    @CacheableReadOnly(key =  io.github.hlg212.fcf.cache.Constants.BlackWhiteListKey.getBlackWhiteList_spel)
+    @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.BlackWhiteListKey.getBlackWhiteList_spel)
     public List<T> getBlackWhiteList();
 
     @RequestMapping(value="/getBlackWhiteListByAppCode",method=RequestMethod.GET)
-    @CacheableReadOnly(key =  io.github.hlg212.fcf.cache.Constants.BlackWhiteListKey.getBlackWhiteListByAppCode_spel)
+    @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.BlackWhiteListKey.getBlackWhiteListByAppCode_spel)
     public List<T> getBlackWhiteListByAppCode(@RequestParam("appCode") String appCode);
 
     @RequestMapping(value="/getBlackWhiteListByAccount",method=RequestMethod.GET)
-    @CacheableReadOnly(key =  io.github.hlg212.fcf.cache.Constants.BlackWhiteListKey.getBlackWhiteListByAccount_spel)
+    @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.BlackWhiteListKey.getBlackWhiteListByAccount_spel)
     public List<T> getBlackWhiteListByAccount(@RequestParam("account") String account);
 }

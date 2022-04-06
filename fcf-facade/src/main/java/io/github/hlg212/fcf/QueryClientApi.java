@@ -1,6 +1,3 @@
-/**
- * 
- */
 package  io.github.hlg212.fcf;
 
 import  io.github.hlg212.fcf.annotation.RequestParamOrBody;

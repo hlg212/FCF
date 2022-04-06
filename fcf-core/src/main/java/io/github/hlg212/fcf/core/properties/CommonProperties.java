@@ -24,7 +24,7 @@ public class CommonProperties {
 	 */
 	private Map<String, ExDataSourceProperties> datasource = new HashMap<>();
 	
-	private Map<String,RedisProperties> redis = new HashMap<>();
+	private Map<String,ExRedisProperties> redis = new HashMap<>();
 	
 	class Port {
 		
@@ -92,11 +92,11 @@ public class CommonProperties {
 		this.isEnableDataSource = isEnableDataSource;
 	}
 
-	public Map<String,RedisProperties> getRedis() {
+	public Map<String,ExRedisProperties> getRedis() {
 		return redis;
 	}
 
-	public void setRedis(Map<String,RedisProperties> redis) {
+	public void setRedis(Map<String,ExRedisProperties> redis) {
 		this.redis = redis;
 	}
 }

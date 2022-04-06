@@ -27,7 +27,7 @@ public class CacheMethodInterceptor implements Ordered{
 			+ "|| @annotation(org.springframework.cache.annotation.Cacheable)"
 			+ "|| @annotation(org.springframework.cache.annotation.CacheEvict) "
 			+ "|| @annotation(org.springframework.cache.annotation.CachePut)"
-			+ "|| @annotation( io.github.hlg212.fcf.annotation.CacheableReadOnly)")
+			+ "|| @annotation( io.github.hlg212.fcf.annotation.CacheRead)")
 	public void cacheMethod() {
 	}
 	

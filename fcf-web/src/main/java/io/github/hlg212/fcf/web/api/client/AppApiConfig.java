@@ -1,6 +1,6 @@
 package  io.github.hlg212.fcf.web.api.client;
 
-import  io.github.hlg212.fcf.annotation.CacheableReadOnly;
+import  io.github.hlg212.fcf.annotation.CacheRead;
 import  io.github.hlg212.fcf.api.Constants;
 import  io.github.hlg212.fcf.model.basic.App;
 import org.springframework.cache.annotation.CacheConfig;
@@ -25,12 +25,12 @@ class AppApiConfig {
          *  
          */
         @RequestMapping(value="/getAppByCode",method=RequestMethod.GET)
-        @CacheableReadOnly(key =  io.github.hlg212.fcf.cache.Constants.AppKey.getAppByCode_spel)
+        @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.AppKey.getAppByCode_spel)
         @Override
         public App getAppByCode(@RequestParam("code") String code);
 
         @RequestMapping(value="/getById",method=RequestMethod.GET)
-        @CacheableReadOnly(key = "#p0")
+        @CacheRead(key = "#p0")
         @Override
         public App getById(@RequestParam("id") String id);
     }

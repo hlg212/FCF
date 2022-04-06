@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 
-@ConfigurationProperties(prefix = "hlg212.fcf")
+@ConfigurationProperties(prefix = "fcf.frame")
 @Data
 @Component
 public class FrameProperties {

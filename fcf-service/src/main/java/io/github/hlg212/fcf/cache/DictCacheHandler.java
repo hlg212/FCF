@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * @program: frame-parent
- * @description:  字典缓存处理
+ *  字典缓存处理
  * 当字典被修改时，会发送 事件 ，然后转到该处理器
  * 因为字典使用了本地缓存，所以需要手工处理
  * @author  huangligui

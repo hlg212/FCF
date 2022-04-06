@@ -1,6 +1,6 @@
 package  io.github.hlg212.fcf.api;
 
-import  io.github.hlg212.fcf.annotation.CacheableReadOnly;
+import  io.github.hlg212.fcf.annotation.CacheRead;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +14,7 @@ import java.util.List;
 public interface AnonymousResApi {
 
     @RequestMapping(value="/getAllUrls",method=RequestMethod.GET)
-    @CacheableReadOnly(key =  io.github.hlg212.fcf.cache.Constants.AnonymousResKey.getAllUrls_spel)
+    @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.AnonymousResKey.getAllUrls_spel)
     public List<String> getAllUrls();
 
 }

@@ -1,6 +1,6 @@
 package  io.github.hlg212.fcf.web.api.client;
 
-import  io.github.hlg212.fcf.annotation.CacheableReadOnly;
+import  io.github.hlg212.fcf.annotation.CacheRead;
 import  io.github.hlg212.fcf.api.Constants;
 import  io.github.hlg212.fcf.model.basic.User;
 import org.springframework.cache.annotation.CacheConfig;
@@ -24,13 +24,13 @@ class UserApiConfig {
          *
          */
         @RequestMapping(value="/getUserByAccount",method=RequestMethod.GET)
-        @CacheableReadOnly(key =  io.github.hlg212.fcf.cache.Constants.UserKey.getUserByAccount_spel)
+        @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.UserKey.getUserByAccount_spel)
         @Override
         public User getUserByAccount(@RequestParam("account") String account);
 
         @RequestMapping(value="/getById",method=RequestMethod.GET)
         @Override
-        @CacheableReadOnly(key = "#p0")
+        @CacheRead(key = "#p0")
         public User getById(@RequestParam("id") String id);
     }
 }

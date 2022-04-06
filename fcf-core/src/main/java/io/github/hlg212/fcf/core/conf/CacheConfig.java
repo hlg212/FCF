@@ -101,11 +101,11 @@ public class CacheConfig extends CachingConfigurerSupport{
 	
 	@Override
 	public CacheErrorHandler errorHandler() {
-		return this.htcfCacheErrorHandler();
+		return this.exCacheErrorHandler();
 	}
 	
 	@Bean
-	public ExCacheErrorHandler htcfCacheErrorHandler() {
+	public ExCacheErrorHandler exCacheErrorHandler() {
 		return new ExCacheErrorHandler();
 	}
 	

@@ -1,4 +1,4 @@
-package  io.github.hlg212.fcf.core;
+package io.github.hlg212.fcf.core.data;
 
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 

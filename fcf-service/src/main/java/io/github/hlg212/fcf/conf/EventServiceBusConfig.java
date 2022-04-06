@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
  **/
 @Configuration
 @EnableBinding({EventServiceBusClient.class,EventServiceBusFrameClient.class,EventServiceBusCacheClient.class})
-@RemoteApplicationEventScan({"${hlg212.fcf.basePackage}",
+@RemoteApplicationEventScan({"${fcf.frame.basePackage}",
         "${fcf.package.event[0]:${fcf.default.package.basePackage[0]:o000oo000o}}",
         "${fcf.package.event[1]:${fcf.default.package.basePackage[1]:o000oo000o}}",
         "${fcf.package.event[2]:${fcf.default.package.basePackage[2]:o000oo000o}}",

@@ -1,6 +1,6 @@
 package  io.github.hlg212.fcf.web.api.client;
 
-import  io.github.hlg212.fcf.annotation.CacheableReadOnly;
+import  io.github.hlg212.fcf.annotation.CacheRead;
 import  io.github.hlg212.fcf.api.Constants;
 import  io.github.hlg212.fcf.model.basic.Dict;
 import org.springframework.cache.annotation.CacheConfig;
@@ -21,13 +21,13 @@ class DicApiConfig {
     public interface DicApi extends  io.github.hlg212.fcf.api.DictApi<Dict>{
 
         @RequestMapping(value="/getAllDicts",method=RequestMethod.GET)
-        @CacheableReadOnly(key =  io.github.hlg212.fcf.cache.Constants.DictKey.getAllDicts_spel)
+        @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.DictKey.getAllDicts_spel)
         @Override
         public List<Dict> getAllDicts(@RequestParam("appCode") String appCode);
 
 
         @RequestMapping(value="/getById",method=RequestMethod.GET)
-        @CacheableReadOnly(key = "#p0")
+        @CacheRead(key = "#p0")
         @Override
         public Dict getById(@RequestParam("id") String id);
     }

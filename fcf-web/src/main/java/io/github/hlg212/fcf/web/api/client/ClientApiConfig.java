@@ -1,6 +1,6 @@
 package  io.github.hlg212.fcf.web.api.client;
 
-import  io.github.hlg212.fcf.annotation.CacheableReadOnly;
+import  io.github.hlg212.fcf.annotation.CacheRead;
 import  io.github.hlg212.fcf.api.Constants;
 import  io.github.hlg212.fcf.model.basic.Client;
 import org.springframework.cache.annotation.CacheConfig;
@@ -22,12 +22,12 @@ class ClientApiConfig {
     public interface ClientApi extends  io.github.hlg212.fcf.api.ClientApi<Client>{
 
         @RequestMapping(value="/getById",method= RequestMethod.GET)
-        @CacheableReadOnly(key = "#p0")
+        @CacheRead(key = "#p0")
         @Override
         public Client getById(@RequestParam("id") String id);
 
         @RequestMapping(value="/getAuthoritysByClientId",method=RequestMethod.GET)
-        @CacheableReadOnly(key =  io.github.hlg212.fcf.cache.Constants.ClientKey.getAuthoritysByKhdid_spel)
+        @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.ClientKey.getAuthoritysByKhdid_spel)
         @Override
         public Map getAuthoritysByClientId(@RequestParam("clientId") String clientId);
     }

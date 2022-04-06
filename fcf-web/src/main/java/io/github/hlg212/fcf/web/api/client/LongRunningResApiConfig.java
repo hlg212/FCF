@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import  io.github.hlg212.fcf.annotation.CacheableReadOnly;
+import  io.github.hlg212.fcf.annotation.CacheRead;
 import  io.github.hlg212.fcf.api.Constants;
 import  io.github.hlg212.fcf.model.ga.LongRunningRes;
 
@@ -38,7 +38,7 @@ public class LongRunningResApiConfig {
     public interface LongRunningResApi extends  io.github.hlg212.fcf.api.LongRunningResApi<LongRunningRes> {
 
         @RequestMapping(value="/getAllLongRunningRes",method=RequestMethod.GET)
-        @CacheableReadOnly(key =   io.github.hlg212.fcf.cache.Constants.LongRunningResKey.getAllLongRunningRes_spel)
+        @CacheRead(key =   io.github.hlg212.fcf.cache.Constants.LongRunningResKey.getAllLongRunningRes_spel)
         @Override
         public List<LongRunningRes> getAllLongRunningRes();
 

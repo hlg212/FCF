@@ -9,10 +9,8 @@
 package  io.github.hlg212.fcf.service.scanner;
 
 import io.github.hlg212.fcf.Constants;
-import  io.github.hlg212.fcf.env.DefaultPackagePropertySource;
-import io.github.hlg212.fcf.properties.PackageProperties;
+import io.github.hlg212.fcf.env.DefaultPackagePropertySource;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;

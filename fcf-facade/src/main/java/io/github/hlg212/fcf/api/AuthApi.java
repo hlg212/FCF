@@ -1,6 +1,6 @@
 package  io.github.hlg212.fcf.api;
 
-import  io.github.hlg212.fcf.annotation.CacheableReadOnly;
+import  io.github.hlg212.fcf.annotation.CacheRead;
 import  io.github.hlg212.fcf.model.basic.IApp;
 import  io.github.hlg212.fcf.model.basic.IRes;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
@@ -23,7 +23,7 @@ public interface AuthApi {
      *  
      */
     @RequestMapping(value="/getAuthoritysByUserId",method=RequestMethod.GET)
-    @CacheableReadOnly(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getAuthoritysByUserId_spel)
+    @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getAuthoritysByUserId_spel)
     public List<String> getPermissionsByUserId(@RequestParam("appCode") String appCode, @RequestParam("userId") String userId);
 
 
@@ -33,7 +33,7 @@ public interface AuthApi {
      *  
      */
     @RequestMapping(value="/getAllAuthoritysByUserId",method=RequestMethod.GET)
-    @CacheableReadOnly(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getAllAuthoritysByUserId_spel)
+    @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getAllAuthoritysByUserId_spel)
     public List<String> getAllPermissionsByUserId( @RequestParam("userId") String userId);
 
 
@@ -43,14 +43,14 @@ public interface AuthApi {
      *  
      */
     @RequestMapping(value="/getMenuByUserId",method=RequestMethod.GET)
-    @CacheableReadOnly(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getMenuByUserId_spel)
+    @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getMenuByUserId_spel)
     public <E extends  IRes>  List<E> getMenuByUserId(@RequestParam("appCode") String appCode, @RequestParam("userId") String userId);
 
     /**
      * 获得所有需要授权的资源
      */
     @RequestMapping(value="/getAllAuthRes",method=RequestMethod.GET)
-    @CacheableReadOnly(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getAllAuthRes_spel)
+    @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getAllAuthRes_spel)
     public <E extends  IRes>  List<E> getAllAuthRes();
 
 
@@ -58,6 +58,6 @@ public interface AuthApi {
      *  获取用户应用列表
      */
     @RequestMapping(value="/getAppsByUserId",method=RequestMethod.GET)
-    @CacheableReadOnly(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getAppsByUserId_spel)
+    @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getAppsByUserId_spel)
     public <E extends IApp> List<E> getAppsByUserId(@RequestParam("userId") String userId,@RequestParam(name="type",required = false) String type);
 }

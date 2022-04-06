@@ -7,17 +7,10 @@ spring:
       uri: ${fcf.config.uri:http://fcf.config.com:8181/config/repo}
 
 
-hlg212:
-  fcf:
+fcf:
+  frame:
     version: ${project.version}
     basePackage: io.github.hlg212.fcf
   package:
-    #company: com.htcf
-    #company: ${htcf.default.package.company}
-    #app: ${htcf.default.package.app}
    basePackage: ${fcf.default.package.basePackage}
    dao: ${fcf.default.package.dao}
-   #event: ${htcf.default.package.basePackage}
-   # - com.htcf.system.event
-    #dao: com.htcf.*.dao
-

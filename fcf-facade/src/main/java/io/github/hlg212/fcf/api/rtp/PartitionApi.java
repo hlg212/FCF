@@ -1,6 +1,6 @@
 package  io.github.hlg212.fcf.api.rtp;
 
-import  io.github.hlg212.fcf.annotation.CacheableReadOnly;
+import  io.github.hlg212.fcf.annotation.CacheRead;
 import  io.github.hlg212.fcf.api.Constants;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.cache.annotation.CacheConfig;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface PartitionApi {
 
     @RequestMapping(value="/getPartition",method=RequestMethod.GET)
-    @CacheableReadOnly(key = "'partition:'+#p0")
+    @CacheRead(key = "'partition:'+#p0")
     public String getPartition(@RequestParam("topicId")String topicId);
 
 }

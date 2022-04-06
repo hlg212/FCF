@@ -1,6 +1,6 @@
 package  io.github.hlg212.fcf.util;
 
-import  io.github.hlg212.fcf.annotation.CacheableReadOnly;
+import  io.github.hlg212.fcf.annotation.CacheRead;
 import  io.github.hlg212.fcf.cache.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -104,7 +104,7 @@ public class CacheNameHelper {
             Set<String> set = new HashSet<>();
             for( Cacheable cacheb : cacheables )
             {
-                if( !(cacheb instanceof CacheableReadOnly) )
+                if( !(cacheb instanceof CacheRead) )
                 {
                     String cns[] = cacheb.cacheNames();
                     set.addAll(getCacheNams(configCacheNames,cns));
