@@ -11,11 +11,10 @@
 
  ## Links
 
-- [文档]
+- [文档](https://hlg212.github.io/)
 - [代码生成](https://github.com/hlg212/FCP/tree/master/generator)
 - [例子](https://github.com/hlg212/fcf-examples)
-- [配置说明](https://github.com/hlg212/fcf-examples)
-- [工程结构](https://github.com/hlg212/fcf-examples)
+- [工程结构]()
 - [FCP 基础开发平台](https://github.com/hlg212/FCP)
 
 ## 功能介绍
@@ -79,21 +78,25 @@
 ##### 包结构
 ![image](https://raw.githubusercontent.com/hlg212/fcf-examples/master/images/curdie_dir.jpg)
 
-## 技术选型
+## 版本依赖
 |  名称   | 版本  |  说明  |
 |  ----  | ----  | ----  |
-| spring boot  | 单元格 | 单元格 |
-| spring cloud  | 单元格 | 单元格 |
-| mybatis-plus  | 单元格 | 单元格 |
-| druid  | 单元格 | 单元格 |
-| redis  | 单元格 | 单元格 |
-| spring cache  | 单元格 | 单元格 |
-| spring cloud stream  | 单元格 | 单元格 |
-| spring cloud bus  | 单元格 | 单元格 |
-| feign  | 单元格 | 单元格 |
-| eureka  | 单元格 | 单元格 |
-| swagger2  | 单元格 | 单元格 |
-| liquibase  | 单元格 | 单元格 |
+| spring boot  | 2.1.6.RELEASE |  |
+| spring cloud  | Greenwich.SR2 |  |
+| mybatis-plus  | 3.1.1 |  |
+| druid  | 1.1.5 |  |
+| druid  | 1.1.5 |  |
+| redis  | 3.8.0 |  |
+| spring cache  | 同boot |  |
+| spring cloud stream  | 同cloud |  |
+| spring cloud bus  | 同cloud |  |
+| spring security oauth2  | 2.3.2.RELEASE |  |
+| feign  | 同cloud |  |
+| eureka  | 同cloud |  |
+| config  | 同cloud |  |
+| swagger2  | 2.9.2 |  |
+| liquibase  | 同boot  |  |
+| jxls  | 2.8.1 |  |
 
 ## 交流反馈
 * 交流请进群：

@@ -24,7 +24,8 @@
 *.iml
 
 #
-target 
+target
+site
 
 #
 release.properties
