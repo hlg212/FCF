@@ -8,6 +8,22 @@
 [分层模型](layeredModel.md)
 
 ## 功能介绍
+顶级Query  
+![image](images/query.jpg)
 
+顶级Curd  
+![image](images/curd.jpg)
+
+Dao curd  
+![image](images/code_app_dao.jpg)  
+![image](images/app_dao.jpg)  
+
+Service curd  
+![image](images/code_app_service.jpg)  
+![image](images/app_service.png)
+
+Controller curd  
+![image](images/code_app_controller.jpg)  
+![image](images/app_controller.jpg)
 
 ## 例子
