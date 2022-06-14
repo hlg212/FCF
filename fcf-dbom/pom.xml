@@ -13,13 +13,10 @@
 
     <properties>
         <flatten.flattenMode>bom</flatten.flattenMode>
-        <spring-cloud-dependencies.version>Greenwich.SR2</spring-cloud-dependencies.version>
-        <spring-boot-dependencies.version>2.1.6.RELEASE</spring-boot-dependencies.version>
+        <spring-cloud-dependencies.version>2021.0.2</spring-cloud-dependencies.version>
+        <spring-boot-dependencies.version>2.6.7</spring-boot-dependencies.version>
 
         <spring-security-oauth2.version>2.3.2.RELEASE</spring-security-oauth2.version>
-        <spring-cloud-starter-netflix-hystrix.version>2.0.0.RELEASE</spring-cloud-starter-netflix-hystrix.version>
-        <spring-cloud-starter-netflix-hystrix-dashboard.version>2.0.0.RELEASE</spring-cloud-starter-netflix-hystrix-dashboard.version>
-        <pagehelper.version>4.1.4</pagehelper.version>
         <commons-net.version>3.2</commons-net.version>
         <commons-beanutils.version>1.8.0</commons-beanutils.version>
         <commons-codec.version>1.8</commons-codec.version>
@@ -41,7 +38,7 @@
 		<druid-spring-boot-starter.version>1.1.10</druid-spring-boot-starter.version>
 		<mysql.version>8.0.13</mysql.version>
 
-        <apm-toolkit.version>6.1.0</apm-toolkit.version>
+        <apm-toolkit.version>8.6.0</apm-toolkit.version>
 
         <sharding-jdbc-spring-boot-starter.version>4.0.0-RC1</sharding-jdbc-spring-boot-starter.version>
 
@@ -84,25 +81,6 @@
                 <version>${spring-cloud-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-            
-            <dependency>
-			    <groupId>org.springframework.cloud</groupId>
-			    <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-			    <version>${spring-cloud-starter-netflix-hystrix.version}</version>
-			</dependency>
-			
-			<dependency>
-			    <groupId>org.springframework.cloud</groupId>
-			    <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
-			    <version>${spring-cloud-starter-netflix-hystrix-dashboard.version}</version>
-			</dependency>
-			
-            <!--分页插件 -->
-            <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper</artifactId>
-                <version>${pagehelper.version}</version>
             </dependency>
 
             <dependency>
@@ -209,6 +187,12 @@
             <dependency>
                 <groupId>org.apache.skywalking</groupId>
                 <artifactId>apm-toolkit-opentracing</artifactId>
+                <version>${apm-toolkit.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.skywalking</groupId>
+                <artifactId>apm-toolkit-logback-1.x</artifactId>
                 <version>${apm-toolkit.version}</version>
             </dependency>
 
