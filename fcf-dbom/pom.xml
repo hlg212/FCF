@@ -13,9 +13,13 @@
 
     <properties>
         <flatten.flattenMode>bom</flatten.flattenMode>
-        <spring-cloud-dependencies.version>2021.0.2</spring-cloud-dependencies.version>
-        <spring-boot-dependencies.version>2.6.7</spring-boot-dependencies.version>
+<!--        <spring-cloud-dependencies.version>2021.0.2</spring-cloud-dependencies.version>-->
+<!--        <spring-boot-dependencies.version>2.6.7</spring-boot-dependencies.version>-->
+        <spring-cloud-dependencies.version>Greenwich.SR2</spring-cloud-dependencies.version>
+        <spring-boot-dependencies.version>2.1.6.RELEASE</spring-boot-dependencies.version>
 
+        <spring-cloud-starter-netflix-hystrix.version>2.0.0.RELEASE</spring-cloud-starter-netflix-hystrix.version>
+        <spring-cloud-starter-netflix-hystrix-dashboard.version>2.0.0.RELEASE</spring-cloud-starter-netflix-hystrix-dashboard.version>
         <spring-security-oauth2.version>2.3.2.RELEASE</spring-security-oauth2.version>
         <commons-net.version>3.2</commons-net.version>
         <commons-beanutils.version>1.8.0</commons-beanutils.version>
@@ -81,6 +85,18 @@
                 <version>${spring-cloud-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+                <version>${spring-cloud-starter-netflix-hystrix.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+                <version>${spring-cloud-starter-netflix-hystrix.version}</version>
             </dependency>
 
             <dependency>

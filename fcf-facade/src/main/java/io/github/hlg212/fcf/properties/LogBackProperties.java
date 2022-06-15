@@ -2,14 +2,14 @@ package io.github.hlg212.fcf.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
 
-@ConfigurationProperties(prefix = "fcf.log.logback")
+@ConfigurationProperties(prefix = LogBackProperties.PREFIX)
 @Data
-@Component
 public class LogBackProperties {
-	
+
+	public static final String PREFIX = "fcf.log.logback";
+
 	private Boolean enableSwgrpcLog = true;
 
     private Boolean enable = true;

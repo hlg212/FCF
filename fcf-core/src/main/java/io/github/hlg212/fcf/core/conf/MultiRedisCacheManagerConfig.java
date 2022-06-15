@@ -7,39 +7,24 @@ import io.github.hlg212.fcf.core.cachex.ExRedisCacheManager;
 import io.github.hlg212.fcf.core.conf.CacheConfig.FastJsonRedisSerializer;
 import io.github.hlg212.fcf.core.properties.CommonProperties;
 import io.github.hlg212.fcf.core.properties.ExRedisProperties;
-import io.github.hlg212.fcf.service.FrameService;
-import io.github.hlg212.fcf.util.ThreadLocalHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
-import org.springframework.cache.annotation.AnnotationCacheOperationSource;
-import org.springframework.cache.config.CacheManagementConfigUtils;
-import org.springframework.cache.interceptor.*;
-import org.springframework.cache.interceptor.CacheableOperation.Builder;
-import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.GenericApplicationContext;
-import org.springframework.core.annotation.AnnotatedElementUtils;
-import org.springframework.core.env.Environment;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.connection.*;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.serializer.RedisSerializationContext.SerializationPair;
-import org.springframework.lang.Nullable;
-import org.springframework.util.SystemPropertyUtils;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-import java.lang.reflect.Method;
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Configuration
