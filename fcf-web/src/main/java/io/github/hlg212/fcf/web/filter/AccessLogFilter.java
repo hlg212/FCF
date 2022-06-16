@@ -1,15 +1,15 @@
 package  io.github.hlg212.fcf.web.filter;
 
 import com.alibaba.fastjson.JSON;
-import  io.github.hlg212.fcf.constants.DataConstants;
-import  io.github.hlg212.fcf.constants.FrameCommonConstants;
-import  io.github.hlg212.fcf.context.AccessContext;
-import  io.github.hlg212.fcf.log.AccessLogWrite;
-import  io.github.hlg212.fcf.model.basic.IUser;
-import  io.github.hlg212.fcf.model.log.AccessLog;
-import  io.github.hlg212.fcf.properties.AccessLogProperties;
-import  io.github.hlg212.fcf.util.*;
-import  io.github.hlg212.fcf.web.util.HttpServletHelper;
+import io.github.hlg212.fcf.constants.DataConstants;
+import io.github.hlg212.fcf.constants.FrameCommonConstants;
+import io.github.hlg212.fcf.context.AccessContext;
+import io.github.hlg212.fcf.log.AccessLogWrite;
+import io.github.hlg212.fcf.model.basic.IUser;
+import io.github.hlg212.fcf.model.log.AccessLog;
+import io.github.hlg212.fcf.properties.AccessLogProperties;
+import io.github.hlg212.fcf.util.*;
+import io.github.hlg212.fcf.web.util.HttpServletHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -168,8 +168,8 @@ public class AccessLogFilter implements Filter {
 		log.setId(createId());
 		log.setUri(request.getRequestURI());
 		log.setRequestUrl(request.getRequestURL().toString());
-		String traceId = TraceContext.traceId();
-		if( StringUtils.isNotEmpty(traceId) && !"[Ignored Trace]".equalsIgnoreCase(traceId) )
+		String traceId = AccessContextHelper.getTraceId();
+		if( StringUtils.isNotEmpty(traceId) )
 		{
 			log.setTraceId(traceId);
 		}
@@ -226,6 +226,15 @@ public class AccessLogFilter implements Filter {
 			}
 
 			return accessId;
+		}
+		@Override
+		public String getTraceId() {
+			String traceId = TraceContext.traceId();
+			if( "[Ignored Trace]".equalsIgnoreCase(traceId) )
+			{
+				traceId = null;
+			}
+			return traceId;
 		}
 	}
 

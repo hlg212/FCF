@@ -19,6 +19,14 @@ public class AccessContextHelper {
 		}
 		return null;
 	}
+	public static String  getTraceId()
+	{
+		AccessContext context = getContext();
+		if( context != null ){
+			return context.getTraceId();
+		}
+		return null;
+	}
 
 	public static AccessContext getContext()
 	{
