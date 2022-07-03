@@ -1,9 +1,9 @@
 package  io.github.hlg212.fcf.service;
 
-import  io.github.hlg212.fcf.ISerializable;
-import  io.github.hlg212.fcf.Import;
-import  io.github.hlg212.fcf.model.ImpExpModel;
-import  io.github.hlg212.fcf.model.basic.File;
+import io.github.hlg212.fcf.ISerializable;
+import io.github.hlg212.fcf.Import;
+import io.github.hlg212.fcf.model.ImpExpModel;
+import io.github.hlg212.fcf.model.basic.IFile;
 
 import java.util.Collection;
 
@@ -19,7 +19,7 @@ public interface ImportService<T extends ISerializable>  extends Import<T,ImpExp
      * 返回解析后的对象，一般为datas
      *
      */
-    public ImpExpModel importParse(File file);
+    public ImpExpModel importParse(IFile file);
 
     public void importSave(Collection<T> datas);
 }

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package  io.github.hlg212.fcf.model;
 
 import org.apache.commons.lang.StringUtils;

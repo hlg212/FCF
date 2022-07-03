@@ -187,6 +187,10 @@ public class BaseDaoImpl<T extends Model> extends AbsBaseDao<T> {
         {
             size = ((Collection) inValues).size();
         }
+        if( size <= 0 )
+        {
+            return;
+        }
         queryWrapper.and(wrapper -> {
             int begin = 0;
             int end = 0;

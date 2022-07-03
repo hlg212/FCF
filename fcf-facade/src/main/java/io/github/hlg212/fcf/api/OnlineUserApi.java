@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-@FeignClient(contextId = Constants.ApiContextId.OnlineUserApi,name=Constants.ApiName.OnlineUserApi,path =Constants.ApiPath.OnlineUserApi,url =Constants.AppFeignUrl.OnlineUserApi)
+@FeignClient(contextId = Constants.ApiContextId.OnlineUserApi,name=Constants.ApiName.OnlineUserApi,path =Constants.ApiPath.OnlineUserApi,url =Constants.ApiUrl.OnlineUserApi)
 @RequestMapping(Constants.ApiMapping.OnlineUserApi)
 @ConditionalOnExpression("false")
 public interface OnlineUserApi<T extends IOnlineUser> {

@@ -1,11 +1,3 @@
-/** 
- * Project Name:frame-web 
- * File Name:LongRunningResApiConfig.java 
- * Package Name: io.github.hlg212.fcf.web.api.client
- * Date:2020年3月30日下午12:18:39 
- * Copyright (c) 2020, 航天长峰湖南分公司  All Rights Reserved. 
- * 
- */
 package  io.github.hlg212.fcf.web.api.client;
 
 import java.util.List;
@@ -33,7 +25,7 @@ import  io.github.hlg212.fcf.model.ga.LongRunningRes;
 @Configuration
 public class LongRunningResApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.LongRunningResApi,name=Constants.ApiName.LongRunningResApi,path =Constants.ApiPath.LongRunningResApi,url =Constants.AppFeignUrl.LongRunningResApi)
+    @FeignClient(contextId = Constants.ApiContextId.LongRunningResApi,name=Constants.ApiName.LongRunningResApi,path =Constants.ApiPath.LongRunningResApi,url =Constants.ApiUrl.LongRunningResApi)
     @CacheConfig(cacheNames =  io.github.hlg212.fcf.cache.Constants.LongRunningRes)
     public interface LongRunningResApi extends  io.github.hlg212.fcf.api.LongRunningResApi<LongRunningRes> {
 

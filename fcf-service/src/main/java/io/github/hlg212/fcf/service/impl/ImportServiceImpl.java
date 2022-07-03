@@ -4,6 +4,7 @@ import  io.github.hlg212.fcf.api.FileApi;
 import  io.github.hlg212.fcf.model.ImpExpModel;
 import  io.github.hlg212.fcf.model.Model;
 import  io.github.hlg212.fcf.model.basic.File;
+import io.github.hlg212.fcf.model.basic.IFile;
 import  io.github.hlg212.fcf.util.CacheDataHelper;
 import  io.github.hlg212.fcf.util.ExceptionHelper;
 import  io.github.hlg212.fcf.util.ParameterizedTypeHelper;
@@ -27,7 +28,7 @@ import java.util.Collection;
 public interface ImportServiceImpl<T extends Model> extends  io.github.hlg212.fcf.service.ImportService<T>{
 
     @Override
-    default  public ImpExpModel importParse(File file) {
+    default  public ImpExpModel importParse(IFile file) {
         if (file.getContent() == null || file.getContent().length == 0) {
             FileApi fileApi = SpringHelper.getBean(FileApi.class);
             file = fileApi.download(file.getPath());
@@ -39,7 +40,7 @@ public interface ImportServiceImpl<T extends Model> extends  io.github.hlg212.fc
     }
 
     @Override
-    default public void importSave(File file){
+    default public void importSave(IFile file){
         ImpExpModel impExpModel =  importParse(file);
         importSave(impExpModel.getDatas());
     }

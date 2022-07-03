@@ -48,7 +48,7 @@ public class ModelHelper {
 
     public static Map<String, String> getModelFieldsDes(Class<?> modelClass)
     {
-        Map<String,String> result = new HashMap<>(10);
+        Map<String,String> result = new LinkedHashMap<>(10);
         Fields fields = modelClass.getAnnotation(Fields.class);
         List< io.github.hlg212.fcf.annotation.Field> fieldArr = new ArrayList();
         if(fields != null ) {
@@ -66,6 +66,9 @@ public class ModelHelper {
                      io.github.hlg212.fcf.annotation.Field htcfField = field.getAnnotation( io.github.hlg212.fcf.annotation.Field.class);
                     if( htcfField != null ) {
                         result.put(fname, htcfField.description());
+                    }
+                    else{
+                        result.put(fname, fname);
                     }
                 }
 

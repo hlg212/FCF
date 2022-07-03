@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Collection;
 
-@FeignClient(contextId = Constants.ApiContextId.QueueApi,name=Constants.ApiName.QueueApi,url =Constants.AppFeignUrl.QueueApi)
+@FeignClient(contextId = Constants.ApiContextId.QueueApi,name=Constants.ApiName.QueueApi,url =Constants.ApiUrl.QueueApi)
 @ConditionalOnExpression("false")
 public interface QueueApi<T extends IQueue> {
 
@@ -24,10 +24,6 @@ public interface QueueApi<T extends IQueue> {
     @RequestMapping(value="/api/queues/{virtualHost}/{name}",method=RequestMethod.DELETE)
     public void del(@PathVariable("name") String name, @PathVariable("virtualHost") String virtualHost, @RequestBody QueueDeleteParam param);
 
-    @RequestMapping(value="/api/queues/{virtualHost}/{name}/bindings/source",method=RequestMethod.GET)
-    public <E extends  IBinding> Collection<E> getQueueBindsTo(@PathVariable("name") String name, @PathVariable("virtualHost") String virtualHost);
-
-    @RequestMapping(value="/api/queues/{virtualHost}/{name}/bindings/destination",method=RequestMethod.GET)
-    public <E extends  IBinding>  Collection<E> getQueueBindsFrom(@PathVariable("name") String name,@PathVariable("virtualHost") String virtualHost);
-
+    @RequestMapping(value="/api/queues/{virtualHost}/{name}/bindings",method=RequestMethod.GET)
+    public <E extends  IBinding> Collection<E> getBinds(@PathVariable("name") String name, @PathVariable("virtualHost") String virtualHost);
 }

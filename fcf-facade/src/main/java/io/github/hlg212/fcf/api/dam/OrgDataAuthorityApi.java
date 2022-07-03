@@ -17,7 +17,7 @@ import java.util.List;
  * @date 2021年1月11日
  */
 
-@FeignClient(contextId = Constants.ApiContextId.OrgDataAuthorityApi,name=Constants.ApiName.OrgDataAuthorityApi,path =Constants.ApiPath.OrgDataAuthorityApi,url =Constants.AppFeignUrl.OrgDataAuthorityApi)
+@FeignClient(contextId = Constants.ApiContextId.OrgDataAuthorityApi,name=Constants.ApiName.OrgDataAuthorityApi,path =Constants.ApiPath.OrgDataAuthorityApi,url =Constants.ApiUrl.OrgDataAuthorityApi)
 @RequestMapping(Constants.ApiMapping.OrgDataAuthorityApi)
 public interface OrgDataAuthorityApi extends DataAuthorityService<String> {
 

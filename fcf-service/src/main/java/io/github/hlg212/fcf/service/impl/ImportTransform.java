@@ -3,6 +3,7 @@ package  io.github.hlg212.fcf.service.impl;
 import  io.github.hlg212.fcf.ISerializable;
 import  io.github.hlg212.fcf.model.ImpExpModel;
 import  io.github.hlg212.fcf.model.basic.File;
+import io.github.hlg212.fcf.model.basic.IFile;
 import  io.github.hlg212.fcf.util.DictHelper;
 import  io.github.hlg212.fcf.util.ExceptionHelper;
 import lombok.extern.slf4j.Slf4j;
@@ -32,14 +33,14 @@ public abstract class ImportTransform<T extends ISerializable> {
     }
 
 
-    public ImpExpModel importParse(File file) {
+    public ImpExpModel importParse(IFile file) {
         ImpExpModel impExpModel = getImpExpModel(modelClass);
         read(file,impExpModel);
         impExpModel.setDatas(importTransform(impExpModel.getDatas()));
         return impExpModel;
     }
 
-    protected abstract void read(File file,ImpExpModel impExpModel);
+    protected abstract void read(IFile file,ImpExpModel impExpModel);
 
     protected Collection importTransform(Collection datas) {
         Collection result = new ArrayList(datas.size());

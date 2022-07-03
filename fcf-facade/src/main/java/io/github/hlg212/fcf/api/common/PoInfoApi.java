@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 
-@FeignClient(contextId = Constants.ApiContextId.PoInfoApi,name=Constants.ApiName.PoInfoApi, url=Constants.AppFeignUrl.PoInfoApi)
+@FeignClient(contextId = Constants.ApiContextId.PoInfoApi,name=Constants.ApiName.PoInfoApi, url=Constants.ApiUrl.PoInfoApi)
 @RequestMapping(Constants.ApiMapping.PoInfoApi)
 @ConditionalOnExpression("false")
 public interface PoInfoApi {

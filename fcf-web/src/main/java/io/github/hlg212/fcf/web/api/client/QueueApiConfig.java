@@ -17,20 +17,15 @@ import java.util.Collection;
 @Configuration
 class QueueApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.QueueApi,name=Constants.ApiName.QueueApi,url =Constants.AppFeignUrl.QueueApi,configuration =MqApiConfig.class)
+    @FeignClient(contextId = Constants.ApiContextId.QueueApi,name=Constants.ApiName.QueueApi,url =Constants.ApiUrl.QueueApi,configuration =MqApiConfig.class)
     public interface QueueApi extends  io.github.hlg212.fcf.api.mq.QueueApi<Queue> {
 
         @RequestMapping(value="/api/queues/{virtualHost}?page={page}&page_size={page_size}&use_regex=true&pagination=true&name={name}",method=RequestMethod.GET)
         @Override
         public MqPageInfo<Queue> findPage(@PathVariable("name") String name, @PathVariable("page") int page, @PathVariable("page_size") int pageSize, @PathVariable("virtualHost") String virtualHost);
 
-        @RequestMapping(value="/api/queues/{virtualHost}/{name}/bindings/source",method=RequestMethod.GET)
+        @RequestMapping(value="/api/queues/{virtualHost}/{name}/bindings",method=RequestMethod.GET)
         @Override
-        public Collection<Binding> getQueueBindsTo(@PathVariable("name") String name, @PathVariable("virtualHost") String virtualHost);
-
-        @RequestMapping(value="/api/queues/{virtualHost}/{name}/bindings/destination",method=RequestMethod.GET)
-        @Override
-        public  Collection<Binding> getQueueBindsFrom(@PathVariable("name") String name, @PathVariable("virtualHost") String virtualHost);
-
+        public Collection<Binding> getBinds(@PathVariable("name") String name, @PathVariable("virtualHost") String virtualHost);
     }
 }

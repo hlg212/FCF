@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 class PoInfoApiConfig {
     
-    @FeignClient(contextId = Constants.ApiContextId.PoInfoApi,name=Constants.ApiName.PoInfoApi, url=Constants.AppFeignUrl.PoInfoApi)
+    @FeignClient(contextId = Constants.ApiContextId.PoInfoApi,name=Constants.ApiName.PoInfoApi, url=Constants.ApiUrl.PoInfoApi)
     public interface PoInfoApi extends  io.github.hlg212.fcf.api.common.PoInfoApi {
 
     }

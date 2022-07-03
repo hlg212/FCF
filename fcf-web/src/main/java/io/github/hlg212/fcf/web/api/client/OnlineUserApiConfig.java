@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 class OnlineUserApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.OnlineUserApi,name=Constants.ApiName.OnlineUserApi,path =Constants.ApiPath.OnlineUserApi,url =Constants.AppFeignUrl.OnlineUserApi)
+    @FeignClient(contextId = Constants.ApiContextId.OnlineUserApi,name=Constants.ApiName.OnlineUserApi,path =Constants.ApiPath.OnlineUserApi,url =Constants.ApiUrl.OnlineUserApi)
     public interface OnlineUserApi extends   io.github.hlg212.fcf.api.OnlineUserApi<OnlineUser> {
 
     }

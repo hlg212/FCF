@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Configuration
 class AppApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.AppApi,name=Constants.ApiName.AppApi,path =Constants.ApiPath.AppApi,url =Constants.AppFeignUrl.AppApi)
+    @FeignClient(contextId = Constants.ApiContextId.AppApi,name=Constants.ApiName.AppApi,path =Constants.ApiPath.AppApi,url =Constants.ApiUrl.AppApi)
     @CacheConfig(cacheNames =  io.github.hlg212.fcf.cache.Constants.App)
     public interface AppApi  extends  io.github.hlg212.fcf.api.AppApi<App>{
 

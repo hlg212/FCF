@@ -6,7 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(contextId = Constants.ApiContextId.AutomateApi ,name=Constants.ApiName.AutomateApi,url =Constants.AppFeignUrl.AutomateApi)
+@FeignClient(contextId = Constants.ApiContextId.AutomateApi ,name=Constants.ApiName.AutomateApi,url =Constants.ApiUrl.AutomateApi)
 @RequestMapping(Constants.ApiMapping.AutomateApi)
 @ConditionalOnExpression("false")
 public interface AutomateApi {

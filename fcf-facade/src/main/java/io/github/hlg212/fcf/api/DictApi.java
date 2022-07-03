@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(contextId = Constants.ApiContextId.DictApi,name=Constants.ApiName.DictApi,path =Constants.ApiPath.DictApi,url =Constants.AppFeignUrl.DictApi)
+@FeignClient(contextId = Constants.ApiContextId.DictApi,name=Constants.ApiName.DictApi,path =Constants.ApiPath.DictApi,url =Constants.ApiUrl.DictApi)
 @RequestMapping(Constants.ApiMapping.DictApi)
 @ConditionalOnExpression("false")
 public interface DictApi<T extends IDict> {

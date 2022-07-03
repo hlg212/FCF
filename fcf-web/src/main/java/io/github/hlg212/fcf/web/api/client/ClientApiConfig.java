@@ -17,7 +17,7 @@ import java.util.Map;
 @Configuration
 class ClientApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.ClientApi,name=Constants.ApiName.ClientApi,path =Constants.ApiPath.ClientApi,url =Constants.AppFeignUrl.ClientApi)
+    @FeignClient(contextId = Constants.ApiContextId.ClientApi,name=Constants.ApiName.ClientApi,path =Constants.ApiPath.ClientApi,url =Constants.ApiUrl.ClientApi)
     @CacheConfig(cacheNames =  io.github.hlg212.fcf.cache.Constants.Client)
     public interface ClientApi extends  io.github.hlg212.fcf.api.ClientApi<Client>{
 

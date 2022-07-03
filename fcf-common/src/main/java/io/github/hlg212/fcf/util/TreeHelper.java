@@ -1,11 +1,3 @@
-/** 
- * Project Name:common-base 
- * File Name:TreeBuiler.java 
- * Package Name: io.github.hlg212.fcf.base.util
- * Date:2017年11月2日 下午2:25:33 
- * Copyright (c) 2017, 航天长峰湖南分公司  All Rights Reserved. 
- * 
- */
 package  io.github.hlg212.fcf.util;
 
 import org.apache.commons.beanutils.PropertyUtils;
@@ -61,7 +53,7 @@ public class TreeHelper {
 		if (list.size()>0) {
 			return createTree(list, nodeParam);
 		}
-		return null;
+		return Collections.emptyList();
 	}
 
 	/**

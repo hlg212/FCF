@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 class AppInfoApiConfig {
-	@FeignClient(contextId = Constants.ApiContextId.AppInfoApi,name=Constants.ApiName.AppInfoApi,url=Constants.AppFeignUrl.AppInfoApi)	public interface AppInfoApi extends  io.github.hlg212.fcf.api.AppInfoApi {
+	@FeignClient(contextId = Constants.ApiContextId.AppInfoApi,name=Constants.ApiName.AppInfoApi,url=Constants.ApiUrl.AppInfoApi)	public interface AppInfoApi extends  io.github.hlg212.fcf.api.AppInfoApi {
 
 	}
 }

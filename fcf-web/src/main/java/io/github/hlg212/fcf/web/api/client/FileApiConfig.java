@@ -11,14 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Configuration
 class FileApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.FileApi,name=Constants.ApiName.FileApi,path =Constants.ApiPath.FileApi,url =Constants.AppFeignUrl.FileApi)
-    public interface FileApi extends  io.github.hlg212.fcf.api.FileApi{
-        /**
-         * 下载文件
-         */
-        @Override
-        @RequestMapping(value="/download")
-        public File download(@RequestParam("path") String path);
+    @FeignClient(contextId = Constants.ApiContextId.FileApi,name=Constants.ApiName.FileApi,path =Constants.ApiPath.FileApi,url =Constants.ApiUrl.FileApi)
+    public interface FileApi extends  io.github.hlg212.fcf.api.FileApi<File>{
+
     }
 
 }

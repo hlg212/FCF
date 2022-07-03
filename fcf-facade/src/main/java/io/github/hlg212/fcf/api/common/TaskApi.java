@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 
-@FeignClient(contextId = Constants.ApiContextId.TaskApi,name=Constants.ApiName.TaskApi, url=Constants.AppFeignUrl.TaskApi)
+@FeignClient(contextId = Constants.ApiContextId.TaskApi,name=Constants.ApiName.TaskApi, url=Constants.ApiUrl.TaskApi)
 @RequestMapping(Constants.ApiMapping.TaskApi)
 @ConditionalOnExpression("false")
 public interface TaskApi{

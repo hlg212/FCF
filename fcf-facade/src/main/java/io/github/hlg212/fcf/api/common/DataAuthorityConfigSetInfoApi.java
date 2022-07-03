@@ -16,7 +16,7 @@ import java.util.List;
  * @author huangligui
  * @date 2021年1月11日
  */
-@FeignClient(contextId = Constants.ApiContextId.DataAuthorityConfigSetInfoApi,name=Constants.ApiName.DataAuthorityConfigSetInfoApi, url=Constants.AppFeignUrl.DataAuthorityConfigSetInfoApi)
+@FeignClient(contextId = Constants.ApiContextId.DataAuthorityConfigSetInfoApi,name=Constants.ApiName.DataAuthorityConfigSetInfoApi, url=Constants.ApiUrl.DataAuthorityConfigSetInfoApi)
 @RequestMapping(Constants.ApiMapping.DataAuthorityConfigSetInfoApi)
 @ConditionalOnExpression("false")
 public interface DataAuthorityConfigSetInfoApi {

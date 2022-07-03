@@ -2,6 +2,7 @@ package  io.github.hlg212.fcf.service.impl;
 
 import  io.github.hlg212.fcf.model.Model;
 import  io.github.hlg212.fcf.model.basic.File;
+import io.github.hlg212.fcf.model.basic.IFile;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -64,7 +65,7 @@ public abstract class ServiceWapper<T extends Model> implements CurdieServiceImp
 
 	@Override
 	@Transactional
-	public void importSave(File file) {
+	public void importSave(IFile file) {
 
 		if( workService == null || workService == this)
 		{

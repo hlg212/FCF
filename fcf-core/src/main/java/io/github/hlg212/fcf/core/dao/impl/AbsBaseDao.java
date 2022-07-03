@@ -1,10 +1,3 @@
-/**
- * Project Name:common-core
- * File Name:AbstractBaseDao.java
- * Package Name: io.github.hlg212.fcf.core.dao.impl
- * Date:2016-12-27 16:32:33
- * Copyright (c) 2016, 航天长峰湖南分公司  All Rights Reserved.
- */
 package  io.github.hlg212.fcf.core.dao.impl;
 
 import  io.github.hlg212.fcf.core.util.QueryPropertyParseUtils;
@@ -102,11 +95,12 @@ public abstract class AbsBaseDao<T extends Model> implements BaseDao<T> {
     }
 
     @Override
-    public <E extends T> E get(Qco queryProperty) {
-        QueryParam queryParam = QueryPropertyParseUtils.convertForQueryParam(queryProperty);
-        queryParam.setPageNum(0);
-        queryParam.setPageSize(1);
-        PageInfo<E> page = this.findPage(queryParam);
+    public <E extends T> E get(Qco qco) {
+        PageQuery<Qco> pageQuery = new PageQuery<>();
+        pageQuery.setQco(qco);
+        pageQuery.setPageNum(0);
+        pageQuery.setPageSize(1);
+        PageInfo<E> page = this.findPage(pageQuery);
         List<E> list = page.getList();
         if (list == null || list.size() == 0) {
             //List返回类型默认为com.github.pagehelper.Page 若查询结构集为空时,强制返回null对象
@@ -182,11 +176,12 @@ public abstract class AbsBaseDao<T extends Model> implements BaseDao<T> {
 
 
     @Override
-    public <E extends T> List<E> find(Qco queryProperty) {
-        QueryParam param = QueryPropertyParseUtils.convertForQueryParam(queryProperty);
-        param.setPageNum(0);
-        param.setPageSize(MAX_PAGE_SIZE_DEFAULT);
-        PageInfo<E> page = this.findPage(param);
+    public <E extends T> List<E> find(Qco qco) {
+        PageQuery<Qco> pageQuery = new PageQuery<>();
+        pageQuery.setQco(qco);
+        pageQuery.setPageNum(0);
+        pageQuery.setPageSize(MAX_PAGE_SIZE_DEFAULT);
+        PageInfo<E> page = this.findPage(pageQuery);
         List<E> list = page.getList();
         return list;
     }
@@ -196,6 +191,7 @@ public abstract class AbsBaseDao<T extends Model> implements BaseDao<T> {
         QueryParam param = QueryPropertyParseUtils.convertForQueryParam(pageQuery.getQco());
         param.setPageNum(pageQuery.getPageNum());
         param.setPageSize(pageQuery.getPageSize());
+        this.checkQueryCondition(param);
         return this.findPage(param);
     }
 

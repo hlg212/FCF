@@ -6,6 +6,7 @@ import  io.github.hlg212.fcf.api.FileApi;
 import  io.github.hlg212.fcf.model.ImpExpModel;
 import  io.github.hlg212.fcf.model.Qco;
 import  io.github.hlg212.fcf.model.basic.File;
+import io.github.hlg212.fcf.model.basic.IFile;
 import  io.github.hlg212.fcf.service.ImportService;
 import  io.github.hlg212.fcf.util.SpringHelper;
 import  io.github.hlg212.fcf.web.util.UploadHelper;
@@ -34,7 +35,7 @@ public interface ImportController<T extends ISerializable,Q extends Qco> extends
 
 
     @Override
-    default public void importSave(File file) {
+    default public void importSave(IFile file) {
         getImportService().importSave(file);
     }
 
@@ -45,7 +46,7 @@ public interface ImportController<T extends ISerializable,Q extends Qco> extends
         return importShow(getFile(path));
     }
 
-    default  Collection<T> importShow(File file) {
+    default  Collection<T> importShow(IFile file) {
         ImpExpModel impExpModel =  getImportService().importParse(file);
         return impExpModel.getDatas();
     }
@@ -57,9 +58,10 @@ public interface ImportController<T extends ISerializable,Q extends Qco> extends
         getImportService().importSave(getFile(path));
     }
 
-    static  File getFile(String path)
+    static IFile getFile(String path)
     {
         FileApi fileApi = SpringHelper.getBean(FileApi.class);
+
         return fileApi.download(path);
     }
 

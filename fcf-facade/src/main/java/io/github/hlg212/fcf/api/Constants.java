@@ -7,7 +7,7 @@ public class Constants {
     public final static String API_PREFIX = "/api";
 
 
-    public static class AppFeignUrl {
+    public static class ApiUrl {
         public final static String AppApi = "${fcf.feign.AppApi.url:}";
         public final static String AuthApi = "${fcf.feign.AuthApi.url:}";
         public final static String FileApi = "${fcf.feign.FileApi.url:}";

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 class OAuthApiConfig {
 
 
-    @FeignClient(contextId = Constants.ApiContextId.OAuthApi, name = Constants.ApiName.OAuthApi, path = Constants.ApiPath.OAuthApi, url = Constants.AppFeignUrl.OAuthApi,configuration = OAuthApiConfiguration.class)
+    @FeignClient(contextId = Constants.ApiContextId.OAuthApi, name = Constants.ApiName.OAuthApi, path = Constants.ApiPath.OAuthApi, url = Constants.ApiUrl.OAuthApi,configuration = OAuthApiConfiguration.class)
     @RequestMapping(Constants.ApiMapping.OAuthApi)
     public interface OAuthApi extends   io.github.hlg212.fcf.api.OAuthApi{
 

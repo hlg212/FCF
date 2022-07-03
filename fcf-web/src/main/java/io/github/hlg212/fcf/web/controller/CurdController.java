@@ -1,11 +1,4 @@
-/** 
- * Project Name:frame-web 
- * File Name:CurdController.java 
- * Package Name: io.github.hlg212.fcf.controller
- * Date:2018年8月16日 下午12:56:42 
- * Copyright (c) 2018, 航天长峰湖南分公司  All Rights Reserved. 
- * 
- */
+
 package  io.github.hlg212.fcf.web.controller;
 
 import  io.github.hlg212.fcf.CurdClientApi;

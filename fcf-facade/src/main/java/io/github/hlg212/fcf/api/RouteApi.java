@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(contextId = Constants.ApiContextId.RouteApi,name=Constants.ApiName.RouteApi,path =Constants.ApiPath.RouteApi,url =Constants.AppFeignUrl.RouteApi)
+@FeignClient(contextId = Constants.ApiContextId.RouteApi,name=Constants.ApiName.RouteApi,path =Constants.ApiPath.RouteApi,url =Constants.ApiUrl.RouteApi)
 @RequestMapping(Constants.ApiMapping.RouteApi)
 @ConditionalOnExpression("false")
 public interface RouteApi<T extends IRoute> {

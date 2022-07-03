@@ -16,7 +16,7 @@ import java.util.List;
 @Configuration
 class DicApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.DictApi,name=Constants.ApiName.DictApi,path =Constants.ApiPath.DictApi,url =Constants.AppFeignUrl.DictApi)
+    @FeignClient(contextId = Constants.ApiContextId.DictApi,name=Constants.ApiName.DictApi,path =Constants.ApiPath.DictApi,url =Constants.ApiUrl.DictApi)
     @CacheConfig(cacheNames =  io.github.hlg212.fcf.cache.Constants.Dict)
     public interface DicApi extends  io.github.hlg212.fcf.api.DictApi<Dict>{
 

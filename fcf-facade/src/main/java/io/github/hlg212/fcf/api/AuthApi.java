@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 
-@FeignClient(contextId = Constants.ApiContextId.AuthApi,name=Constants.ApiName.AuthApi,path =Constants.ApiPath.AuthApi,url =Constants.AppFeignUrl.AuthApi)
+@FeignClient(contextId = Constants.ApiContextId.AuthApi,name=Constants.ApiName.AuthApi,path =Constants.ApiPath.AuthApi,url =Constants.ApiUrl.AuthApi)
 @RequestMapping(Constants.ApiMapping.AuthApi)
 @ConditionalOnExpression("false")
 public interface AuthApi {
@@ -22,9 +22,9 @@ public interface AuthApi {
      * @param userId
      *  
      */
-    @RequestMapping(value="/getAuthoritysByUserId",method=RequestMethod.GET)
+    @RequestMapping(value="/getAppPermissionsByUserId",method=RequestMethod.GET)
     @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getAuthoritysByUserId_spel)
-    public List<String> getPermissionsByUserId(@RequestParam("appCode") String appCode, @RequestParam("userId") String userId);
+    public List<String> getAppPermissionsByUserId(@RequestParam("appCode") String appCode, @RequestParam("userId") String userId);
 
 
     /**
@@ -32,7 +32,7 @@ public interface AuthApi {
      * @param userId
      *  
      */
-    @RequestMapping(value="/getAllAuthoritysByUserId",method=RequestMethod.GET)
+    @RequestMapping(value="/getAllPermissionsByUserId",method=RequestMethod.GET)
     @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getAllAuthoritysByUserId_spel)
     public List<String> getAllPermissionsByUserId( @RequestParam("userId") String userId);
 

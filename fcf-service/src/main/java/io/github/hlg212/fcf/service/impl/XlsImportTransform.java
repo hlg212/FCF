@@ -4,6 +4,7 @@ import  io.github.hlg212.fcf.ISerializable;
 import  io.github.hlg212.fcf.model.ImpExpEnv;
 import  io.github.hlg212.fcf.model.ImpExpModel;
 import  io.github.hlg212.fcf.model.basic.File;
+import io.github.hlg212.fcf.model.basic.IFile;
 import  io.github.hlg212.fcf.util.ExceptionHelper;
 import  io.github.hlg212.fcf.util.ImpExpHelper;
 import  io.github.hlg212.fcf.util.StreamHelper;
@@ -30,7 +31,7 @@ public class XlsImportTransform<T extends ISerializable> extends ImportTransform
     }
 
     @Override
-    protected void read(File file, ImpExpModel impExpModel) {
+    protected void read(IFile file, ImpExpModel impExpModel) {
         InputStream templateInputStream = null;
         try {
             templateInputStream = ImpExpHelper.createXmlInputStream(impExpModel);

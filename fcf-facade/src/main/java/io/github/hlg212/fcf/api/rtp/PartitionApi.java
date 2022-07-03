@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(contextId = Constants.ApiContextId.PartitionApi,name=Constants.ApiName.PartitionApi,path =Constants.ApiPath.PartitionApi,url =Constants.AppFeignUrl.PartitionApi)
+@FeignClient(contextId = Constants.ApiContextId.PartitionApi,name=Constants.ApiName.PartitionApi,path =Constants.ApiPath.PartitionApi,url =Constants.ApiUrl.PartitionApi)
 @RequestMapping(Constants.ApiMapping.PartitionApi)
 @CacheConfig(cacheNames = "PartitionApi")
 @ConditionalOnExpression("false")

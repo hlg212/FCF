@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Configuration
 class LogoutApiConfig {
 
-    @FeignClient(contextId = Constants.ApiContextId.LogoutApi,name=Constants.ApiName.LogoutApi,path =Constants.ApiPath.LogoutApi,url =Constants.AppFeignUrl.LogoutApi)
+    @FeignClient(contextId = Constants.ApiContextId.LogoutApi,name=Constants.ApiName.LogoutApi,path =Constants.ApiPath.LogoutApi,url =Constants.ApiUrl.LogoutApi)
     @RequestMapping(Constants.ApiMapping.LogoutApi)
     public interface LogoutApi extends   io.github.hlg212.fcf.api.LogoutApi {
 

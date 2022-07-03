@@ -2,6 +2,7 @@ package  io.github.hlg212.fcf;
 
 import  io.github.hlg212.fcf.model.ImpExpModel;
 import  io.github.hlg212.fcf.model.basic.File;
+import io.github.hlg212.fcf.model.basic.IFile;
 
 /**
  * 导入基类接口
@@ -15,6 +16,6 @@ public interface Import<T extends ISerializable,IEO extends ImpExpModel> {
      *
      *
      */
-    public void importSave(File file);
+    public void importSave(IFile file);
 
 }

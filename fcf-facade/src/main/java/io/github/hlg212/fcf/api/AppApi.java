@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(contextId = Constants.ApiContextId.AppApi,name=Constants.ApiName.AppApi,path =Constants.ApiPath.AppApi,url =Constants.AppFeignUrl.AppApi)
+@FeignClient(contextId = Constants.ApiContextId.AppApi,name=Constants.ApiName.AppApi,path =Constants.ApiPath.AppApi,url =Constants.ApiUrl.AppApi)
 @RequestMapping(Constants.ApiMapping.AppApi)
 @ConditionalOnExpression("false")
 public interface AppApi<T extends IApp>{

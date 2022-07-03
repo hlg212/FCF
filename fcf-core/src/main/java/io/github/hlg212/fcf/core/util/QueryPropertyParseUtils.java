@@ -1,6 +1,4 @@
-/**
- *
- */
+
 package  io.github.hlg212.fcf.core.util;
 
 import  io.github.hlg212.fcf.model.*;
@@ -93,11 +91,11 @@ public class QueryPropertyParseUtils {
         Class qcoClass = queryProperty.getClass();
         List<QueryCondition> conditions = new ArrayList<>();
         try {
-            Introspector.getBeanInfo(queryProperty.getClass());
+            Introspector.getBeanInfo(qcoClass);
         } catch (IntrospectionException e) {
             e.printStackTrace();
         }
-        Collection<String> coll = BeanHelper.getFieldNames(queryProperty.getClass());
+        Collection<String> coll = BeanHelper.getFieldNames(qcoClass);
         //PropertyDescriptor[] pds = BeanUtils.getPropertyDescriptors(queryProperty.getClass());
         for (String  propertyName : coll) {
             if ("class".equalsIgnoreCase(propertyName) ||
