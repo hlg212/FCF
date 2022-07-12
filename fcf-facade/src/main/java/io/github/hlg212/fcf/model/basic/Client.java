@@ -12,4 +12,5 @@ public class Client extends Model implements  IClient {
     private String secret;
     private String account;
     private String registeredRedirectUri;
+    private String[] grantTypes;
 }

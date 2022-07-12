@@ -105,7 +105,10 @@ public class OAuthApiHelper {
         {
             ExceptionHelper.throwServerException((Exception)throwable);
         }
-
+        if( result == null )
+        {
+            ExceptionHelper.throwServerException(throwable.getMessage());
+        }
         return result;
     }
 }

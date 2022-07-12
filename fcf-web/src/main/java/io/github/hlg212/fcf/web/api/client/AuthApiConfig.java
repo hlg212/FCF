@@ -36,8 +36,8 @@ class AuthApiConfig {
          *
          */
         @Override
-        @RequestMapping(value="/getMenuByUserId",method=RequestMethod.GET)
-        public List<Res>  getMenuByUserId(@RequestParam("appCode") String appCode, @RequestParam("userId") String userId);
+        @RequestMapping(value="/getMenuTree",method=RequestMethod.GET)
+        public List<Res>  getMenuTree(@RequestParam("appCode") String appCode, @RequestParam("userId") String userId);
 
         /**
          *  获得用户所拥有的app
@@ -45,7 +45,7 @@ class AuthApiConfig {
          *
          */
         @RequestMapping(value="/getAppsByUserId",method=RequestMethod.GET)
-        public List<App> getAppsByUserId(@RequestParam("userId") String userId, @RequestParam("type") String type);
+        public List<App> getApps(@RequestParam("userId") String userId, @RequestParam("type") String type);
     }
 
 }

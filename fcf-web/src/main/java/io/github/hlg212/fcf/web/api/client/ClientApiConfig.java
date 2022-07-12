@@ -1,8 +1,9 @@
 package  io.github.hlg212.fcf.web.api.client;
 
-import  io.github.hlg212.fcf.annotation.CacheRead;
-import  io.github.hlg212.fcf.api.Constants;
-import  io.github.hlg212.fcf.model.basic.Client;
+import io.github.hlg212.fcf.annotation.CacheRead;
+import io.github.hlg212.fcf.api.Constants;
+import io.github.hlg212.fcf.model.basic.Client;
+import io.github.hlg212.fcf.model.basic.ClientAuthority;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Configuration;
@@ -10,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-import java.util.Map;
+import java.util.Collection;
 
 
 @Configuration
@@ -26,10 +26,10 @@ class ClientApiConfig {
         @Override
         public Client getById(@RequestParam("id") String id);
 
-        @RequestMapping(value="/getAuthoritysByClientId",method=RequestMethod.GET)
-        @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.ClientKey.getAuthoritysByKhdid_spel)
+        @RequestMapping(value="/getAuthoritys",method=RequestMethod.GET)
+        @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.ClientKey.getAuthoritysByClientId_spel)
         @Override
-        public Map getAuthoritysByClientId(@RequestParam("clientId") String clientId);
+        public Collection<ClientAuthority> getAuthoritys(@RequestParam("clientId") String clientId);
     }
 
 }

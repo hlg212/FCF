@@ -15,7 +15,7 @@ import java.util.List;
 @ConditionalOnExpression("false")
 public interface DictApi<T extends IDict> {
 
-    @RequestMapping(value="/getAllDics",method=RequestMethod.GET)
+    @RequestMapping(value="/getAllDicts",method=RequestMethod.GET)
     @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.DictKey.getAllDicts_spel)
     public List<T> getAllDicts(@RequestParam("appCode") String appCode);
 

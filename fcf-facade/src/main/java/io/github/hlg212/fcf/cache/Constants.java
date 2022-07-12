@@ -10,9 +10,6 @@ package  io.github.hlg212.fcf.cache;
 public class Constants {
 
 
-
-
-
   private static final String PREFIX = "frame_";
 
   public static final String Dict =  PREFIX + "dict";
@@ -51,8 +48,8 @@ public class Constants {
 
   public static class ClientKey
   {
-    public static final String getAuthoritysByKhdid_prefix = "getAuthoritysByKhdid";
-    public static final String getAuthoritysByKhdid_spel = "'getAuthoritysByKhdid:'+ #p0 ";
+    public static final String getAuthoritysByClientId_prefix = "getAuthoritysByClientId";
+    public static final String getAuthoritysByClientId_spel = "'getAuthoritysByClientId:'+ #p0 ";
   }
 
   public static class LongRunningResKey
@@ -71,13 +68,13 @@ public class Constants {
     public static final String getAnonymousUrls_spel = "'getAnonymousUrls'";
 
 
-    public static final String getAuthoritysByUserId_spel = "'getAuthoritysByUserId:'+ #p0 + ':' + #p1";
+    public static final String getAppPermissions_spel = "'getAppPermissions:'+ #p0 + ':' + #p1";
 
-    public static final String getAllAuthoritysByUserId_spel = "'getAllAuthoritysByUserId:'+  #p0";
+    public static final String getAllPermissions_spel = "'getAllPermissions:'+  #p0";
 
-    public static final String getMenuByUserId_spel = "'getMenuByUserId:'+ #p0 + ':' + #p1";
+    public static final String getMenuTree_spel = "'getMenuTree:'+ #p0 + ':' + #p1";
 
-    public static final String getAppsByUserId_spel = "'getAppsByUserId:' + #p0  + ':'   + #p1";
+    public static final String getApps_spel = "'getApps:' + #p0  + ':'   + #p1";
 
 
   }

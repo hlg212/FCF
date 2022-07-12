@@ -3,6 +3,8 @@ package  io.github.hlg212.fcf.model.oauth;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OAuthResult implements  IOAuthResult{
 
@@ -12,6 +14,26 @@ public class OAuthResult implements  IOAuthResult{
     private String error;   
     private String errorDescription;
 	private String clientId;
+
+    private String active;
+    private String userName;
+    private Object scope;
+
+    public String getActive() {
+        return active;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+    @JsonProperty(value = "user_name")
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     @Override
     @JsonProperty(value = "accessToken")
@@ -66,5 +88,13 @@ public class OAuthResult implements  IOAuthResult{
 	 @JsonProperty(value = "client_id")
     public void setClientId(String clientId) {
         this.clientId = clientId;
+    }
+
+    public Object getScope() {
+        return scope;
+    }
+
+    public void setScope(Object scope) {
+        this.scope = scope;
     }
 }

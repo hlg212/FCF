@@ -93,7 +93,7 @@ public class TokenFilter implements Filter {
 			if (StringUtils.isBlank(token) || !token.toLowerCase().startsWith(BEARER)) {
 				return null;
 			}
-			return token.substring(BEARER.length());
+			return token.substring(BEARER.length()).trim();
 		}
 	}
 

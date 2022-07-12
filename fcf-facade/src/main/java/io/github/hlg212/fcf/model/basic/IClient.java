@@ -14,5 +14,7 @@ public interface IClient  extends ISerializable {
 
     public String getAccount();
 
+    public String[] getGrantTypes();
+
     public String getRegisteredRedirectUri();
 }

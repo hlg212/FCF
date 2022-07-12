@@ -22,9 +22,9 @@ public interface AuthApi {
      * @param userId
      *  
      */
-    @RequestMapping(value="/getAppPermissionsByUserId",method=RequestMethod.GET)
-    @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getAuthoritysByUserId_spel)
-    public List<String> getAppPermissionsByUserId(@RequestParam("appCode") String appCode, @RequestParam("userId") String userId);
+    @RequestMapping(value="/getAppPermissions",method=RequestMethod.GET)
+    @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getAppPermissions_spel)
+    public List<String> getAppPermissions(@RequestParam("appCode") String appCode, @RequestParam("userId") String userId);
 
 
     /**
@@ -32,9 +32,9 @@ public interface AuthApi {
      * @param userId
      *  
      */
-    @RequestMapping(value="/getAllPermissionsByUserId",method=RequestMethod.GET)
-    @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getAllAuthoritysByUserId_spel)
-    public List<String> getAllPermissionsByUserId( @RequestParam("userId") String userId);
+    @RequestMapping(value="/getAllPermissions",method=RequestMethod.GET)
+    @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getAllPermissions_spel)
+    public List<String> getAllPermissions( @RequestParam("userId") String userId);
 
 
     /**
@@ -42,9 +42,9 @@ public interface AuthApi {
      * @param userId
      *  
      */
-    @RequestMapping(value="/getMenuByUserId",method=RequestMethod.GET)
-    @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getMenuByUserId_spel)
-    public <E extends  IRes>  List<E> getMenuByUserId(@RequestParam("appCode") String appCode, @RequestParam("userId") String userId);
+    @RequestMapping(value="/getMenuTree",method=RequestMethod.GET)
+    @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getMenuTree_spel)
+    public <E extends  IRes>  List<E> getMenuTree(@RequestParam("appCode") String appCode, @RequestParam("userId") String userId);
 
     /**
      * 获得所有需要授权的资源
@@ -57,7 +57,7 @@ public interface AuthApi {
     /**
      *  获取用户应用列表
      */
-    @RequestMapping(value="/getAppsByUserId",method=RequestMethod.GET)
-    @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getAppsByUserId_spel)
-    public <E extends IApp> List<E> getAppsByUserId(@RequestParam("userId") String userId,@RequestParam(name="type",required = false) String type);
+    @RequestMapping(value="/getApps",method=RequestMethod.GET)
+    @CacheRead(key =  io.github.hlg212.fcf.cache.Constants.AuthKey.getApps_spel)
+    public <E extends IApp> List<E> getApps(@RequestParam("userId") String userId,@RequestParam(name="type",required = false) String type);
 }
