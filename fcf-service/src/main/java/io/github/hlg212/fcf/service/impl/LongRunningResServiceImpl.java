@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * @author hlg
  */
-@Component
+@Component("FCF.LongRunningResServiceImpl")
 @CacheConfig(cacheNames = Constants.LongRunningRes,cacheManager = Constants.CacheManager.SimpleCacheManager)
 @Slf4j
 public class LongRunningResServiceImpl implements LongRunningResService {
