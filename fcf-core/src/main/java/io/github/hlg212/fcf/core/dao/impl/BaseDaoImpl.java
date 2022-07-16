@@ -7,10 +7,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.TableInfoHelper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import  io.github.hlg212.fcf.core.util.TableHelper;
-import  io.github.hlg212.fcf.model.Model;
-import  io.github.hlg212.fcf.model.OrderCondition;
-import  io.github.hlg212.fcf.model.PageInfo;
-import  io.github.hlg212.fcf.model.QueryParam;
+import io.github.hlg212.fcf.model.*;
 import  io.github.hlg212.fcf.util.ExceptionHelper;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +16,8 @@ import org.apache.commons.lang.StringUtils;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -70,14 +69,16 @@ public class BaseDaoImpl<T extends Model> extends AbsBaseDao<T> {
     @Override
     protected Integer count(QueryParam queryParam) {
         BaseMapper mapper = getMapper();
+        // 某些数据库，在count时不能进行排序
+        queryParam.setOrderConditions(null);
         return mapper.selectCount(queryParamToWrapper(queryParam));
     }
 
     private QueryWrapper queryParamToWrapper(QueryParam queryParam) {
         CustomParamQueryWrapper queryWrapper = new CustomParamQueryWrapper();
         queryWrapper.setCustomParam(queryParam.getCustomParam());
-
-        queryParam.getConditions().forEach(queryCondition -> {
+        List<QueryCondition> conditions = queryParam.getConditions();
+        conditions.forEach(queryCondition -> {
 
             String column = getColumn( queryCondition.getProperty() );
             if( StringUtils.isEmpty(column) ){
@@ -110,31 +111,9 @@ public class BaseDaoImpl<T extends Model> extends AbsBaseDao<T> {
                     queryWrapper.ge(column, queryCondition.getValue());
                     break;
                 case QueryParam.IN:
-//                    final int size;
-////
-////                    if( queryCondition.getValue() instanceof  Object[])
-////                    {
-////                        size = ((Object[]) queryCondition.getValue()).length;
-////                        queryWrapper.in(column, (Object[])queryCondition.getValue());
-////                    }
-////                    else
-////                    {
-////                        size = ((Collection) queryCondition.getValue()).size();
-////                        queryWrapper.in(column, (Collection) queryCondition.getValue());
-////                    }
                     applyBigIn(queryWrapper,queryCondition.getValue(),column,QueryParam.IN);
                     break;
                 case QueryParam.NOT_IN:
-//                    if( queryCondition.getValue() instanceof  Object[])
-//                    {
-//                        queryWrapper.notIn(column, (Object[])queryCondition.getValue());
-//                    }
-//                    else
-//                    {
-//                        queryWrapper.notIn(column, (Collection) queryCondition.getValue());
-//                    }
-//                    break;
-
                     applyBigIn(queryWrapper,queryCondition.getValue(),column,QueryParam.NOT_IN);
                     break;
                 case QueryParam.LESS_THAN:
@@ -229,6 +208,10 @@ public class BaseDaoImpl<T extends Model> extends AbsBaseDao<T> {
 
 
     private void applySql(QueryWrapper wrapper, QueryParam queryParam) {
+        List<String> sqlConditions = queryParam.getSqlConditions();
+        if(Objects.isNull(sqlConditions)){
+            return;
+        }
         if( queryParam.getSqlConditions() != null && !queryParam.getSqlConditions().isEmpty()) {
             queryParam.getSqlConditions().stream().forEach(sql -> {
                 wrapper.apply(sql);
@@ -237,7 +220,10 @@ public class BaseDaoImpl<T extends Model> extends AbsBaseDao<T> {
     }
 
     private void setOrder(QueryWrapper wrapper, QueryParam queryParam) {
-        queryParam.getOrderConditions();
+        List<OrderCondition> orderConditions =  queryParam.getOrderConditions();
+        if(Objects.isNull(orderConditions)){
+            return;
+        }
         for(OrderCondition orderCondition : queryParam.getOrderConditions() )
         {
             String column =  getColumn(orderCondition.getName());
@@ -269,8 +255,7 @@ public class BaseDaoImpl<T extends Model> extends AbsBaseDao<T> {
 
         Class<?> clazz = this.getModelClass();
 
-        String fieldName = TableInfoHelper.getTableInfo(clazz).getKeyProperty();
-        return fieldName;
+        return TableInfoHelper.getTableInfo(clazz).getKeyProperty();
 
     }
     private String getColumn(String pro)

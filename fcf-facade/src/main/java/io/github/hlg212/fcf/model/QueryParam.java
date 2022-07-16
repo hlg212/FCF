@@ -29,12 +29,12 @@ public class QueryParam {
 	/**
 	 * conditions: 动态添加的条件
 	 */
-	private List<QueryCondition> conditions = new ArrayList<QueryCondition>();
+	private List<QueryCondition> conditions = new ArrayList<>();
 
 	/**
 	 * sqlConditions: 人工sql条件，用于复杂SQL情形.
 	 */
-	private List<String> sqlConditions = new ArrayList<String>();
+	private List<String> sqlConditions = new ArrayList<>();
 
 	private List<OrderCondition> orderConditions = new ArrayList();
 
