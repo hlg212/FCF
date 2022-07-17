@@ -1,16 +1,15 @@
-/**
- * 
- */
 package  io.github.hlg212.fcf.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 
-@ConfigurationProperties(prefix = "fcf.automate")
+@ConfigurationProperties(prefix = AutomateProperties.PREFIX)
 @Data
 public class AutomateProperties {
-	
+
+	public static final String PREFIX = "fcf.automate";
+
 	private Boolean enable = true ;
 
 	private Boolean enableApp = true ;

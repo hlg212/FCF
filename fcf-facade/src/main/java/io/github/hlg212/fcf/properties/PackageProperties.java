@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 
 
 
-@ConfigurationProperties(prefix = "fcf.package")
+@ConfigurationProperties(prefix = PackageProperties.PREFIX)
 @Data
 @Component
 public class PackageProperties {
-
+	public static final String PREFIX = "fcf.package";
 
 	private String company ;
 

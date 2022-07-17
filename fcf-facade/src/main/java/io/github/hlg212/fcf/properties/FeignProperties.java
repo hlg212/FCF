@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package  io.github.hlg212.fcf.properties;
 
 import lombok.Data;
@@ -11,9 +9,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@ConfigurationProperties("hlg")
+@ConfigurationProperties(prefix = FeignProperties.PREFIX)
 @Data
 public class FeignProperties {
+	public static final String PREFIX = "fcf";
 
 	@NestedConfigurationProperty
 	private Map<String,FeignAppProperties> feign = new HashMap<>();

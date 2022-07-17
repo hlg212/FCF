@@ -8,9 +8,10 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 
-@ConfigurationProperties(prefix = "fcf.dao.fill.field")
+@ConfigurationProperties(prefix = AutoFillFieldProperties.PREFIX)
 @Data
 public class AutoFillFieldProperties {
+	public static final String PREFIX = "fcf.dao.fill.field";
 
 	private Set<String> updateTime = new LinkedHashSet<>(10);
 	private Set<String> createTime = new LinkedHashSet<>(10);

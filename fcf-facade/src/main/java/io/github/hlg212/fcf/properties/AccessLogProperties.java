@@ -1,6 +1,3 @@
-/**
- * 
- */
 package  io.github.hlg212.fcf.properties;
 
 import lombok.Data;
@@ -9,10 +6,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import java.util.List;
 
 
-@ConfigurationProperties(prefix = "fcf.log.access")
+@ConfigurationProperties(prefix = AccessLogProperties.PREFIX)
 @Data
 public class AccessLogProperties {
-	
+
+	public static final String PREFIX = "fcf.collect.log.access";
+
 	private Boolean enable = true;
 
 	// 忽略拦截的表达式

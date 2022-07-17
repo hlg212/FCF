@@ -16,8 +16,10 @@ import java.util.Map;
  */
 
 @Data
-@ConfigurationProperties(prefix = "fcf.dao.authority")
+@ConfigurationProperties(prefix = DataAuthorityProperties.PREFIX)
 public class DataAuthorityProperties {
+
+    public static final String PREFIX = "fcf.dao.authority";
 
     private boolean configEnable = false;
     private boolean enable = false;

@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  *  swagger 配置属性
- * htcf:
+ * fcf:
  *   swagger:
  *     enable: false
  *
@@ -17,9 +17,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author huangligui
  * @date 2018年10月19日
  */
-@ConfigurationProperties(prefix = "fcf.swagger")
+@ConfigurationProperties(prefix = SwaggerProperties.PREFIX)
 @Data
 public class SwaggerProperties {
+
+	public static final String PREFIX = "fcf.swagger";
 
 	private Boolean enable;
 
