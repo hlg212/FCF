@@ -5,7 +5,7 @@ services:
     hostname: "myRabbit"
     container_name: "rabbitmq"
     volumes:
-      - $pwd/data:/var/lib/rabbitmq
+      - ./rabbitmq/data:/var/lib/rabbitmq
     ports:
       - 5672:5672
       - 15672:15672
@@ -39,54 +39,30 @@ services:
     networks:
       - fcf_net
     volumes:
-      - ./mysql:/etc/mysql/conf.d:rw
+      - ./mysql/conf/:/etc/mysql/conf.d:rw
+      - ./mysql/logs/:/logs
+      - ./mysql/data/:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=root
     command:
-      --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --lower_case_table_names=1
 
-  elasticsearch:
-    image: elasticsearch:7.12.1
-    hostname: "elasticsearch"
-    container_name: "elasticsearch"
-    restart: on-failure
-    environment:
-      - discovery.type=single-node
-      - ES_JAVA_OPTS="-Xms84m -Xmx512m"
+  xxl-job:
+    image: xuxueli/xxl-job-admin:2.3.1
+    container_name: "xxl-job-admin"
+    restart: always
     ports:
-      - 9200:9200
-      - 9300:9300
+      - 8892:8080
+    volumes:
+      - ./xxl-job/:/data/applogs:rw
     networks:
       - fcf_net
-
-  skywalking-oap-server:
-    image: apache/skywalking-oap-server:8.9.1
-    container_name: "skywalking-oap-server"
-    hostname: "skywalking-oap-server"
-    restart: on-failure
-    environment:
-      - SW_STORAGE=elasticsearch
-      - SW_STORAGE_ES_CLUSTER_NODES=elasticsearch:9200
-    ports:
-      - 11800:11800
-      - 12800:12800
     depends_on:
-      - elasticsearch
-    networks:
-      - fcf_net
-
-  skywalking-ui:
-    image: apache/skywalking-ui:8.9.1
-    container_name: "skywalking-ui"
-    restart: on-failure
+      - mysql
     environment:
-      - SW_OAP_ADDRESS=http://skywalking-oap-server:12800
-    ports:
-      - 8081:8080
-    depends_on:
-      - skywalking-oap-server
-    networks:
-      - fcf_net
+      - PARAMS=--spring.datasource.username=root --spring.datasource.password=root --spring.datasource.url=jdbc:mysql://mysql:3306/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
 
 networks:
   fcf_net:

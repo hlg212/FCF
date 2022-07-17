@@ -1,0 +1,48 @@
+version: '3.0'
+
+  elasticsearch:
+    image: elasticsearch:7.12.1
+    hostname: "elasticsearch"
+    container_name: "elasticsearch"
+    restart: on-failure
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS="-Xms84m -Xmx512m"
+    ports:
+      - 9200:9200
+      - 9300:9300
+    networks:
+      - fcf_net
+
+  skywalking-oap-server:
+    image: apache/skywalking-oap-server:8.9.1
+    container_name: "skywalking-oap-server"
+    hostname: "skywalking-oap-server"
+    restart: on-failure
+    environment:
+      - SW_STORAGE=elasticsearch
+      - SW_STORAGE_ES_CLUSTER_NODES=elasticsearch:9200
+    ports:
+      - 11800:11800
+      - 12800:12800
+    depends_on:
+      - elasticsearch
+    networks:
+      - fcf_net
+
+  skywalking-ui:
+    image: apache/skywalking-ui:8.9.1
+    container_name: "skywalking-ui"
+    restart: on-failure
+    environment:
+      - SW_OAP_ADDRESS=http://skywalking-oap-server:12800
+    ports:
+      - 8081:8080
+    depends_on:
+      - skywalking-oap-server
+    networks:
+      - fcf_net
+
+networks:
+  fcf_net:
+    driver: bridge
