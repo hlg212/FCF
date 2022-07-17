@@ -5,7 +5,7 @@ services:
     hostname: "myRabbit"
     container_name: "rabbitmq"
     volumes:
-      - v $pwd/data:/var/lib/rabbitmq
+      - $pwd/data:/var/lib/rabbitmq
     ports:
       - 5672:5672
       - 15672:15672
@@ -30,6 +30,20 @@ services:
       - ./redis/data:/data:rw
     command:
       redis-server /etc/redis/redis.conf --appendonly yes --requirepass 123456
+  mysql:
+    image: mysql:8.0.29
+    container_name: "mysql"
+    restart: always
+    ports:
+      - 3306:3306
+    networks:
+      - fcf_net
+    volumes:
+      - ./mysql:/etc/mysql/conf.d:rw
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    command:
+      --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 
   elasticsearch:
     image: elasticsearch:7.12.1
