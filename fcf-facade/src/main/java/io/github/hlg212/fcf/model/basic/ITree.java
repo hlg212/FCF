@@ -13,5 +13,6 @@ public interface ITree {
     public String getId();
     public String getPid();
     public <E> List<E> getChildren();
+   default public boolean getChecked(){return false;}
 
 }
