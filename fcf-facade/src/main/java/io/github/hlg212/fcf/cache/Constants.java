@@ -25,6 +25,7 @@ public class Constants {
   public static final String BlackWhiteList = PREFIX + "blackWhiteList";
   public static final String FworkHelper =  PREFIX + "fworkHelper";
   public static final String LongRunningRes = PREFIX + "longRunningRes";
+  public static final String Permission = PREFIX + "permission";
 
 
   public static class DictKey
@@ -60,6 +61,12 @@ public class Constants {
     public static final String getUriTimeout_prefix = "getUriTimeout";
     public static final String getUriTimeout_spel = "'getUriTimeout:'+#p0";
 
+  }
+
+  public static class PermissionResKey
+  {
+    public static final String checkPermission_prefix = "checkPermission";
+    public static final String checkPermission_spel = "'checkPermission:'+#p0+#p1+#p2";
   }
 
   public static class AuthKey

@@ -1,17 +1,16 @@
 package  io.github.hlg212.fcf.core.handler;
 
-import  io.github.hlg212.fcf.api.AuthApi;
-import  io.github.hlg212.fcf.core.properties.DataAuthorityProperties;
-import  io.github.hlg212.fcf.core.util.TableHelper;
-import  io.github.hlg212.fcf.dao.BaseDao;
-import  io.github.hlg212.fcf.model.Qco;
-import  io.github.hlg212.fcf.model.QcoSuffix;
-import  io.github.hlg212.fcf.model.QueryCondition;
-import  io.github.hlg212.fcf.model.QueryParam;
-import  io.github.hlg212.fcf.model.dam.IDataAuthorityConfigSet;
-import  io.github.hlg212.fcf.model.dam.IDataAuthorityPropertyCondition;
-import  io.github.hlg212.fcf.model.dam.IDataAuthorityPropertyConditionValue;
-import  io.github.hlg212.fcf.util.*;
+import io.github.hlg212.fcf.core.properties.DataAuthorityProperties;
+import io.github.hlg212.fcf.core.util.TableHelper;
+import io.github.hlg212.fcf.dao.BaseDao;
+import io.github.hlg212.fcf.model.Qco;
+import io.github.hlg212.fcf.model.QcoSuffix;
+import io.github.hlg212.fcf.model.QueryCondition;
+import io.github.hlg212.fcf.model.QueryParam;
+import io.github.hlg212.fcf.model.dam.IDataAuthorityConfigSet;
+import io.github.hlg212.fcf.model.dam.IDataAuthorityPropertyCondition;
+import io.github.hlg212.fcf.model.dam.IDataAuthorityPropertyConditionValue;
+import io.github.hlg212.fcf.util.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
@@ -33,9 +32,6 @@ import java.util.*;
  */
 @Slf4j
 public abstract class AbsDataAuthorityHandler implements DataAuthorityHandler {
-
-    @Autowired
-    private AuthApi authApi;
 
     private Map<BaseDao, IDataAuthorityConfigSet> dataAuthorityConfigSets;
 
@@ -118,7 +114,8 @@ public abstract class AbsDataAuthorityHandler implements DataAuthorityHandler {
 
 
     private boolean checkAuthoriity(String daoName, String authority) {
-        return false;
+        String permissionCode = daoName + "#" + authority;
+       return PermissionHelper.checkPermission(permissionCode);
     }
 
     private boolean isOwner(String type, BaseDao dao, Object val) {
@@ -172,7 +169,7 @@ public abstract class AbsDataAuthorityHandler implements DataAuthorityHandler {
 
     private List<QueryCondition> getDataAuthorityPropertyConditions(String type, BaseDao dao) {
         List<IDataAuthorityPropertyCondition> list = dataAuthorityConditions.get(type).get(dao);
-        List<QueryCondition> conditions = convert(list, dao);
+        List<QueryCondition> conditions = convert(list, dao,type);
         return conditions;
     }
 
@@ -202,9 +199,12 @@ public abstract class AbsDataAuthorityHandler implements DataAuthorityHandler {
             } else if (AUTHORIITY_DELETE.equals(type)) {
                 flag = configSet.getIsDelete();
             }
-            log.info("dao[{}]开启了[{}]数据权限控制,将增加权限代码控制!", configSet.getCode(), type);
+
             if (checkAuthoriity(configSet.getCode(), type)) {
                 log.info("用户拥有[{}]的数据[{}]权限,跳过数据权限相关控制!", configSet.getCode(), type);
+            }
+            else{
+                log.info("dao[{}]开启了[{}]数据权限控制,将增加权限代码控制!", configSet.getCode(), type);
             }
 
         }
@@ -212,16 +212,16 @@ public abstract class AbsDataAuthorityHandler implements DataAuthorityHandler {
     }
 
 
-    abstract protected Object getDynamicValue(IDataAuthorityPropertyCondition propertyCondition);
+    abstract protected Object getDynamicValue(IDataAuthorityPropertyCondition propertyCondition,String optype);
 
-    private List<QueryCondition> convert(List<IDataAuthorityPropertyCondition> list, BaseDao dao) {
+    private List<QueryCondition> convert(List<IDataAuthorityPropertyCondition> list, BaseDao dao,String optype) {
         List<QueryCondition> conditions = new ArrayList<>();
         if (list != null) {
             for (IDataAuthorityPropertyCondition propertyCondition : list) {
                 IDataAuthorityPropertyConditionValue conditionValue = propertyCondition.getValue();
                 Object value = null;
                 if (IDataAuthorityPropertyCondition.TYPE_DYNAMIC.equals(propertyCondition.getType())) {
-                    value = getDynamicValue(propertyCondition);
+                    value = getDynamicValue(propertyCondition,optype);
                 } else {
                     Class proType = FieldHelper.getFieldType(dao.getModelClass(), propertyCondition.getPropertyName());
                     value = toValue(conditionValue.getValue().toString(), proType);
@@ -298,13 +298,16 @@ public abstract class AbsDataAuthorityHandler implements DataAuthorityHandler {
         if (dataAuthorityConfigSets != null) return;
 
         LockHelper.lock(LOCK_KEY);
+        log.info("加载数据权限......");
         try {
             if (dataAuthorityConfigSets != null) return;
             List<IDataAuthorityConfigSet> dataAuthorityConfigSets = getDataAuthorityConfigSet();
+
             Map<BaseDao, IDataAuthorityConfigSet> map = new HashMap();
             for (IDataAuthorityConfigSet set : dataAuthorityConfigSets) {
                 BaseDao dao = (BaseDao) SpringHelper.getBean(set.getCode());
                 if (dao != null) {
+                    log.info("DAO[{}]开启了数据权限控制!",set.getCode());
                     List<IDataAuthorityPropertyCondition> conditions = getDataAuthorityPropertyConditions(set);
 
                     List<IDataAuthorityPropertyCondition> addList = new ArrayList<>();
@@ -325,10 +328,13 @@ public abstract class AbsDataAuthorityHandler implements DataAuthorityHandler {
                             queryList.add(condition);
                         }
                     }
-
+                    log.info("DAO[{}] 新增 配置了[{}]条权限!",set.getCode(),addList.size());
                     addDataAuthorityConditions.put(dao, addList);
+                    log.info("DAO[{}] 更新 配置了[{}]条权限!",set.getCode(),updateList.size());
                     updateDataAuthorityConditions.put(dao, updateList);
+                    log.info("DAO[{}] 删除 配置了[{}]条权限!",set.getCode(),deleteList.size());
                     deleteDataAuthorityConditions.put(dao, deleteList);
+                    log.info("DAO[{}] 查询 配置了[{}]条权限!",set.getCode(),queryList.size());
                     queryDataAuthorityConditions.put(dao, queryList);
 
                     map.put(dao, set);

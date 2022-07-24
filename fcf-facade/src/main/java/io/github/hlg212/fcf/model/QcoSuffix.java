@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  * @author huangligui
  * @date 2018年9月7日
  */
-public enum QcoSuffix {
+public enum 	QcoSuffix {
 	
 	/**
 	 * !=

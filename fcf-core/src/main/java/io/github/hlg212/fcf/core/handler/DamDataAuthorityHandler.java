@@ -4,12 +4,15 @@ import  io.github.hlg212.fcf.api.dam.DataAuthorityConfigSetApi;
 import  io.github.hlg212.fcf.api.dam.DataAuthorityPropertyConditionApi;
 import  io.github.hlg212.fcf.model.dam.IDataAuthorityConfigSet;
 import  io.github.hlg212.fcf.model.dam.IDataAuthorityPropertyCondition;
+import io.github.hlg212.fcf.model.dam.IDataAuthorityPropertyConditionValue;
 import  io.github.hlg212.fcf.util.AppContextHelper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -20,7 +23,7 @@ import java.util.List;
  * @date 2021年1月11日
  */
 @Slf4j
-public class DamDataAuthorityHandler extends AbsDataAuthorityHandler {
+public class DamDataAuthorityHandler extends AbsDataAuthorityHandler implements InitializingBean {
 
 
     @Autowired
@@ -30,8 +33,9 @@ public class DamDataAuthorityHandler extends AbsDataAuthorityHandler {
     private DataAuthorityPropertyConditionApi dataAuthorityPropertyConditionApi;
 
     @Override
-    protected Object getDynamicValue(IDataAuthorityPropertyCondition propertyCondition) {
-        return dataAuthorityPropertyConditionApi.getValue(propertyCondition.getCode()).getValue();
+    protected Object getDynamicValue(IDataAuthorityPropertyCondition propertyCondition,String optype) {
+        IDataAuthorityPropertyConditionValue val =  dataAuthorityPropertyConditionApi.getValue(propertyCondition.getCode(),optype);
+        return Objects.isNull(val) ? null : val.getValue();
     }
 
     @Override
@@ -44,5 +48,8 @@ public class DamDataAuthorityHandler extends AbsDataAuthorityHandler {
         return dataAuthorityPropertyConditionApi.getConditions(set.getId());
     }
 
-
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        refresh();
+    }
 }

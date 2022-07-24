@@ -1,5 +1,6 @@
 package  io.github.hlg212.fcf.core.dao.impl;
 
+import io.github.hlg212.fcf.core.handler.DataAuthorityHandler;
 import  io.github.hlg212.fcf.core.util.QueryPropertyParseUtils;
 import  io.github.hlg212.fcf.core.util.TableHelper;
 import  io.github.hlg212.fcf.dao.BaseDao;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.reflect.FieldUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
@@ -36,6 +38,9 @@ public abstract class AbsBaseDao<T extends Model> implements BaseDao<T> {
     private Class modelClass;
     private Map<String, String> asMap;
 
+    @Autowired(required = false)
+    protected DataAuthorityHandler dataAuthorityHandler;
+
 
     @Override
     public T save(T t) {
@@ -48,11 +53,19 @@ public abstract class AbsBaseDao<T extends Model> implements BaseDao<T> {
         if (i == 0) {
             ExceptionHelper.throwServerException("数据库操作,insert返回0");
         }
+        if( dataAuthorityHandler != null )
+        {
+            dataAuthorityHandler.onAdd(t,this);
+        }
         return t;
     }
 
     @Override
     public T update(T t) {
+        if( dataAuthorityHandler != null )
+        {
+            dataAuthorityHandler.onUpdate(t,this);
+        }
         String fieldName = this.getPrimeryKeyField();
         updateById(t);
         Object id = null;
@@ -70,6 +83,10 @@ public abstract class AbsBaseDao<T extends Model> implements BaseDao<T> {
 
     @Override
     public void deleteById(Object... id) {
+        if( dataAuthorityHandler != null )
+        {
+            dataAuthorityHandler.onDelete(id,this);
+        }
         //事先获取缓存实体对应主键属性，以免第一次执行delete时出错
         if (id.length > 1) {
             deleteBatchIds(Arrays.asList(id));
@@ -100,7 +117,9 @@ public abstract class AbsBaseDao<T extends Model> implements BaseDao<T> {
         pageQuery.setQco(qco);
         pageQuery.setPageNum(0);
         pageQuery.setPageSize(1);
-        PageInfo<E> page = this.findPage(pageQuery);
+        QueryParam queryParam = convertQueryParam(pageQuery);
+        // get 不走权限过滤
+        PageInfo<E> page = this.findPage(queryParam);
         List<E> list = page.getList();
         if (list == null || list.size() == 0) {
             //List返回类型默认为com.github.pagehelper.Page 若查询结构集为空时,强制返回null对象
@@ -188,11 +207,21 @@ public abstract class AbsBaseDao<T extends Model> implements BaseDao<T> {
 
     @Override
     public <E extends T> PageInfo<E> findPage(PageQuery<Qco> pageQuery) {
+        QueryParam param = convertQueryParam(pageQuery);
+        if( dataAuthorityHandler != null )
+        {
+            dataAuthorityHandler.onQuery(param,this);
+        }
+        return this.findPage(param);
+    }
+
+    private QueryParam convertQueryParam(PageQuery<Qco> pageQuery)
+    {
         QueryParam param = QueryPropertyParseUtils.convertForQueryParam(pageQuery.getQco());
         param.setPageNum(pageQuery.getPageNum());
         param.setPageSize(pageQuery.getPageSize());
         this.checkQueryCondition(param);
-        return this.findPage(param);
+        return param;
     }
 
     abstract protected <E extends T> PageInfo<E> findPage(QueryParam queryParam);

@@ -6,11 +6,14 @@ import com.baomidou.mybatisplus.core.override.MybatisMapperProxyFactory;
 import com.baomidou.mybatisplus.core.toolkit.GlobalConfigUtils;
 import  io.github.hlg212.fcf.core.dao.impl.BaseDaoImpl;
 import  io.github.hlg212.fcf.dao.BaseDao;
+import io.github.hlg212.fcf.util.SpringHelper;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
+import org.springframework.context.ApplicationContext;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -54,7 +57,11 @@ public class DaoMapperProxyFactory<T> extends MybatisMapperProxyFactory<T> {
         enhancer.setCallback(new DaoEnhancer(proxy, getMapperInterface()));
 
         BaseDao baseDao = (BaseDao) enhancer.create();
-
+        ApplicationContext context = SpringHelper.getApplicationContext();
+        if( context != null ) {
+            AutowireCapableBeanFactory factory = context.getAutowireCapableBeanFactory();
+            factory.autowireBean(baseDao);
+        }
         // return (T)new BaseDaoImpl();
         return (T) baseDao;
     }

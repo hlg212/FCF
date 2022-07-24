@@ -1,10 +1,10 @@
-package  io.github.hlg212.fcf.core.properties;
+package io.github.hlg212.fcf.core.properties;
 
+import io.github.hlg212.fcf.properties.PrefixConstants;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -19,7 +19,7 @@ import java.util.Map;
 @ConfigurationProperties(prefix = DataAuthorityProperties.PREFIX)
 public class DataAuthorityProperties {
 
-    public static final String PREFIX = "fcf.dao.authority";
+    public static final String PREFIX = PrefixConstants.DATA_AUTHORITY_PROPERTIES_PREFIX;
 
     private boolean configEnable = false;
     private boolean enable = false;

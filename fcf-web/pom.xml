@@ -55,5 +55,9 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>io.github.hlg212.fcf</groupId>
+            <artifactId>fcf-facade</artifactId>
+        </dependency>
     </dependencies>
 </project>

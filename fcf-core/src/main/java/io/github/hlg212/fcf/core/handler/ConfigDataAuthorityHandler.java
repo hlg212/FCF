@@ -2,7 +2,6 @@ package  io.github.hlg212.fcf.core.handler;
 
 import  io.github.hlg212.fcf.core.properties.DataAuthorityConditionProperties;
 import  io.github.hlg212.fcf.core.properties.DataAuthorityConfigSetProperties;
-import  io.github.hlg212.fcf.core.properties.DataAuthorityProperties;
 import  io.github.hlg212.fcf.model.dam.IDataAuthorityConfigSet;
 import  io.github.hlg212.fcf.model.dam.IDataAuthorityPropertyCondition;
 import  io.github.hlg212.fcf.service.DataAuthorityService;
@@ -10,7 +9,6 @@ import  io.github.hlg212.fcf.util.FworkHelper;
 import  io.github.hlg212.fcf.util.SpringHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +26,7 @@ public class ConfigDataAuthorityHandler extends AbsDataAuthorityHandler implemen
 
 
     @Override
-    protected Object getDynamicValue(IDataAuthorityPropertyCondition propertyCondition) {
+    protected Object getDynamicValue(IDataAuthorityPropertyCondition propertyCondition,String optype) {
         if( propertyCondition instanceof DataAuthorityConditionProperties )
         {
             DataAuthorityConditionProperties properties = (DataAuthorityConditionProperties) propertyCondition;

@@ -1,5 +1,6 @@
 package  io.github.hlg212.fcf.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -15,6 +16,7 @@ import java.util.*;
  * @author huangligui
  * @date 2018-11-19 上午10:36:40
  */
+@Slf4j
 public class TreeHelper {
 
 	/**
@@ -47,11 +49,15 @@ public class TreeHelper {
 	 * @param parentName
 	 * @param childListName
 	 */
-	public static <T> List<T> buildTree(List<T> list, String nodeName, String parentName, String childListName)
-			throws Exception {
+	public static <T> List<T> buildTree(List<T> list, String nodeName, String parentName, String childListName){
 		NodeParam nodeParam = new NodeParam(nodeName, parentName, childListName);
 		if (list.size()>0) {
-			return createTree(list, nodeParam);
+			try {
+				return createTree(list, nodeParam);
+			} catch (Exception e) {
+				log.error("生成树失败！",e);
+				ExceptionHelper.throwServerException(e);
+			}
 		}
 		return Collections.emptyList();
 	}

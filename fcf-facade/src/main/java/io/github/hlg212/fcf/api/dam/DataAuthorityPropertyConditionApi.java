@@ -25,9 +25,9 @@ public interface DataAuthorityPropertyConditionApi<T extends IDataAuthorityPrope
 
 
     @RequestMapping(value="/getConditions",method=RequestMethod.GET)
-    public List<T> getConditions(@RequestParam("configSetId") String configSetId);
+    List<T> getConditions(@RequestParam("configSetId") String configSetId);
 
     @RequestMapping(value="/getValue",method=RequestMethod.GET)
-    public  <E extends IDataAuthorityPropertyConditionValue> E  getValue(@RequestParam("id") String id);
+    <E extends IDataAuthorityPropertyConditionValue> E  getValue(@RequestParam("id") String Conditiony, @RequestParam("optype") String optype);
 
 }

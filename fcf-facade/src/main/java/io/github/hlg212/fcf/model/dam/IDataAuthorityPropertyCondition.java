@@ -3,8 +3,8 @@ package  io.github.hlg212.fcf.model.dam;
 public interface IDataAuthorityPropertyCondition {
 
 
-    public static final String TYPE_DYNAMIC = "dynamic";
-    public static final String TYPE_STATIC = "static";
+    public static final String TYPE_DYNAMIC = "DYNAMIC";
+    public static final String TYPE_STATIC = "STATIC";
 
     public String getCode();
 
